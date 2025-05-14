@@ -68,7 +68,6 @@ void Map::tracePath(cell cellDetails[][COL], Pair dest) {
 bool Map::blocked(int grid[][COL], int row, int col) {
     // return True si se puede
     if (grid[row][col]==1) {
-        grid[row][col] = 0;
         return true;
     }else
         return false;

@@ -58,9 +58,9 @@ int main() {
             grid[i][j] = 1; //
     Map mapa;
     // Celda de inicio
-    Pair src = make_pair(14, 0);
+    Pair src = make_pair(9, 0);
     // Celda de fin
-    Pair dest = make_pair(0, 14);
+    Pair dest = make_pair(0, 9);
     // Usar clases mapa
 
     mapa.aEstrellita(grid,src, dest);
@@ -92,17 +92,23 @@ int main() {
                     if (row >= 0 && row < ROW && col >= 0 && col < COL) {
                         if (modoSeleccionado == 1){
                             if (mapa.blocked(grid, row, col)) {
+                                grid[row][col] = 0;
                                 celdaColor[row][col] = sf::Color::Blue;
+                                mapa.aEstrellita(grid,src, dest);
                             }
                     }
                         else if (modoSeleccionado == 2) {
                             if (mapa.blocked(grid, row, col)) {
+                                grid[row][col] = 0;
                                 celdaColor[row][col] = sf::Color::Red;
+                                mapa.aEstrellita(grid,src, dest);
                             }
                         }
                         else if (modoSeleccionado == 3) {
                             if (mapa.blocked(grid, row, col)) {
+                                grid[row][col] = 0;
                                 celdaColor[row][col] = sf::Color::Yellow;
+                                mapa.aEstrellita(grid,src, dest);
                             }
                         }
                     }
