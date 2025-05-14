@@ -62,6 +62,17 @@ void Map::tracePath(cell cellDetails[][COL], Pair dest) {
     }
     return;
 }
+// Cambiar el valor del mapa al colocar torre
+// Retorna true si se puede cambiar el valor
+// False si la casilla no puede ser modificado
+bool Map::blocked(int grid[][COL], int row, int col) {
+    // return True si se puede
+    if (grid[row][col]==1) {
+        grid[row][col] = 0;
+        return true;
+    }else
+        return false;
+}
 // Implementar el algoritmo
 void Map::aEstrellita(int grid[][COL], Pair src, Pair dest) {
     // (No es tan necesario)

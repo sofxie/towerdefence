@@ -27,6 +27,10 @@ int main() {
     boton2.setPosition(SIZE * 11, SIZE * 3);
     boton2.setFillColor(sf::Color::Red);
 
+    sf::RectangleShape boton3(sf::Vector2f(SIZE * 2, SIZE));
+    boton3.setPosition(SIZE * 11, SIZE * 5);
+    boton3.setFillColor(sf::Color::Yellow);
+
     // Imagen del mapa
     sf::Texture texture;
     sf::Texture texture1;
@@ -73,6 +77,10 @@ int main() {
                     modoSeleccionado = 2;
                     std::cout << "Haz seleccionado el color: (" << modoSeleccionado << ")\n";
                 }
+                if (boton3.getGlobalBounds().contains(event.mouseButton.x, event.mouseButton.y)) {
+                    modoSeleccionado = 3;
+                    std::cout << "Haz seleccionado el color: (" << modoSeleccionado << ")\n";
+                }
             }
             if (event.type == sf::Event::MouseButtonPressed) {
                 if (event.mouseButton.button == sf::Mouse::Left) {
@@ -82,10 +90,21 @@ int main() {
                         std::cout << "Haz hecho clic en la celda: (" << row << ", " << col << ")\n";
                     }
                     if (row >= 0 && row < ROW && col >= 0 && col < COL) {
-                        if (modoSeleccionado == 1)
-                            celdaColor[row][col] = sf::Color::Blue;
-                        else if (modoSeleccionado == 2)
-                            celdaColor[row][col] = sf::Color::Red;
+                        if (modoSeleccionado == 1){
+                            if (mapa.blocked(grid, row, col)) {
+                                celdaColor[row][col] = sf::Color::Blue;
+                            }
+                    }
+                        else if (modoSeleccionado == 2) {
+                            if (mapa.blocked(grid, row, col)) {
+                                celdaColor[row][col] = sf::Color::Red;
+                            }
+                        }
+                        else if (modoSeleccionado == 3) {
+                            if (mapa.blocked(grid, row, col)) {
+                                celdaColor[row][col] = sf::Color::Yellow;
+                            }
+                        }
                     }
                 }
             }
@@ -134,6 +153,7 @@ int main() {
         // Dibujar botón
         window.draw(boton1);
         window.draw(boton2);
+        window.draw(boton3);
         window.display();               // Mostrar la ventana
     }
 
