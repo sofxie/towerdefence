@@ -4,15 +4,23 @@ project(towerdefence)
 set(CMAKE_CXX_STANDARD 20)
 find_package(SFML 2.6.2 REQUIRED COMPONENTS system window graphics)
 
+include_directories(MODELO CONTROLADOR VISTA Enemigos)
+
 add_executable(towerdefence main.cpp
-        Map.cpp
-        Enemigos/EnemyController.cpp
-        Enemigos/EnemyController.h
-        Enemigos/Wave.cpp
-        Enemigos/Wave.h
-        Enemigos/Enemy.cpp
+        VISTA/View.cpp
+        VISTA/View.h
+        CONTROLADOR/Controler.cpp
+        CONTROLADOR/Controler.h
+        MODELO/Map.h
+        MODELO/Map.cpp
+        CONTROLADOR/Const.h
         Enemigos/Enemy.h
-)
+        Enemigos/Enemy.cpp
+        Enemigos/EnemyController.h
+        Enemigos/EnemyController.cpp
+        Enemigos/Wave.h
+        Enemigos/Wave.cpp)
+
 target_link_libraries(towerdefence sfml-system sfml-window sfml-graphics)
 
 file(COPY ${CMAKE_SOURCE_DIR}/Imagenes DESTINATION ${CMAKE_BINARY_DIR})
