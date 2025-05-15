@@ -32,7 +32,7 @@ bool Enemy::isAlive() const { return health > 0; } // Verifica si el enemigo est
 
 // Ogros
 Ogre::Ogre()
-    : Enemy(150, 100.0f, 20, 5, 5, EnemyType::Ogre) {}
+    : Enemy(150, 150.0f, 20, 5, 5, EnemyType::Ogre) {}
 
 // elfos Oscuros
 DarkElf::DarkElf()
