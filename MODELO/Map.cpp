@@ -20,9 +20,9 @@ bool Map::isValid(int row, int col) {
 // Revisar si hay paso
 bool Map::isUnBlocked(int grid[][COL],int row, int col) {
     // return True si la celda es accesible
-    if (grid[row][col]==1)
+    if (grid[row][col]==1) {
         return true;
-    else
+    }else
         // return False si no se puede acceder
         return false;
 }
@@ -68,6 +68,7 @@ void Map::tracePath(cell cellDetails[][COL], Pair dest) {
 bool Map::blocked(int grid[][COL], int row, int col) {
     // return True si se puede
     if (grid[row][col]==1) {
+        grid[row][col] = 0;
         return true;
     }else
         return false;

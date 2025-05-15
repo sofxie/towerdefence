@@ -1,7 +1,6 @@
 #ifndef MAP_H
 #define MAP_H
-#define ROW 10 // Definir tamaño de filas, contantes
-#define COL 10 // Definir tamaño de columnas, constantes
+#include "Const.h"
 #include <utility>
 #include <vector>
 using namespace std;
