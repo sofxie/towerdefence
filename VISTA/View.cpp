@@ -66,7 +66,7 @@ int View::botonClick(int mouseX, int mouseY) {
 }
 
 // Dibujar las celdas del mapa intercaladas
-void View::Celda(const int gric[ROW][COL]) {
+void View::Celda(const int grid[ROW][COL]) {
     // Dibujar celdas
     for (int i = 0; i < ROW; ++i) {
         for (int j = 0; j < COL; ++j) {
