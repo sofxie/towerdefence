@@ -2,71 +2,17 @@
 #include <SFML/Graphics.hpp>
 #include "Map.h"
 #include <utility>
-#include "Wave.h"
-#include "Enemy.h"
+#include "Enemigos/Wave.h"
+#include "Enemigos/Enemy.h"
 #include <vector>
 #include <ctime>
 #include <cmath>
 
-using Pair = std::pair<int, int>;
-
-using namespace std;
+using namespace  std;
 
 // Tamaño de celda
 const int SIZE = 60;
 sf::Color celdaColor[ROW][COL];
-
-struct VisualEnemy {
-    std::shared_ptr<Enemy> enemy; // enemigo
-    std::vector<Pair> path; // ruta
-    int currentStep = 0; // paso actual
-    sf::Vector2f position; // posición actual en pixeles
-    sf::Vector2f targetPosition; // destino actual
-    sf::RectangleShape shape; // forma del enemigo
-
-    VisualEnemy(std::shared_ptr<Enemy> e, const std::vector<Pair>& p)
-        : enemy(e), path(p) {
-        shape.setSize(sf::Vector2f(SIZE * 0.8f, SIZE * 0.8f)); // un poco más pequeño para que se vea bien, se diferencie del camino
-        shape.setFillColor(sf::Color::Black);
-
-        if (!path.empty()) {
-            currentStep = 0;
-            position = sf::Vector2f(path[0].second * SIZE, path[0].first * SIZE);
-            if (path.size() > 1)
-                targetPosition = sf::Vector2f(path[1].second * SIZE, path[1].first * SIZE);
-        }
-    }
-
-    void actualizar(float deltaTime) {
-        if (currentStep >= path.size() - 1) return;
-
-        sf::Vector2f direction = targetPosition - position;
-        float length = std::sqrt(direction.x * direction.x + direction.y * direction.y);
-        if (length != 0) direction /= length;
-
-        float speed = enemy->getSpeed() * 60.0f; // Velocidad en píxeles por segundo
-        position += direction * speed * deltaTime;
-
-        // Si llegamos o pasamos el destino
-        if (std::abs(position.x - targetPosition.x) < 1.0f && std::abs(position.y - targetPosition.y) < 1.0f) {
-            currentStep++;
-            if (currentStep < path.size() - 1) {
-                targetPosition = sf::Vector2f(path[currentStep + 1].second * SIZE,
-                                              path[currentStep + 1].first * SIZE);
-            }
-        }
-    }
-
-    void dibujar(sf::RenderWindow& window) {
-        shape.setPosition(position);
-        window.draw(shape);
-    }
-
-    bool haTerminado() const {
-        return currentStep >= path.size() - 1;
-    }
-};
-
 
 int main() {
     // Crear una ventana de 800x600
@@ -85,11 +31,6 @@ int main() {
     sf::RectangleShape boton3(sf::Vector2f(SIZE * 2, SIZE));
     boton3.setPosition(SIZE * 11, SIZE * 5);
     boton3.setFillColor(sf::Color::Yellow);
-
-    //boton para invocar la oleada
-    sf::RectangleShape botonOleada(sf::Vector2f(SIZE * 2, SIZE));
-    botonOleada.setPosition(SIZE * 11, SIZE * 7);
-    botonOleada.setFillColor(sf::Color(255, 140, 0)); // Naranja (Orange)
 
 
     // Imagen del mapa
@@ -126,22 +67,6 @@ int main() {
 
     mapa.aEstrellita(grid,src, dest);
 
-    // Crear oleada de enemigos(Prueba)
-    Wave oleada(2); // Primera oleada ;
-    std::vector<VisualEnemy> enemigosVisuales;
-
-    auto crearOleada = [&]() {
-        enemigosVisuales.clear();
-        oleada = Wave(oleada.getGeneration() + 1); // Generar nueva oleada
-        for (const auto& enemigo : oleada.getEnemies()) { // Recorrer enemigos
-            std::vector<Pair> path = mapa.getPath(grid, src, dest);
-            enemigosVisuales.emplace_back(std::make_shared<Enemy>(*enemigo), path);
-            std::cout << "oleada creada con exito\n";
-        }
-    };
-
-
-
     // Bucle principal del juego
     while (window.isOpen()) { // es como mainloop en tkinter
 
@@ -163,10 +88,6 @@ int main() {
                 if (boton3.getGlobalBounds().contains(event.mouseButton.x, event.mouseButton.y)) {
                     modoSeleccionado = 3;
                     std::cout << "Haz seleccionado el color: (" << modoSeleccionado << ")\n";
-                }
-                if (botonOleada.getGlobalBounds().contains(event.mouseButton.x, event.mouseButton.y)) {
-                    crearOleada();
-                    std::cout << "Haz invocado una nueva oleada\n";
                 }
             }
             if (event.type == sf::Event::MouseButtonPressed) {
@@ -242,23 +163,11 @@ int main() {
             highlight.setFillColor(sf::Color(0, 255, 255, 100)); // Amarillo transparente
             window.draw(highlight);
         }
-        // Actualizar enemigos
-        // Actualizar enemigos
-        for (auto& vEnemy : enemigosVisuales) {
-            vEnemy.actualizar(deltaTime);
-        }
-
-        // Dibujar enemigos
-        for (auto& vEnemy : enemigosVisuales) {
-            vEnemy.dibujar(window);
-        }
-
 
         // Dibujar botón
         window.draw(boton1);
         window.draw(boton2);
         window.draw(boton3);
-        window.draw(botonOleada);
         window.display();               // Mostrar la ventana
     }
 

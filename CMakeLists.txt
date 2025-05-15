@@ -6,12 +6,12 @@ find_package(SFML 2.6.2 REQUIRED COMPONENTS system window graphics)
 
 add_executable(towerdefence main.cpp
         Map.cpp
-        EnemyController.cpp
-        EnemyController.h
-        Wave.cpp
-        Wave.h
-        Enemy.cpp
-        Enemy.h
+        Enemigos/EnemyController.cpp
+        Enemigos/EnemyController.h
+        Enemigos/Wave.cpp
+        Enemigos/Wave.h
+        Enemigos/Enemy.cpp
+        Enemigos/Enemy.h
 )
 target_link_libraries(towerdefence sfml-system sfml-window sfml-graphics)
 
