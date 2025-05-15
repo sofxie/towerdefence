@@ -4,12 +4,13 @@
 #define COL 10 // Definir tamaño de columnas, constantes
 #include <utility>
 #include <vector>
+
 using namespace std;
 
+typedef pair<int,int> Pair; //
+typedef pair<double,pair<int,int>> pPairs; //
 class Map {
 private:
-    typedef pair<int,int> Pair; //
-    typedef pair<double,pair<int,int>> pPairs; //
     struct cell {
         int parent_i; // Padre de x
         int parent_j; // Padre de y
@@ -35,6 +36,8 @@ public:
     void aEstrellita(int grid[][COL], Pair scr, Pair dest);
     // Funcion para bloquear en el mapa
     bool blocked(int grid[][COL],int row,int col);
+    // Funcion que le manda la ruta a los enemigos
+    std::vector<Pair> getPath(int grid[][COL], Pair src, Pair dest);
 };
 
 

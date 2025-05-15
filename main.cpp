@@ -2,13 +2,20 @@
 #include <SFML/Graphics.hpp>
 #include "Map.h"
 #include <utility>
+#include "Wave.h"
+#include "Enemy.h"
 #include <vector>
 #include <ctime>
 
 
 
+
 using Pair = std::pair<int, int>;
+
 using namespace std;
+
+
+
 // Tamaño de celda
 const int SIZE = 60;
 sf::Color celdaColor[ROW][COL];
@@ -30,6 +37,12 @@ int main() {
     sf::RectangleShape boton3(sf::Vector2f(SIZE * 2, SIZE));
     boton3.setPosition(SIZE * 11, SIZE * 5);
     boton3.setFillColor(sf::Color::Yellow);
+
+    //boton para invocar la oleada
+    sf::RectangleShape botonOleada(sf::Vector2f(SIZE * 2, SIZE));
+    botonOleada.setPosition(SIZE * 11, SIZE * 7);
+    botonOleada.setFillColor(sf::Color(255, 140, 0)); // Naranja (Orange)
+
 
     // Imagen del mapa
     sf::Texture texture;
@@ -160,6 +173,7 @@ int main() {
         window.draw(boton1);
         window.draw(boton2);
         window.draw(boton3);
+        window.draw(botonOleada);
         window.display();               // Mostrar la ventana
     }
 
