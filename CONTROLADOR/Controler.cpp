@@ -79,8 +79,6 @@ void Controler::events() {
         }
     }
 }
-if (event.type == sf::Event::Closed)
-    window.close();
 }
 
 // Para actualizar estado del mapa
