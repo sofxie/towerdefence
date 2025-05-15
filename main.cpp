@@ -17,16 +17,16 @@ const int SIZE = 60;
 sf::Color celdaColor[ROW][COL];
 
 struct VisualEnemy {
-    std::shared_ptr<Enemy> enemy;
-    std::vector<Pair> path;
-    int currentStep = 0;
+    std::shared_ptr<Enemy> enemy; // enemigo
+    std::vector<Pair> path; // ruta
+    int currentStep = 0; // paso actual
     sf::Vector2f position; // posición actual en pixeles
     sf::Vector2f targetPosition; // destino actual
-    sf::RectangleShape shape;
+    sf::RectangleShape shape; // forma del enemigo
 
     VisualEnemy(std::shared_ptr<Enemy> e, const std::vector<Pair>& p)
         : enemy(e), path(p) {
-        shape.setSize(sf::Vector2f(SIZE * 0.8f, SIZE * 0.8f)); // un poco más pequeño para que se vea bien
+        shape.setSize(sf::Vector2f(SIZE * 0.8f, SIZE * 0.8f)); // un poco más pequeño para que se vea bien, se diferencie del camino
         shape.setFillColor(sf::Color::Black);
 
         if (!path.empty()) {
@@ -127,13 +127,13 @@ int main() {
     mapa.aEstrellita(grid,src, dest);
 
     // Crear oleada de enemigos(Prueba)
-    Wave oleada(1); // Primera oleada
+    Wave oleada(2); // Primera oleada ;
     std::vector<VisualEnemy> enemigosVisuales;
 
     auto crearOleada = [&]() {
         enemigosVisuales.clear();
-        oleada = Wave(oleada.getGeneration() + 1);
-        for (const auto& enemigo : oleada.getEnemies()) {
+        oleada = Wave(oleada.getGeneration() + 1); // Generar nueva oleada
+        for (const auto& enemigo : oleada.getEnemies()) { // Recorrer enemigos
             std::vector<Pair> path = mapa.getPath(grid, src, dest);
             enemigosVisuales.emplace_back(std::make_shared<Enemy>(*enemigo), path);
             std::cout << "oleada creada con exito\n";
