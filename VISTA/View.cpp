@@ -1,12 +1,14 @@
 #include "View.h"
 #include "Const.h"
+#include "VisualEnemy.h"
 
 // Constructor
 View::View(sf::RenderWindow &window)
     : window(window), // Referencia a la ventana que dibuja
     boton1(sf::Vector2f(SIZE * 2, SIZE)), // Botones
     boton2(sf::Vector2f(SIZE * 2, SIZE)),
-    boton3(sf::Vector2f(SIZE * 2, SIZE)){
+    boton3(sf::Vector2f(SIZE * 2, SIZE)),
+    botonOleada(sf::Vector2f(SIZE*2, SIZE)) {
 
     // Imagen del mapa
     texture.loadFromFile("Imagenes/pasto.png");
@@ -31,6 +33,10 @@ View::View(sf::RenderWindow &window)
 
     boton3.setPosition(SIZE * 11, SIZE * 5);
     boton3.setFillColor(sf::Color::Yellow);
+
+    botonOleada.setPosition(SIZE * 11, SIZE * 7);
+    botonOleada.setFillColor(sf::Color::Magenta);
+
 }
 
 // Dibujar las celdas del mapa
@@ -62,6 +68,7 @@ int View::botonClick(int mouseX, int mouseY) {
     if (boton1.getGlobalBounds().contains(mouseX, mouseY)) return 1;
     if (boton2.getGlobalBounds().contains(mouseX, mouseY)) return 2;
     if (boton3.getGlobalBounds().contains(mouseX, mouseY)) return 3;
+    if (botonOleada.getGlobalBounds().contains(mouseX, mouseY)) return 4;
     return 0;
 }
 
@@ -96,10 +103,13 @@ void View::Color(const sf::Color celdaColor[ROW][COL]) {
     }
 }
 
+
+
 // Dibuja los botones en la interfaz
 void View::Boton() {
     window.draw(boton1);
     window.draw(boton2);
     window.draw(boton3);
+    window.draw(botonOleada);
 }
 

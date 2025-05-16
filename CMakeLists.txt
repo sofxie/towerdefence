@@ -19,7 +19,8 @@ add_executable(towerdefence main.cpp
         Enemigos/EnemyController.h
         Enemigos/EnemyController.cpp
         Enemigos/Wave.h
-        Enemigos/Wave.cpp)
+        Enemigos/Wave.cpp
+        VISTA/VisualEnemy.h)
 
 target_link_libraries(towerdefence sfml-system sfml-window sfml-graphics)
 

@@ -1,7 +1,12 @@
 #include "iostream"
 #include "Controler.h"
-using namespace std;
+#include "VisualEnemy.h"
+#include "Wave.h"
+#include "Map.h"
 #include "Const.h"
+
+using namespace std;
+
 
 // Constructor
 Controler::Controler()
@@ -10,7 +15,10 @@ Controler::Controler()
     modoSeleccionado(0), // Inicializar modo de torres (0 por default)
     src({9,0}), // Coordenadas de Inicio
     dest({0,9}), // Coordenadas del Destino
-    vista(window)  // Inicializar clase vista
+    vista(window), // Inicializar clase vista
+    genaracionOleada(0) // Inicializar generación de oleada
+
+
 {
     // Inicializar grid para el mapa
     for (int i = 0; i < ROW; ++i)
@@ -18,6 +26,7 @@ Controler::Controler()
             celdaColor[i][j] = sf::Color::Transparent;
             grid[i][j] = 1;  // Rellenarlo con 1 Accesible
         }
+    reloj.restart();
 }
 
 // Ejecutar el juego
@@ -26,6 +35,19 @@ void Controler::run() {
         events(); // Llamar eventos para manejar interacciones
         update(); // Llamar actualizar para el estado de juego
         render(); // Llamar renderizado para dibujar el estado en la ventana
+    }
+}
+
+// Crear oleada de enemigos
+void Controler::crearOleada() {
+    Wave wave(genaracionOleada++); // Aumenta generación
+
+    std::vector<Pair> ruta = mapa.getPath(grid, src, dest);
+
+    enemigos.clear(); // Limpia enemigos anteriores
+
+    for (const auto& e : wave.getEnemies()) {
+        enemigos.emplace_back(std::make_shared<Enemy>(*e), ruta);
     }
 }
 
@@ -76,6 +98,9 @@ void Controler::events() {
                     mapa.aEstrellita(grid,src, dest);
                 }
             }
+            else if (modoSeleccionado == 4) {
+                crearOleada();
+            }
         }
     }
 }
@@ -83,8 +108,10 @@ void Controler::events() {
 
 // Para actualizar estado del mapa
 void Controler::update() {
-
-
+    float deltaTime = reloj.restart().asSeconds();
+    for (auto& enemigo : enemigos) {
+        enemigo.actualizar(deltaTime);
+    }
 }
 
 // Rederizar el mapa y los elementos graficos
@@ -93,5 +120,8 @@ void Controler::render() {
     vista.mapa(grid,celdaColor);
     vista.torres(modoSeleccionado);
     vista.drawHover(sf::Mouse::getPosition(window).x, sf::Mouse::getPosition(window).y);
+    for (auto& enemigo : enemigos) {
+        enemigo.dibujar(window);
+    } // Dibujar enemigos
     window.display(); // Mostrar la ventana
 }

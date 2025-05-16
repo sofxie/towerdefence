@@ -1,7 +1,7 @@
 #ifndef ENEMYCONTROLLER_H
 #define ENEMYCONTROLLER_H
 
-#include "../Map.h"
+#include "Map.h"
 #include "Enemy.h"
 #include <vector>
 #include <utility>
