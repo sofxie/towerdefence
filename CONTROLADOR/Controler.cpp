@@ -59,21 +59,45 @@ void Controler::events() {
                 if (mapa.blocked(grid, row, col)) {
                     grid[row][col] = 0;
                     celdaColor[row][col] = sf::Color::Blue;
-                    mapa.aEstrellita(grid,src, dest);
+
+                    bool found = mapa.aEstrellita(grid, src, dest);
+                    if (!found) {
+                        printf("ME BLOQUEARON\n");
+
+                        // Revertir torre
+                        grid[row][col] = 1;
+                        celdaColor[row][col] = sf::Color::Transparent;
+                    }
                 }
         }
             else if (modoSeleccionado == 2) {
                 if (mapa.blocked(grid, row, col)) {
                     grid[row][col] = 0;
                     celdaColor[row][col] = sf::Color::Red;
-                    mapa.aEstrellita(grid,src, dest);
+
+                    bool found = mapa.aEstrellita(grid, src, dest);
+                    if (!found) {
+                        printf("ME BLOQUEARON\n");
+
+                        // Revertir torre
+                        grid[row][col] = 1;
+                        celdaColor[row][col] = sf::Color::Transparent;
+                    }
                 }
             }
             else if (modoSeleccionado == 3) {
                 if (mapa.blocked(grid, row, col)) {
                     grid[row][col] = 0;
                     celdaColor[row][col] = sf::Color::Yellow;
-                    mapa.aEstrellita(grid,src, dest);
+
+                    bool found = mapa.aEstrellita(grid, src, dest);
+                    if (!found) {
+                        printf("ME BLOQUEARON\n");
+
+                        // Revertir torre
+                        grid[row][col] = 1;
+                        celdaColor[row][col] = sf::Color::Transparent;
+                    }
                 }
             }
         }

@@ -31,7 +31,7 @@ public:
     // Funcion de trazar la ruta
     void tracePath(cell cellDetails[][COL], Pair dest);
     // Funcion del Algoritmo A*
-    void aEstrellita(int grid[][COL], Pair scr, Pair dest);
+    bool aEstrellita(int grid[][COL], Pair scr, Pair dest);
     // Funcion para bloquear en el mapa
     bool blocked(int grid[][COL],int row,int col);
 };
