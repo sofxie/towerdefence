@@ -28,17 +28,8 @@ void Enemy::takeArtilleryDamage(int dmg) { // Reducción de vida por artillería
     if (actual > 0) health -= actual;
 }
 
-void Enemy::setStats(int hp, int spd, int arRes, int mgRes, int artRes) { // Establece los atributos del enemigo
-    health = hp;
-    speed = spd;
-    arrowResistance = arRes;
-    magicResistance = mgRes;
-    artilleryResistance = artRes;
-}
-
 bool Enemy::isAlive() const { return health > 0; } // Verifica si el enemigo está vivo
 
-// Ogros
 // Ogro
 Ogre::Ogre(int hp, float spd, int arRes, int mgRes, int artRes)
     : Enemy(hp, spd, arRes, mgRes, artRes, EnemyType::Ogre) {}
@@ -54,3 +45,4 @@ Harpy::Harpy(int hp, float spd, int arRes, int mgRes, int artRes)
 // Mercenario
 Mercenary::Mercenary(int hp, float spd, int arRes, int mgRes, int artRes)
     : Enemy(hp, spd, arRes, mgRes, artRes, EnemyType::Mercenary) {}
+

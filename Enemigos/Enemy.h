@@ -30,8 +30,18 @@ public:
     virtual void takeArrowDamage(int dmg);
     virtual void takeMagicDamage(int dmg);
     virtual void takeArtilleryDamage(int dmg);
-    void setStats(int hp, int spd, int arRes, int mgRes, int artRes);
+
     bool isAlive() const;
+
+    static std::string typeToString(EnemyType type) {
+        switch(type) {
+            case EnemyType::Ogre: return "Ogro";
+            case EnemyType::DarkElf: return "Elfo Oscuro";
+            case EnemyType::Harpy: return "Arpía";
+            case EnemyType::Mercenary: return "Mercenario";
+            default: return "Desconocido";
+        }
+    }
 };
 
 /*
