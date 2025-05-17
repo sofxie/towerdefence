@@ -29,12 +29,16 @@ void Wave::spawnEnemies() {
 }
 
 void Wave::evolve() {
+    // Incrementar el contador de generación
     generation++;
 
-    // 1. Guardar estadísticas actuales para comparación
+    // ------------------------------------------------------------
+    // 1. ANÁLISIS DE LA GENERACIÓN ACTUAL (para comparación posterior)
+    // ------------------------------------------------------------
     std::map<EnemyType, std::vector<float>> currentStats;
     for (const auto& enemy : enemies) {
         EnemyType type = enemy->getType();
+        // Almacenamos todas las estadísticas importantes de cada enemigo
         currentStats[type].push_back(enemy->getHealth());
         currentStats[type].push_back(enemy->getSpeed());
         currentStats[type].push_back(enemy->getArrowResistance());
@@ -42,8 +46,12 @@ void Wave::evolve() {
         currentStats[type].push_back(enemy->getArtilleryResistance());
     }
 
-    // 2. Proceso de evolución
+    // ------------------------------------------------------------
+    // 2. PROCESO DE EVOLUCIÓN PRINCIPAL
+    // ------------------------------------------------------------
     std::map<EnemyType, std::vector<Enemy*>> enemiesByType;
+
+    // Agrupar enemigos por tipo para evolución específica
     for (auto& e : enemies) {
         enemiesByType[e->getType()].push_back(e.get());
     }
@@ -51,45 +59,76 @@ void Wave::evolve() {
     std::vector<std::unique_ptr<Enemy>> newGeneration;
     std::random_device rd;
     std::mt19937 gen(rd());
-    std::uniform_real_distribution<float> variation(-0.1f, 0.1f); // Variación aleatoria
 
+    // Rango de variación para características (10% a 20% de variación)
+    std::uniform_real_distribution<float> variation(1.1f, 1.2f);
+
+    // Procesar cada tipo de enemigo por separado
     for (auto& [type, group] : enemiesByType) {
         if (group.empty()) continue;
 
-        // Seleccionar los 2 mejores enemigos
+        // --------------------------------------------------------
+        // 2.1 SELECCIÓN NATURAL (elegir los mejores especímenes)
+        // --------------------------------------------------------
         std::sort(group.begin(), group.end(), [](Enemy* a, Enemy* b) {
+            // Criterio de fitness: salud + velocidad
             return (a->getHealth() + a->getSpeed()) > (b->getHealth() + b->getSpeed());
         });
 
-        Enemy* best = group[0];
-        Enemy* secondBest = group.size() > 1 ? group[1] : best;
+        Enemy* best = group[0];                     // El mejor enemigo
+        Enemy* secondBest = group.size() > 1 ? group[1] : best;  // El segundo mejor
 
-        // Número de descendientes basado en generación
-        int offspringCount = 3 + (generation % 4); // Entre 3-6
+        // --------------------------------------------------------
+        // 2.2 REPRODUCCIÓN (crear nueva generación)
+        // --------------------------------------------------------
+        // Número de descendientes aumenta con las generaciones (3-6)
+        int offspringCount = 3 + (generation % 4);
 
         for (int i = 0; i < offspringCount; ++i) {
-            // Mezclar características de los padres
-            float mixRatio = 0.3f + variation(gen); // 20-40% de mezcla
+            // ----------------------------------------------------
+            // 2.2.1 HERENCIA (combinar características de los padres)
+            // ----------------------------------------------------
+            float mixRatio = 0.3f * variation(gen); // 33%-36% de mezcla
 
-            int health = static_cast<int>((best->getHealth() * (1.0f - mixRatio) +
-                                        (secondBest->getHealth() * mixRatio)));
-            float speed = (best->getSpeed() * (1.0f - mixRatio)) +
-                         (secondBest->getSpeed() * mixRatio);
+            // Salud: combinación de padres + mejora generacional
+            int health = static_cast<int>(
+                (best->getHealth() * (1.0f - mixRatio)) +
+                (secondBest->getHealth() * mixRatio)
+            ) * (1.05f + (generation * 0.02f)); // +5% base +2% por generación
 
-            // Aplicar mejoras generacionales
-            health *= (1.05f + (generation * 0.02f)); // +5% base +2% por generación
-            speed *= (1.03f + (generation * 0.01f));  // +3% base +1% por generación
+            // Velocidad: combinación de padres + mejora generacional
+            float speed = (
+                (best->getSpeed() * (1.0f - mixRatio)) +
+                (secondBest->getSpeed() * mixRatio)
+            ) * (1.03f + (generation * 0.01f)); // +3% base +1% por generación
 
-            // Mejorar resistencias con límite máximo
+            // ----------------------------------------------------
+            // 2.2.2 MEJORA DE RESISTENCIAS
+            // ----------------------------------------------------
             auto improveResistance = [](int res, int gen) {
+                // Mejora compuesta: 5% + 1 punto por generación (máx 95%)
                 return std::min(95, res + static_cast<int>(res * 0.05f) + gen);
             };
 
-            int arRes = improveResistance((best->getArrowResistance() + secondBest->getArrowResistance()) / 2, generation);
-            int mgRes = improveResistance((best->getMagicResistance() + secondBest->getMagicResistance()) / 2, generation);
-            int artRes = improveResistance((best->getArtilleryResistance() + secondBest->getArtilleryResistance()) / 2, generation);
+            // Calculamos resistencias mejoradas
+            int arRes = improveResistance(
+                (best->getArrowResistance() + secondBest->getArrowResistance()) / 2,
+                generation
+            );
 
-            // Crear nuevo enemigo mejorado
+            int mgRes = improveResistance(
+                (best->getMagicResistance() + secondBest->getMagicResistance()) / 2,
+                generation
+            );
+
+            int artRes = improveResistance(
+                (best->getArtilleryResistance() + secondBest->getArtilleryResistance()) / 2,
+                generation
+            );
+
+            // ----------------------------------------------------
+            // 2.2.3 CREACIÓN DEL NUEVO ENEMIGO MEJORADO
+            // ----------------------------------------------------
             std::unique_ptr<Enemy> offspring;
             switch(type) {
                 case EnemyType::Ogre:
@@ -100,20 +139,33 @@ void Wave::evolve() {
                     break;
                 case EnemyType::Harpy:
                     offspring = std::make_unique<Harpy>(health, speed, arRes, mgRes, artRes);
+                    // Harpías podrían tener modificadores especiales aquí
                     break;
                 case EnemyType::Mercenary:
                     offspring = std::make_unique<Mercenary>(health, speed, arRes, mgRes, artRes);
                     break;
             }
 
+            // Añadir el nuevo enemigo a la generación
             newGeneration.push_back(std::move(offspring));
         }
     }
 
+    // ------------------------------------------------------------
+    // 3. ACTUALIZACIÓN FINAL
+    // ------------------------------------------------------------
+    // Reemplazar la generación anterior con la nueva
     enemies = std::move(newGeneration);
 
-    // 3. Mostrar progreso de evolución
-    std::cout << "\n=== EVOLUCION GENERACION " << generation << " ===" << std::endl;
+    // ------------------------------------------------------------
+    // 4. REPORTE DE EVOLUCIÓN
+    // ------------------------------------------------------------
+    std::cout << "\n=== EVOLUCIÓN GENERACIÓN " << generation << " ===" << std::endl;
+    std::cout << "Mejoras aplicadas:\n";
+    std::cout << "- Salud: +" << (5 + generation * 2) << "% (base)\n";
+    std::cout << "- Velocidad: +" << (3 + generation * 1) << "% (base)\n";
+    std::cout << "- Resistencias: +5% +" << generation << " puntos (máx 95%)\n";
+
     printEvolutionProgress(currentStats);
     printEnemiesInfo();
 }
