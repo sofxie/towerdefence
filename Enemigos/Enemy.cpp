@@ -1,8 +1,9 @@
 #include "Enemy.h"
 
-// Enemy base
+// Implementación de la clase base Enemy
 Enemy::Enemy(int hp, float spd, int arRes, int mgRes, int artRes, EnemyType t)
-    : health(hp), speed(spd), arrowResistance(arRes), magicResistance(mgRes), artilleryResistance(artRes), type(t) {}
+    : health(hp), speed(spd), arrowResistance(arRes),
+      magicResistance(mgRes), artilleryResistance(artRes), type(t) {}
 
 int Enemy::getHealth() const { return health; }
 float Enemy::getSpeed() const { return speed; }
@@ -11,38 +12,40 @@ int Enemy::getMagicResistance() const { return magicResistance; }
 int Enemy::getArtilleryResistance() const { return artilleryResistance; }
 EnemyType Enemy::getType() const { return type; }
 
-// Reducción de vida. Según el daño que recibe el enemigo, ys estas son las funciónes que se encargan de reducir la vida del enemigo
-
-void Enemy::takeArrowDamage(int dmg) { // Reducción de vida por flechas
-    int actual = dmg - arrowResistance;
-    if (actual > 0) health -= actual;
+void Enemy::takeArrowDamage(int dmg) {
+    health -= dmg * (100 - arrowResistance) / 100;
 }
 
-void Enemy::takeMagicDamage(int dmg) { // Reducción de vida por magia
-    int actual = dmg - magicResistance;
-    if (actual > 0) health -= actual;
+void Enemy::takeMagicDamage(int dmg) {
+    health -= dmg * (100 - magicResistance) / 100;
 }
 
-void Enemy::takeArtilleryDamage(int dmg) { // Reducción de vida por artillería
-    int actual = dmg - artilleryResistance;
-    if (actual > 0) health -= actual;
+void Enemy::takeArtilleryDamage(int dmg) {
+    health -= dmg * (100 - artilleryResistance) / 100;
 }
 
-bool Enemy::isAlive() const { return health > 0; } // Verifica si el enemigo está vivo
+bool Enemy::isAlive() const {
+    return health > 0;
+}
 
-// Ogro
+// Implementación de las clases derivadas
+Ogre::Ogre() : Enemy(150, 20.5f, 20, 10, 30, EnemyType::Ogre) {}
 Ogre::Ogre(int hp, float spd, int arRes, int mgRes, int artRes)
     : Enemy(hp, spd, arRes, mgRes, artRes, EnemyType::Ogre) {}
 
-// Elfo Oscuro
+DarkElf::DarkElf() : Enemy(300, 25.5f, 40, 60, 20, EnemyType::DarkElf) {}
 DarkElf::DarkElf(int hp, float spd, int arRes, int mgRes, int artRes)
     : Enemy(hp, spd, arRes, mgRes, artRes, EnemyType::DarkElf) {}
 
-// Harpía
+Harpy::Harpy() : Enemy(250, 30.0f, 60, 30, 10, EnemyType::Harpy) {}
 Harpy::Harpy(int hp, float spd, int arRes, int mgRes, int artRes)
     : Enemy(hp, spd, arRes, mgRes, artRes, EnemyType::Harpy) {}
 
-// Mercenario
+void Harpy::takeArtilleryDamage(int dmg) {
+    // Las harpías son más vulnerables al daño de artillería
+    health -= dmg * (100 - (artilleryResistance/2)) / 100;
+}
+
+Mercenary::Mercenary() : Enemy(120, 35.0f, 30, 30, 30, EnemyType::Mercenary) {}
 Mercenary::Mercenary(int hp, float spd, int arRes, int mgRes, int artRes)
     : Enemy(hp, spd, arRes, mgRes, artRes, EnemyType::Mercenary) {}
-

@@ -1,10 +1,10 @@
 #include "Wave.h"
-#include <random>
-#include <iostream>
 #include <algorithm>
-#include <map>
+#include <numeric>
+#include <iomanip>
+#include <iostream>
 
-Wave::Wave(int gen) : generation(gen) {
+Wave::Wave(int gen) : generation(gen), timesGetEnemiesCalled(0) {
     spawnEnemies();
 }
 
@@ -14,7 +14,9 @@ void Wave::spawnEnemies() {
     std::mt19937 gen(rd());
     std::uniform_int_distribution<> dist(0, 3);
 
-    for (int i = 0; i < 10; ++i) {
+    int baseEnemies = 10 + ((generation / 2) * 5); // 10 + 5 por cada 2 generaciones
+
+    for (int i = 0; i < baseEnemies; ++i) {
         switch (dist(gen)) {
             case 0: enemies.push_back(std::make_unique<Ogre>()); break;
             case 1: enemies.push_back(std::make_unique<DarkElf>()); break;
@@ -22,133 +24,173 @@ void Wave::spawnEnemies() {
             case 3: enemies.push_back(std::make_unique<Mercenary>()); break;
         }
     }
+
+    printEnemiesInfo();
 }
 
-float mutateFloat(float value, float minDelta, float maxDelta) {
-    static std::random_device rd;
-    static std::mt19937 gen(rd());
-    std::uniform_real_distribution<float> dist(minDelta, maxDelta);
-    return value + dist(gen);
-}
-
-int mutateInt(int value, int minDelta, int maxDelta) {
-    static std::random_device rd;
-    static std::mt19937 gen(rd());
-    std::uniform_int_distribution<int> dist(minDelta, maxDelta);
-    return value + dist(gen);
-}
-
-std::unique_ptr<Enemy> evolveFromBest(const Enemy& best) {
-    EnemyType type = best.getType();
-    int health = mutateInt(best.getHealth(), 5, 20); // Aumento de vida
-    float speed = mutateFloat(best.getSpeed(), 0.5f, 3.0f); // Aumento de velocidad
-    int arRes = mutateInt(best.getArrowResistance(), 1, 5); // Aumento de resistencia a flechas
-    int mgRes = mutateInt(best.getMagicResistance(), 1, 5); // Aumento de resistencia a magia
-    int artRes = mutateInt(best.getArtilleryResistance(), 1, 5); // Aumento de resistencia a artillería
-
-    switch (type) {
-        case EnemyType::Ogre:
-            return std::make_unique<Ogre>(health, speed, arRes, mgRes, artRes);
-        case EnemyType::DarkElf:
-            return std::make_unique<DarkElf>(health, speed, arRes, mgRes, artRes);
-        case EnemyType::Harpy:
-            return std::make_unique<Harpy>(health, speed, arRes, mgRes, artRes);
-        case EnemyType::Mercenary:
-            return std::make_unique<Mercenary>(health, speed, arRes, mgRes, artRes);
-        default:
-            return nullptr;
-    }
-}
-
-const Enemy* findBest(const std::vector<std::unique_ptr<Enemy>>& group) {
-    const Enemy* best = nullptr;
-    float bestFitness = -1.0f;
-    for (const auto& e : group) {
-        float fitness = e->getHealth() + e->getSpeed();
-        if (!best || fitness > bestFitness) {
-            best = e.get();
-            bestFitness = fitness;
-        }
-    }
-    return best;
-}
-
-void Wave::evolve() { // Evoluciona la generación de enemigos
+void Wave::evolve() {
     generation++;
 
-    // Agrupar enemigos por tipo
-    std::map<EnemyType, std::vector<Enemy*>> porTipo;
-    for (auto& e : enemies)
-        porTipo[e->getType()].push_back(e.get());
+    // 1. Guardar estadísticas actuales para comparación
+    std::map<EnemyType, std::vector<float>> currentStats;
+    for (const auto& enemy : enemies) {
+        EnemyType type = enemy->getType();
+        currentStats[type].push_back(enemy->getHealth());
+        currentStats[type].push_back(enemy->getSpeed());
+        currentStats[type].push_back(enemy->getArrowResistance());
+        currentStats[type].push_back(enemy->getMagicResistance());
+        currentStats[type].push_back(enemy->getArtilleryResistance());
+    }
 
-    std::vector<std::unique_ptr<Enemy>> nuevaGeneracion;
+    // 2. Proceso de evolución
+    std::map<EnemyType, std::vector<Enemy*>> enemiesByType;
+    for (auto& e : enemies) {
+        enemiesByType[e->getType()].push_back(e.get());
+    }
+
+    std::vector<std::unique_ptr<Enemy>> newGeneration;
     std::random_device rd;
     std::mt19937 gen(rd());
-    std::uniform_real_distribution<float> probMut(0.0f, 1.0f);
+    std::uniform_real_distribution<float> variation(-0.1f, 0.1f); // Variación aleatoria
 
-    for (auto& [tipo, grupo] : porTipo) {
-        // Ordenar por fitness
-        std::sort(grupo.begin(), grupo.end(), [](Enemy* a, Enemy* b) {
-            auto fitness = [](Enemy* e) {
-                return e->getHealth() * 1.0f + e->getSpeed() * 1.5f +
-                       (e->getArrowResistance() + e->getMagicResistance() + e->getArtilleryResistance()) * 0.5f;
-            };
-            return fitness(a) > fitness(b);
+    for (auto& [type, group] : enemiesByType) {
+        if (group.empty()) continue;
+
+        // Seleccionar los 2 mejores enemigos
+        std::sort(group.begin(), group.end(), [](Enemy* a, Enemy* b) {
+            return (a->getHealth() + a->getSpeed()) > (b->getHealth() + b->getSpeed());
         });
 
-        Enemy* padre1 = grupo[0];
-        Enemy* padre2 = grupo.size() > 1 ? grupo[1] : grupo[0];
+        Enemy* best = group[0];
+        Enemy* secondBest = group.size() > 1 ? group[1] : best;
 
-        int baseCount = 2;
-        if (generation % 2 == 0)
-            baseCount += 1;
+        // Número de descendientes basado en generación
+        int offspringCount = 3 + (generation % 4); // Entre 3-6
 
-        for (int i = 0; i < baseCount; ++i) {
-            int newHealth = (padre1->getHealth() + padre2->getHealth()) / 2;
-            float newSpeed = (padre1->getSpeed() + padre2->getSpeed()) / 2.0f;
-            int newArrowRes = (padre1->getArrowResistance() + padre2->getArrowResistance()) / 2;
-            int newMagicRes = (padre1->getMagicResistance() + padre2->getMagicResistance()) / 2;
-            int newArtilleryRes = (padre1->getArtilleryResistance() + padre2->getArtilleryResistance()) / 2;
+        for (int i = 0; i < offspringCount; ++i) {
+            // Mezclar características de los padres
+            float mixRatio = 0.3f + variation(gen); // 20-40% de mezcla
 
-            auto mutate = [&](auto val) {
-                float chance = probMut(gen);
-                float factor;
-                if (chance < 0.2f) { // 20% de mutación favorable
-                    std::uniform_real_distribution<float> dist(1.1f, 1.3f); // Mejora más notoria
-                    factor = dist(gen);
-                } else {
-                    std::uniform_real_distribution<float> dist(0.9f, 1.1f); // Variación leve
-                    factor = dist(gen);
-                }
-                return static_cast<decltype(val)>(val * factor);
+            int health = static_cast<int>((best->getHealth() * (1.0f - mixRatio) +
+                                        (secondBest->getHealth() * mixRatio)));
+            float speed = (best->getSpeed() * (1.0f - mixRatio)) +
+                         (secondBest->getSpeed() * mixRatio);
+
+            // Aplicar mejoras generacionales
+            health *= (1.05f + (generation * 0.02f)); // +5% base +2% por generación
+            speed *= (1.03f + (generation * 0.01f));  // +3% base +1% por generación
+
+            // Mejorar resistencias con límite máximo
+            auto improveResistance = [](int res, int gen) {
+                return std::min(95, res + static_cast<int>(res * 0.05f) + gen);
             };
 
-            newHealth = mutate(newHealth);
-            newSpeed = mutate(newSpeed);
-            newArrowRes = mutate(newArrowRes);
-            newMagicRes = mutate(newMagicRes);
-            newArtilleryRes = mutate(newArtilleryRes);
+            int arRes = improveResistance((best->getArrowResistance() + secondBest->getArrowResistance()) / 2, generation);
+            int mgRes = improveResistance((best->getMagicResistance() + secondBest->getMagicResistance()) / 2, generation);
+            int artRes = improveResistance((best->getArtilleryResistance() + secondBest->getArtilleryResistance()) / 2, generation);
 
-            std::unique_ptr<Enemy> nuevo;
-            switch (tipo) {
-                case EnemyType::Ogre: nuevo = std::make_unique<Ogre>(); break;
-                case EnemyType::DarkElf: nuevo = std::make_unique<DarkElf>(); break;
-                case EnemyType::Harpy: nuevo = std::make_unique<Harpy>(); break;
-                case EnemyType::Mercenary: nuevo = std::make_unique<Mercenary>(); break;
+            // Crear nuevo enemigo mejorado
+            std::unique_ptr<Enemy> offspring;
+            switch(type) {
+                case EnemyType::Ogre:
+                    offspring = std::make_unique<Ogre>(health, speed, arRes, mgRes, artRes);
+                    break;
+                case EnemyType::DarkElf:
+                    offspring = std::make_unique<DarkElf>(health, speed, arRes, mgRes, artRes);
+                    break;
+                case EnemyType::Harpy:
+                    offspring = std::make_unique<Harpy>(health, speed, arRes, mgRes, artRes);
+                    break;
+                case EnemyType::Mercenary:
+                    offspring = std::make_unique<Mercenary>(health, speed, arRes, mgRes, artRes);
+                    break;
             }
 
-            if (nuevo) {
-                nuevo->setStats(newHealth, newSpeed, newArrowRes, newMagicRes, newArtilleryRes);
-                nuevaGeneracion.push_back(std::move(nuevo));
-            }
+            newGeneration.push_back(std::move(offspring));
         }
     }
 
-    enemies = std::move(nuevaGeneracion);
+    enemies = std::move(newGeneration);
+
+    // 3. Mostrar progreso de evolución
+    std::cout << "\n=== EVOLUCION GENERACION " << generation << " ===" << std::endl;
+    printEvolutionProgress(currentStats);
+    printEnemiesInfo();
 }
 
+// Funcion que imprime el progreso de la evolucion
+void Wave::printEvolutionProgress(const std::map<EnemyType, std::vector<float>>& currentStats) const {
+    if (!previousStats.empty()) {
+        std::cout << "Mejoras respecto a generacion anterior:\n";
 
-int Wave::getGeneration() const { // Devuelve la generación actual
+        for (const auto& [type, stats] : currentStats) {
+            float prevHealth = std::accumulate(previousStats[type].begin(),
+                                            previousStats[type].end(), 0.0f) /
+                                            (previousStats[type].size()/5);
+            float currHealth = std::accumulate(stats.begin(), stats.end(), 0.0f) /
+                             (stats.size()/5);
+
+            float healthImprovement = ((currHealth - prevHealth) / prevHealth) * 100;
+
+            std::cout << Enemy::typeToString(type) << "s:\n";
+            std::cout << "  Salud: +" << std::fixed << std::setprecision(1) << healthImprovement << "%\n";
+            // ... similar para otras estadísticas ...
+        }
+    }
+    previousStats = currentStats;
+}
+
+// Funcion que imprime la información de los enemigos generados
+void Wave::printEnemiesInfo() const {
+    std::map<EnemyType, std::vector<std::string>> enemyDetails;
+    std::map<EnemyType, int> typeCounts;
+
+    for (const auto& enemy : enemies) {
+        EnemyType type = enemy->getType();
+        typeCounts[type]++;
+
+        std::ostringstream oss;
+        oss << Enemy::typeToString(type) << " ["
+            << "HP:" << enemy->getHealth() << "|"
+            << "SPD:" << std::fixed << std::setprecision(1) << enemy->getSpeed() << "|"
+            << "AR:" << enemy->getArrowResistance() << "%|"
+            << "MR:" << enemy->getMagicResistance() << "%|"
+            << "ART:" << enemy->getArtilleryResistance() << "%]";
+
+        enemyDetails[type].push_back(oss.str());
+    }
+
+    std::cout << "\nComposicion de la oleada:\n";
+    for (const auto& [type, count] : typeCounts) {
+        std::cout << "\n" << Enemy::typeToString(type) << "s (" << count << "):\n";
+        for (const auto& desc : enemyDetails[type]) {
+            std::cout << "  " << desc << "\n";
+        }
+    }
+    std::cout << "\n================================\n";
+}
+
+// Versión no-const (puede modificar el vector)
+std::vector<std::unique_ptr<Enemy>>& Wave::getEnemies() {
+    std :: cout << "Llamada a getEnemies()\n";
+    //imprimir el contador de llamadas
+    std ::cout << "Contador de llamadas a getEnemies(): " << timesGetEnemiesCalled << std::endl;
+    // Incrementar el contador de llamadas
+    timesGetEnemiesCalled++;
+
+    if (timesGetEnemiesCalled == 2) {
+        evolve();
+    }
+
+    return enemies;
+}
+
+// Versión const (solo para lectura)
+const std::vector<std::unique_ptr<Enemy>>& Wave::getEnemies() const {
+    std ::cout << "Llamada a getEnemies() en modo const\n";
+    return enemies;
+}
+
+int Wave::getGeneration() const {
     return generation;
 }
-

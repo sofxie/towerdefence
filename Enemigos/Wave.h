@@ -4,6 +4,7 @@
 #include "Enemy.h"
 #include <vector>
 #include <memory>
+#include <iomanip>
 #include <algorithm>
 #include <map>
 #include <random>
@@ -14,7 +15,8 @@ private:
     // Atributos de la clase
     std::vector<std::unique_ptr<Enemy>> enemies;
     int generation;
-    int timesGetEnemiesCalled = 0; // Contador de llamadas a getEnemies()
+    int timesGetEnemiesCalled; // Contador de llamadas a getEnemies()
+    mutable std::map<EnemyType, std::vector<float>> previousStats; // Para comparar entre generaciones
 
     // Funciones de ayuda para evolución
     float mutateFloat(float value, float minDelta, float maxDelta) const;
@@ -22,6 +24,7 @@ private:
     std::unique_ptr<Enemy> evolveFromBest(const Enemy& best) const;
     const Enemy* findBest(const std::vector<std::unique_ptr<Enemy>>& group) const;
     void evolveGroup(std::vector<std::unique_ptr<Enemy>>& group, EnemyType type);
+    void printEvolutionProgress(const std::map<EnemyType, std::vector<float>>& currentStats) const;
 
 public:
     Wave(int gen = 1);
@@ -31,7 +34,9 @@ public:
     void printEnemiesInfo() const; // Imprime información de los enemigos generados
 
     std::vector<std::unique_ptr<Enemy>>& getEnemies();
-    const std::vector<std::unique_ptr<Enemy>>& getEnemies() const; // Devuelve la lista de enemigos
+
+    // Versión const (solo lectura)
+    const std::vector<std::unique_ptr<Enemy>>& getEnemies() const;
     int getGeneration() const; // Devuelve la generación de la oleada
 
 };

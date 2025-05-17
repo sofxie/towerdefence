@@ -2,6 +2,7 @@
 #define ENEMY_H
 
 #include <string>
+#include <sstream>
 
 enum class EnemyType { Ogre, DarkElf, Harpy, Mercenary };
 
@@ -32,6 +33,17 @@ public:
     virtual void takeArtilleryDamage(int dmg);
 
     bool isAlive() const;
+
+    virtual std::string getFullDescription() const {
+        std::ostringstream oss;
+        oss << typeToString(type) << " ["
+            << "HP: " << health << ", "
+            << "SPD: " << speed << ", "
+            << "AR: " << arrowResistance << "%, "
+            << "MR: " << magicResistance << "%, "
+            << "ART: " << artilleryResistance << "%]";
+        return oss.str();
+    }
 
     static std::string typeToString(EnemyType type) {
         switch(type) {

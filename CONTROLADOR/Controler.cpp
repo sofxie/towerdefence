@@ -40,16 +40,29 @@ void Controler::run() {
 
 // Crear oleada de enemigos
 void Controler::crearOleada() {
-    Wave wave(genaracionOleada++); // Aumenta generación
-
+    // 1. Prepara la ruta
     std::vector<Pair> ruta = mapa.getPath(grid, src, dest);
 
-    enemigos.clear(); // Limpia enemigos anteriores
+    // 2. Limpia enemigos anteriores
+    //enemigos.clear();
 
-    for (const auto& e : wave.getEnemies()) {
+    // 3. Crea nueva wave si es necesario (opcional)
+    if (wave.getGeneration() != genaracionOleada) {
+        wave = Wave(genaracionOleada);
+    }
+
+    // 4. Obtiene enemigos (incrementa timesGetEnemiesCalled)
+    auto& currentEnemies = wave.getEnemies();
+
+    // 5. Crea los VisualEnemy
+    for (const auto& e : currentEnemies) {
         enemigos.emplace_back(std::make_shared<Enemy>(*e), ruta);
     }
+
+    // 6. Incrementa la generación para la próxima oleada
+    genaracionOleada++;
 }
+
 
 // Manejar eventos
 void Controler::events() {
@@ -106,11 +119,29 @@ void Controler::events() {
 }
 }
 
-// Para actualizar estado del mapa
 void Controler::update() {
     float deltaTime = reloj.restart().asSeconds();
+
+    // Actualizar enemigos
     for (auto& enemigo : enemigos) {
         enemigo.actualizar(deltaTime);
+    }
+
+    // Control de oleadas
+    static sf::Clock oleadaClock;
+    static bool primeraLlamada = true;
+
+    if (oleadaClock.getElapsedTime().asSeconds() > 15.0f) {
+        if (primeraLlamada) {
+            crearOleada(); // Primera llamada
+            primeraLlamada = false;
+        }
+        else {
+            // Segunda llamada activa evolución
+            wave.getEnemies();
+            primeraLlamada = true;
+        }
+        oleadaClock.restart();
     }
 }
 

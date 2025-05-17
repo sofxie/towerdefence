@@ -5,6 +5,7 @@
 #include "Map.h"
 #include "View.h"
 #include "VisualEnemy.h"
+#include "Wave.h"
 
 
 class Controler {
@@ -43,6 +44,7 @@ private:
     sf::Clock reloj;
     std::vector<VisualEnemy> enemigos; // enemigos en movimiento
 
+    Wave wave; // Oleada de enemigos
 
 };
 
