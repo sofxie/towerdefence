@@ -39,21 +39,18 @@ void Enemy::setStats(int hp, int spd, int arRes, int mgRes, int artRes) { // Est
 bool Enemy::isAlive() const { return health > 0; } // Verifica si el enemigo está vivo
 
 // Ogros
-Ogre::Ogre()
-    : Enemy(150, 15.0f, 20, 5, 5, EnemyType::Ogre) {}
+// Ogro
+Ogre::Ogre(int hp, float spd, int arRes, int mgRes, int artRes)
+    : Enemy(hp, spd, arRes, mgRes, artRes, EnemyType::Ogre) {}
 
-// elfos Oscuros
-DarkElf::DarkElf()
-    : Enemy(100, 30.0f, 5, 20, 5, EnemyType::DarkElf) {}
+// Elfo Oscuro
+DarkElf::DarkElf(int hp, float spd, int arRes, int mgRes, int artRes)
+    : Enemy(hp, spd, arRes, mgRes, artRes, EnemyType::DarkElf) {}
 
-// Harpias
-Harpy::Harpy()
-    : Enemy(80, 20.0f, 10, 10, 1000, EnemyType::Harpy) {}
+// Harpía
+Harpy::Harpy(int hp, float spd, int arRes, int mgRes, int artRes)
+    : Enemy(hp, spd, arRes, mgRes, artRes, EnemyType::Harpy) {}
 
-void Harpy::takeArtilleryDamage(int dmg) {
-    // Harpías no reciben daño de artillería
-}
-
-// Mercenarios
-Mercenary::Mercenary()
-    : Enemy(120, 25.5f, 20, 5, 20, EnemyType::Mercenary) {}
+// Mercenario
+Mercenary::Mercenary(int hp, float spd, int arRes, int mgRes, int artRes)
+    : Enemy(hp, spd, arRes, mgRes, artRes, EnemyType::Mercenary) {}

@@ -39,23 +39,28 @@ public:
  */
 class Ogre : public Enemy {
 public:
-    Ogre();
+    Ogre(); // Constructor por defecto
+    Ogre(int hp, float spd, int arRes, int mgRes, int artRes); // Nuevo
 };
 
 class DarkElf : public Enemy {
 public:
     DarkElf();
+    DarkElf(int hp, float spd, int arRes, int mgRes, int artRes); // Nuevo
 };
 
 class Harpy : public Enemy {
 public:
     Harpy();
+    Harpy(int hp, float spd, int arRes, int mgRes, int artRes); // Nuevo
     void takeArtilleryDamage(int dmg) override;
 };
 
 class Mercenary : public Enemy {
 public:
     Mercenary();
+    Mercenary(int hp, float spd, int arRes, int mgRes, int artRes); // Nuevo
 };
+
 
 #endif
