@@ -30,7 +30,7 @@ public:
     virtual void takeArrowDamage(int dmg);
     virtual void takeMagicDamage(int dmg);
     virtual void takeArtilleryDamage(int dmg);
-
+    void setStats(int hp, int spd, int arRes, int mgRes, int artRes);
     bool isAlive() const;
 };
 

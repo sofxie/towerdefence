@@ -38,7 +38,7 @@ struct VisualEnemy {
         float length = std::sqrt(direction.x * direction.x + direction.y * direction.y);
         if (length != 0) direction /= length;
 
-        float speed = enemy->getSpeed() * 5.0f;
+        float speed = enemy->getSpeed();
         position += direction * speed * deltaTime;
 
         if (std::abs(position.x - targetPosition.x) < 1.0f &&

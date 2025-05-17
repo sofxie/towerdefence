@@ -28,6 +28,14 @@ void Enemy::takeArtilleryDamage(int dmg) { // Reducción de vida por artillería
     if (actual > 0) health -= actual;
 }
 
+void Enemy::setStats(int hp, int spd, int arRes, int mgRes, int artRes) { // Establece los atributos del enemigo
+    health = hp;
+    speed = spd;
+    arrowResistance = arRes;
+    magicResistance = mgRes;
+    artilleryResistance = artRes;
+}
+
 bool Enemy::isAlive() const { return health > 0; } // Verifica si el enemigo está vivo
 
 // Ogros
