@@ -9,8 +9,6 @@
 #include <set>
 #include <utility> // para Pair
 #include <cmath> // libreria para operaciones mate
-#include <vector>
-
 
 using namespace std;
 
@@ -19,17 +17,16 @@ bool Map::isValid(int row, int col) {
     // return True si no sale del mapa
     return (row>=0) && (row<ROW) && (col>=0) && (col<COL);
 }
-
 // Revisar si hay paso
 bool Map::isUnBlocked(int grid[][COL],int row, int col) {
     // return True si la celda es accesible
-    if (grid[row][col]==1)
+    if (grid[row][col]==1) {
         return true;
-    else
+    }else
         // return False si no se puede acceder
         return false;
 }
-
+bool blockcelda();
 // Revisar si encontro destino final
 bool Map::isDestination(int row, int col, Pair dest) {
     // return True si la celda es el destino
@@ -38,13 +35,11 @@ bool Map::isDestination(int row, int col, Pair dest) {
     else
         return (false);
 }
-
 // Calcula la heuristica
 double Map::calculateHValue(int row, int col, Pair dest) {
     // return valor de la heuristica calculada
     return ((double)sqrt((row-dest.first)*(row-dest.first)+(col-dest.second)*(col-dest.second)));
 }
-
 // Trazar el camino
 void Map::tracePath(cell cellDetails[][COL], Pair dest) {
     //cout<<"Camino:";
@@ -68,41 +63,40 @@ void Map::tracePath(cell cellDetails[][COL], Pair dest) {
     }
     return;
 }
-
 // Cambiar el valor del mapa al colocar torre
 // Retorna true si se puede cambiar el valor
 // False si la casilla no puede ser modificado
 bool Map::blocked(int grid[][COL], int row, int col) {
     // return True si se puede
     if (grid[row][col]==1) {
+        grid[row][col] = 0;
         return true;
     }else
         return false;
 }
-
 // Implementar el algoritmo
-void Map::aEstrellita(int grid[][COL], Pair src, Pair dest) {
+bool Map::aEstrellita(int grid[][COL], Pair src, Pair dest) {
     // (No es tan necesario)
     // Si el inicio sale de la mapa
     if (isValid(src.first, src.second) == false) {
         printf("No solution\n");
-        return;
+        return false;
     }
     // (No es tan necesario)
     // Si el final sale de la mapa
     if (isValid(dest.first, dest.second) == false) {
         printf("Destinarion no es valido");
-        return;
+        return false;
     }
     // Si esta no hay paso
     if (isUnBlocked(grid, src.first, src.second) == false || isUnBlocked(grid, dest.first, dest.second) == false) {
         printf("No solution\n");
-        return;
+        return false;
     }
     // Si ya encontro el destino
     if(isDestination(src.first, src.second, dest) == true) {
         printf("Ya destino");
-        return;
+        return true;
     }
     // Crear una lista cerrada y rellenarlo con falso
     bool closedList[ROW][COL];
@@ -174,7 +168,7 @@ void Map::aEstrellita(int grid[][COL], Pair src, Pair dest) {
                 // Trazar la ruta
                 tracePath(cellDetails, dest);
                 foundDest = true;
-                return;
+                return true;
             }
             // Si la celda esta bloqueada o recorrida, ignorar
             else if (closedList[i-1][j] == false && isUnBlocked(grid, i-1, j) == true) {
@@ -208,7 +202,7 @@ void Map::aEstrellita(int grid[][COL], Pair src, Pair dest) {
                 // Trazar la ruta
                 tracePath(cellDetails, dest);
                 foundDest = true;
-                return;
+                return true;
             }
             // Si la celda esta bloqueada o recorrida, ignorar
             else if (closedList[i+1][j] == false && isUnBlocked(grid, i+1, j) == true) {
@@ -242,7 +236,7 @@ void Map::aEstrellita(int grid[][COL], Pair src, Pair dest) {
                 // Trazar la ruta
                 tracePath(cellDetails, dest);
                 foundDest = true;
-                return;
+                return true;
             }
             // Si la celda esta bloqueada o recorrida, ignorar
             else if (closedList[i][j-1] == false && isUnBlocked(grid, i, j-1) == true) {
@@ -276,7 +270,7 @@ void Map::aEstrellita(int grid[][COL], Pair src, Pair dest) {
                 // Trazar la ruta
                 tracePath(cellDetails, dest);
                 foundDest = true;
-                return;
+                return true;
             }
             // Si la celda esta bloqueada o recorrida, ignorar
             else if (closedList[i][j+1] == false && isUnBlocked(grid, i, j+1) == true) {
@@ -300,8 +294,11 @@ void Map::aEstrellita(int grid[][COL], Pair src, Pair dest) {
             }
         }
     }
+    if (!foundDest) {
+        printf("ME BLOQUEARON\n");
+        return false;
+    }
 }
-
 //Funcion que le manda la ruta a los enemigos
 std::vector<Pair> Map::getPath(int grid[][COL], Pair src, Pair dest) {
     std::vector<Pair> emptyResult;

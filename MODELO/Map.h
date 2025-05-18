@@ -1,7 +1,6 @@
 #ifndef MAP_H
 #define MAP_H
-#define ROW 10 // Definir tamaño de filas, contantes
-#define COL 10 // Definir tamaño de columnas, constantes
+#include "Const.h"
 #include <utility>
 #include <vector>
 
@@ -33,7 +32,7 @@ public:
     // Funcion de trazar la ruta
     void tracePath(cell cellDetails[][COL], Pair dest);
     // Funcion del Algoritmo A*
-    void aEstrellita(int grid[][COL], Pair scr, Pair dest);
+    bool aEstrellita(int grid[][COL], Pair scr, Pair dest);
     // Funcion para bloquear en el mapa
     bool blocked(int grid[][COL],int row,int col);
     // Funcion que le manda la ruta a los enemigos

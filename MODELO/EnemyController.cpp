@@ -1,5 +1,6 @@
 #include "EnemyController.h"
 #include <cmath>
+#include "Const.h"
 
 EnemyController::EnemyController(Enemy* e, int startX, int startY)
     : enemy(e), x(startX), y(startY), currentStep(0) {}
