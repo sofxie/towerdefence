@@ -1,0 +1,41 @@
+# Compilación de CMake
+/cmake-build-*/
+
+# Archivos de CMake generados
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+Makefile
+build/
+build.ninja
+.ninja_deps
+.ninja_log
+
+# Archivos de CLion
+.idea/
+*.iml
+
+# Archivos temporales del sistema
+.DS_Store
+Thumbs.db
+
+# Archivos de salida binaria
+*.exe
+*.out
+*.a
+*.o
+*.obj
+*.log
+
+# Archivos de respaldo o temporales del editor
+*~
+*.swp
+*.swo
+*.bak
+
+# Archivos específicos de Windows
+*.dll
+
+# Archivos específicos de Linux/macOS
+*.so
+*.dSYM/
