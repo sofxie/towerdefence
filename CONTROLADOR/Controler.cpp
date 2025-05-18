@@ -1,7 +1,12 @@
 #include "iostream"
 #include "Controler.h"
-using namespace std;
+#include "VisualEnemy.h"
+#include "Enemigos/Wave.h"
+#include "Map.h"
 #include "Const.h"
+
+using namespace std;
+
 
 // Constructor
 Controler::Controler()
@@ -10,7 +15,10 @@ Controler::Controler()
     modoSeleccionado(0), // Inicializar modo de torres (0 por default)
     src({9,0}), // Coordenadas de Inicio
     dest({0,9}), // Coordenadas del Destino
-    vista(window)  // Inicializar clase vista
+    vista(window), // Inicializar clase vista
+    genaracionOleada(0) // Inicializar generación de oleada
+
+
 {
     // Inicializar grid para el mapa
     for (int i = 0; i < ROW; ++i)
@@ -18,6 +26,7 @@ Controler::Controler()
             celdaColor[i][j] = sf::Color::Transparent;
             grid[i][j] = 1;  // Rellenarlo con 1 Accesible
         }
+    reloj.restart();
 }
 
 // Ejecutar el juego
@@ -28,6 +37,32 @@ void Controler::run() {
         render(); // Llamar renderizado para dibujar el estado en la ventana
     }
 }
+
+// Crear oleada de enemigos
+void Controler::crearOleada() {
+    // 1. Prepara la ruta
+    std::vector<Pair> ruta = mapa.getPath(grid, src, dest);
+
+    // 2. Limpia enemigos anteriores
+    //enemigos.clear();
+
+    // 3. Crea nueva wave si es necesario (opcional)
+    if (wave.getGeneration() != genaracionOleada) {
+        wave = Wave(genaracionOleada);
+    }
+
+    // 4. Obtiene enemigos (incrementa timesGetEnemiesCalled)
+    auto& currentEnemies = wave.getEnemies();
+
+    // 5. Crea los VisualEnemy
+    for (const auto& e : currentEnemies) {
+        enemigos.emplace_back(std::make_shared<Enemy>(*e), ruta);
+    }
+
+    // 6. Incrementa la generación para la próxima oleada
+    genaracionOleada++;
+}
+
 
 // Manejar eventos
 void Controler::events() {
@@ -59,7 +94,6 @@ void Controler::events() {
                 if (mapa.blocked(grid, row, col)) {
                     grid[row][col] = 0;
                     celdaColor[row][col] = sf::Color::Blue;
-
                     bool found = mapa.aEstrellita(grid, src, dest);
                     if (!found) {
                         printf("ME BLOQUEARON\n");
@@ -74,7 +108,6 @@ void Controler::events() {
                 if (mapa.blocked(grid, row, col)) {
                     grid[row][col] = 0;
                     celdaColor[row][col] = sf::Color::Red;
-
                     bool found = mapa.aEstrellita(grid, src, dest);
                     if (!found) {
                         printf("ME BLOQUEARON\n");
@@ -89,7 +122,6 @@ void Controler::events() {
                 if (mapa.blocked(grid, row, col)) {
                     grid[row][col] = 0;
                     celdaColor[row][col] = sf::Color::Yellow;
-
                     bool found = mapa.aEstrellita(grid, src, dest);
                     if (!found) {
                         printf("ME BLOQUEARON\n");
@@ -100,15 +132,38 @@ void Controler::events() {
                     }
                 }
             }
+            else if (modoSeleccionado == 4) {
+                crearOleada();
+            }
         }
     }
 }
 }
 
-// Para actualizar estado del mapa
 void Controler::update() {
+    float deltaTime = reloj.restart().asSeconds();
 
+    // Actualizar enemigos
+    for (auto& enemigo : enemigos) {
+        enemigo.actualizar(deltaTime);
+    }
 
+    // Control de oleadas
+    static sf::Clock oleadaClock;
+    static bool primeraLlamada = true;
+
+    if (oleadaClock.getElapsedTime().asSeconds() > 15.0f) {
+        if (primeraLlamada) {
+            crearOleada(); // Primera llamada
+            primeraLlamada = false;
+        }
+        else {
+            // Segunda llamada activa evolución
+            wave.getEnemies();
+            primeraLlamada = true;
+        }
+        oleadaClock.restart();
+    }
 }
 
 // Rederizar el mapa y los elementos graficos
@@ -117,5 +172,8 @@ void Controler::render() {
     vista.mapa(grid,celdaColor);
     vista.torres(modoSeleccionado);
     vista.drawHover(sf::Mouse::getPosition(window).x, sf::Mouse::getPosition(window).y);
+    for (auto& enemigo : enemigos) {
+        enemigo.dibujar(window);
+    } // Dibujar enemigos
     window.display(); // Mostrar la ventana
 }

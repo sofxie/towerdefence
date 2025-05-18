@@ -31,6 +31,7 @@ private:
     sf::RectangleShape boton1;
     sf::RectangleShape boton2;
     sf::RectangleShape boton3;
+    sf::RectangleShape botonOleada;
 
     // Dibuja celdas y colores
     void Celda(const int gric[ROW][COL]);

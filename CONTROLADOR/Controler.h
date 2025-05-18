@@ -4,6 +4,10 @@
 #include <SFML/Graphics.hpp>
 #include "Map.h"
 #include "View.h"
+#include "Enemigos/Wave.h"
+#include "Enemigos/EnemyController.h"
+#include "VisualEnemy.h"
+#include <vector>
 
 
 class Controler {
@@ -11,12 +15,12 @@ public:
     Controler(); // Constructor
     void run(); // Bucle del juego
     using Pair = std::pair<int, int>;
-
-
-private:
     void events(); // Funcion que maneja controles del juego
     void update(); // Actualizar mapa
     void render(); // Proyectar en la interfaz
+    void crearOleada(); // Crear oleada de enemigos
+
+private:
 
     sf::RenderWindow window;
     Map mapa; // Incluir clases
@@ -35,7 +39,11 @@ private:
     // Posicion del cursor
     int mouseX = sf::Mouse::getPosition(window).x;
     int mouseY = sf::Mouse::getPosition(window).y;
-
+    int genaracionOleada; // Generación de oleada
+    // Temporizador para oleadas
+    sf::Clock reloj;
+    std::vector<VisualEnemy> enemigos;
+    Wave wave; // Oleada de enemigos
 };
 
 
