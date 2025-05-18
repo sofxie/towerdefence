@@ -4,8 +4,8 @@
 #include <SFML/Graphics.hpp>
 #include "Map.h"
 #include "View.h"
-#include "Wave.h"
-#include "EnemyController.h"
+#include "Enemigos/Wave.h"
+#include "Enemigos/EnemyController.h"
 #include "VisualEnemy.h"
 #include <vector>
 

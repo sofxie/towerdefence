@@ -2,6 +2,7 @@
 #define ENEMY_H
 
 #include <string>
+#include <sstream>
 
 enum class EnemyType { Ogre, DarkElf, Harpy, Mercenary };
 
@@ -32,6 +33,27 @@ public:
     virtual void takeArtilleryDamage(int dmg);
 
     bool isAlive() const;
+
+    virtual std::string getFullDescription() const {
+        std::ostringstream oss;
+        oss << typeToString(type) << " ["
+            << "HP: " << health << ", "
+            << "SPD: " << speed << ", "
+            << "AR: " << arrowResistance << "%, "
+            << "MR: " << magicResistance << "%, "
+            << "ART: " << artilleryResistance << "%]";
+        return oss.str();
+    }
+
+    static std::string typeToString(EnemyType type) {
+        switch(type) {
+            case EnemyType::Ogre: return "Ogro";
+            case EnemyType::DarkElf: return "Elfo Oscuro";
+            case EnemyType::Harpy: return "Arpía";
+            case EnemyType::Mercenary: return "Mercenario";
+            default: return "Desconocido";
+        }
+    }
 };
 
 /*
@@ -39,23 +61,28 @@ public:
  */
 class Ogre : public Enemy {
 public:
-    Ogre();
+    Ogre(); // Constructor por defecto
+    Ogre(int hp, float spd, int arRes, int mgRes, int artRes); // Nuevo
 };
 
 class DarkElf : public Enemy {
 public:
     DarkElf();
+    DarkElf(int hp, float spd, int arRes, int mgRes, int artRes); // Nuevo
 };
 
 class Harpy : public Enemy {
 public:
     Harpy();
+    Harpy(int hp, float spd, int arRes, int mgRes, int artRes); // Nuevo
     void takeArtilleryDamage(int dmg) override;
 };
 
 class Mercenary : public Enemy {
 public:
     Mercenary();
+    Mercenary(int hp, float spd, int arRes, int mgRes, int artRes); // Nuevo
 };
+
 
 #endif

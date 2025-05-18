@@ -4,7 +4,7 @@
 #include <SFML/Graphics.hpp>
 #include <vector>
 #include <memory>
-#include "Enemy.h"
+#include "Enemigos/Enemy.h"
 #include "Const.h"
 #include <cmath>
 

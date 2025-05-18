@@ -14,9 +14,9 @@ add_executable(towerdefence main.cpp
         MODELO/Map.h
         MODELO/Map.cpp
         MODELO/Map.cpp
-        MODELO/Wave.cpp
-        MODELO/Enemy.cpp
-        VISTA/VisualEnemy.h)
+        VISTA/VisualEnemy.h
+        MODELO/Enemigos/Wave.cpp
+        MODELO/Enemigos/Enemy.cpp)
 target_link_libraries(towerdefence sfml-system sfml-window sfml-graphics)
 
 file(COPY ${CMAKE_SOURCE_DIR}/Imagenes DESTINATION ${CMAKE_BINARY_DIR})

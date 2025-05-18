@@ -1,7 +1,12 @@
 #include "iostream"
 #include "Controler.h"
-using namespace std;
+#include "VisualEnemy.h"
+#include "Enemigos/Wave.h"
+#include "Map.h"
 #include "Const.h"
+
+using namespace std;
+
 
 // Constructor
 Controler::Controler()
@@ -10,8 +15,10 @@ Controler::Controler()
     modoSeleccionado(0), // Inicializar modo de torres (0 por default)
     src({9,0}), // Coordenadas de Inicio
     dest({0,9}), // Coordenadas del Destino
-    vista(window),  // Inicializar clase vista
+    vista(window), // Inicializar clase vista
     genaracionOleada(0) // Inicializar generación de oleada
+
+
 {
     // Inicializar grid para el mapa
     for (int i = 0; i < ROW; ++i)
@@ -30,6 +37,7 @@ void Controler::run() {
         render(); // Llamar renderizado para dibujar el estado en la ventana
     }
 }
+
 // Crear oleada de enemigos
 void Controler::crearOleada() {
     // 1. Prepara la ruta
@@ -54,6 +62,7 @@ void Controler::crearOleada() {
     // 6. Incrementa la generación para la próxima oleada
     genaracionOleada++;
 }
+
 
 // Manejar eventos
 void Controler::events() {
@@ -85,7 +94,6 @@ void Controler::events() {
                 if (mapa.blocked(grid, row, col)) {
                     grid[row][col] = 0;
                     celdaColor[row][col] = sf::Color::Blue;
-
                     bool found = mapa.aEstrellita(grid, src, dest);
                     if (!found) {
                         printf("ME BLOQUEARON\n");
@@ -100,7 +108,6 @@ void Controler::events() {
                 if (mapa.blocked(grid, row, col)) {
                     grid[row][col] = 0;
                     celdaColor[row][col] = sf::Color::Red;
-
                     bool found = mapa.aEstrellita(grid, src, dest);
                     if (!found) {
                         printf("ME BLOQUEARON\n");
@@ -115,7 +122,6 @@ void Controler::events() {
                 if (mapa.blocked(grid, row, col)) {
                     grid[row][col] = 0;
                     celdaColor[row][col] = sf::Color::Yellow;
-
                     bool found = mapa.aEstrellita(grid, src, dest);
                     if (!found) {
                         printf("ME BLOQUEARON\n");
@@ -134,7 +140,6 @@ void Controler::events() {
 }
 }
 
-// Para actualizar estado del mapa
 void Controler::update() {
     float deltaTime = reloj.restart().asSeconds();
 
@@ -159,7 +164,6 @@ void Controler::update() {
         }
         oleadaClock.restart();
     }
-
 }
 
 // Rederizar el mapa y los elementos graficos
