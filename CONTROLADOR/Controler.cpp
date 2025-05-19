@@ -60,9 +60,12 @@ Controler::Controler(std::vector<std::shared_ptr<EnemyController>>& enemigos)
 
         // 5. Crea los VisualEnemy
     for (const auto& e : currentEnemies) {
+        // Obtiene posicion de los enemigos
         int startX = ruta.front().first;
         int startY = ruta.front().second;
+        // Inserta en lista para ser atacados
         listaDeEnemigos.emplace_back(std::make_shared<EnemyController>(std::make_shared<Enemy>(*e), startX, startY));
+        // Inserta en lista para dibujarse
         enemigos.emplace_back(std::make_shared<Enemy>(*e), ruta);
         }
 
@@ -183,7 +186,9 @@ Controler::Controler(std::vector<std::shared_ptr<EnemyController>>& enemigos)
             }
             oleadaClock.restart();
         }
+        // Por cada torre
         for (auto& torre : torres) {
+            // Ataca enemigo dentro de la lista de enemigos
             torre->AtacarEnemigo(listaDeEnemigos);
         }
 

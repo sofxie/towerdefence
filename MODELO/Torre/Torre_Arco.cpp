@@ -7,6 +7,7 @@ using namespace std;
 Torre_Arco::Torre_Arco()
     : nivel(1), Enfriamiento(2), DistanciaDeAtaque(10), EnfriamientoEspecial(10), TipoAtaque(1){}
 
+// Funcion para retornar cantidad de daño
 int Torre_Arco::Atacar() {
     std::cout << "Atacar" << std::endl;
     int damage = 0;
@@ -35,16 +36,20 @@ int Torre_Arco::Atacar() {
     return damage;
 }
 
+// Retorna Distancia de Ataque
 int Torre_Arco::DistanciaAtaque() {
     return DistanciaDeAtaque;
 }
 
+// Sube de nivel a la torre
 void Torre_Arco::SubirNivel() {
   if (nivel < 3)
       nivel++;
   std::cout << "Torre de Arco sube al nivel " << nivel << "." << std::endl;
 }
 
+// Funcion para Atacar enemigos en x distancia
+// Toma como entrada la lista de enemigos
 void Torre_Arco::AtacarEnemigo(std::vector<std::shared_ptr<EnemyController>>& enemigos) {
     // Espera a que pase el cooldown
     if (Enfriamiento > 0) {
@@ -63,17 +68,19 @@ void Torre_Arco::AtacarEnemigo(std::vector<std::shared_ptr<EnemyController>>& en
         int dis = DistanciaAtaque();
         std::cout<<"Distancia Calculada:"<< distancia<<"Distancia"<<dis<<std::endl;
         int dano = Atacar();  // Si está listo para atacar
-        if (dano > 0) {
-            enemigo->getEnemy()->takeArrowDamage(dano);  // Atacar al enemigo real
-            std::cout << "Torre Arco inflige " << dano << " de daño." << std::endl;
-            break;  // Solo ataca una vez por ciclo
-        }
-        if (distancia <= DistanciaAtaque()) {
 
+        // Si esta dentro del area, realizar ataque
+        if (distancia <= DistanciaAtaque()) {
+            if (dano > 0) {
+                enemigo->getEnemy()->takeArrowDamage(dano);  // Atacar al enemigo real
+                std::cout << "Torre Arco inflige " << dano << " de daño." << std::endl;
+                break;  // Solo ataca una vez por ciclo
+            }
         }
     }
 }
 
+// Funcion para implementar Ataque especial
 int Torre_Arco::AtaqueEspecial(){
     if (EnfriamientoEspecial == 0) {
         EnfriamientoEspecial = 10; // Reset de cooldown

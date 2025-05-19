@@ -19,6 +19,7 @@ void EnemyController::move() {
     }
 }
 
+// Obtener enemigo en una lista
 std::shared_ptr<Enemy> EnemyController::getEnemy() const {
     return enemy;
 }

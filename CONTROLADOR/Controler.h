@@ -15,7 +15,7 @@ class Controler {
 public:
     Controler(std::vector<std::shared_ptr<EnemyController>>& listaDeEnemigos); // Constructor
     void run(); // Bucle del juego
-    using Pair = std::pair<int, int>;
+    using Pair = std::pair<int, int>; // Par de coordenadas
     void events(); // Funcion que maneja controles del juego
     void update(); // Actualizar mapa
     void render(); // Proyectar en la interfaz
@@ -26,8 +26,8 @@ private:
     sf::RenderWindow window;
     Map mapa; // Incluir clases
     View vista;
-    std::vector<std::shared_ptr<Torre>> torres;
-    std::vector<std::shared_ptr<EnemyController>>& listaDeEnemigos;
+    std::vector<std::shared_ptr<Torre>> torres; // Lista de Torres
+    std::vector<std::shared_ptr<EnemyController>>& listaDeEnemigos; // Lista de Enemigos
     // Iniciar matriz del mapa
     int grid[ROW][COL]{};
     // Imagenes de Torres
