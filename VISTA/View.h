@@ -8,7 +8,7 @@ public:
     // Constructor
     explicit View(sf::RenderWindow& window);
     // Dibujar Mapa
-    void mapa(const int grid[ROW][COL], const sf::Color celdaColor[ROW][COL]);
+    void mapa(const int grid[ROW][COL], sf::Sprite celdaColor[ROW][COL]);
     // Dibujar botones para seleccionar tipo de torre
     void torres(int modoSeleccionado);
     // Efecto de resaltado con el cursor
@@ -28,14 +28,17 @@ private:
     sf::Sprite sprite1;
 
     // Botones para las torres
-    sf::RectangleShape boton1;
-    sf::RectangleShape boton2;
-    sf::RectangleShape boton3;
+    sf::Texture textureBot1;
+    sf::Sprite spriteBot1;
+    sf::Texture textureBot2;
+    sf::Sprite spriteBot2;
+    sf::Texture textureBot3;
+    sf::Sprite spriteBot3;
     sf::RectangleShape botonOleada;
 
     // Dibuja celdas y colores
     void Celda(const int gric[ROW][COL]);
-    void Color(const sf::Color celda_color[ROW][COL]);
+    void Color( sf::Sprite celdaColor[ROW][COL]);
 };
 
 

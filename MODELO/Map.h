@@ -36,6 +36,7 @@ public:
     // Funcion para bloquear en el mapa
     bool blocked(int grid[][COL],int row,int col);
     // Funcion que le manda la ruta a los enemigos
+    std::vector<Pair> lastPath;
     std::vector<Pair> getPath(int grid[][COL], Pair src, Pair dest);
 };
 

@@ -7,29 +7,35 @@
 #include "Enemigos/Wave.h"
 #include "Enemigos/EnemyController.h"
 #include "VisualEnemy.h"
+#include "Torre/Torre.h"
 #include <vector>
 
 
 class Controler {
 public:
-    Controler(); // Constructor
+    Controler(std::vector<std::shared_ptr<EnemyController>>& listaDeEnemigos); // Constructor
     void run(); // Bucle del juego
     using Pair = std::pair<int, int>;
     void events(); // Funcion que maneja controles del juego
     void update(); // Actualizar mapa
     void render(); // Proyectar en la interfaz
-    void crearOleada(); // Crear oleada de enemigos
+    void crearOleada(std::vector<Pair> ruta); // Crear oleada de enemigos
+
 
 private:
-
     sf::RenderWindow window;
     Map mapa; // Incluir clases
     View vista;
-
+    std::vector<std::shared_ptr<Torre>> torres;
+    std::vector<std::shared_ptr<EnemyController>>& listaDeEnemigos;
     // Iniciar matriz del mapa
     int grid[ROW][COL]{};
-    // Color de los botones
-    sf::Color celdaColor[ROW][COL];
+    // Imagenes de Torres
+    sf::Sprite celdaColor[ROW][COL];
+    sf::Texture TArquero1;
+    sf::Texture TArtillero1;
+    sf::Texture TMago1;
+    sf::Texture TArquero2;
     // Seleccion de torres
     int modoSeleccionado;  // 0 = ninguno, 1 = azul, 2 = rojo
     // Coordenadas de celda inicio

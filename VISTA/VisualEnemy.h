@@ -30,7 +30,6 @@ struct VisualEnemy {
             }
         }
     }
-
     void actualizar(float deltaTime) {
         if (currentStep >= path.size() - 1) return;
 
@@ -48,7 +47,7 @@ struct VisualEnemy {
                 targetPosition = sf::Vector2f(path[currentStep + 1].second * SIZE,
                                               path[currentStep + 1].first * SIZE);
             }
-            }
+        }
     }
 
     void dibujar(sf::RenderWindow& window) {

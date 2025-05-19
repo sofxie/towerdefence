@@ -1,5 +1,7 @@
 #include "Enemy.h"
 
+#include <iostream>
+
 // Implementación de la clase base Enemy
 Enemy::Enemy(int hp, float spd, int arRes, int mgRes, int artRes, EnemyType t)
     : health(hp), speed(spd), arrowResistance(arRes),
@@ -13,6 +15,7 @@ int Enemy::getArtilleryResistance() const { return artilleryResistance; }
 EnemyType Enemy::getType() const { return type; }
 
 void Enemy::takeArrowDamage(int dmg) {
+    std::cout << "Vida " << health << std::endl;
     health -= dmg * (100 - arrowResistance) / 100;
 }
 
@@ -27,6 +30,7 @@ void Enemy::takeArtilleryDamage(int dmg) {
 bool Enemy::isAlive() const {
     return health > 0;
 }
+
 
 // Implementación de las clases derivadas
 Ogre::Ogre() : Enemy(150, 20.5f, 20, 10, 30, EnemyType::Ogre) {}

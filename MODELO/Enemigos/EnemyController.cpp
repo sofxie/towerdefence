@@ -1,8 +1,9 @@
 #include "EnemyController.h"
-#include <cmath>
+#include <memory>
 #include "Const.h"
+using namespace std;
 
-EnemyController::EnemyController(Enemy* e, int startX, int startY)
+EnemyController::EnemyController(::shared_ptr<Enemy> e, int startX, int startY)
     : enemy(e), x(startX), y(startY), currentStep(0) {}
 
 void EnemyController::calculatePath(Map& map, int grid[ROW][COL], std::pair<int, int> dest) {
@@ -16,6 +17,10 @@ void EnemyController::move() {
         y = path[currentStep].second;
         currentStep++;
     }
+}
+
+std::shared_ptr<Enemy> EnemyController::getEnemy() const {
+    return enemy;
 }
 
 std::pair<int, int> EnemyController::getPosition() const {

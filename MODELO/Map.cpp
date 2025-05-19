@@ -56,9 +56,11 @@ void Map::tracePath(cell cellDetails[][COL], Pair dest) {
         col = temp_col;
     }
     Path.push(make_pair(row, col));
+    lastPath.clear();
     while (!Path.empty()) {
         pair<int, int> p = Path.top();
         Path.pop();
+        lastPath.push_back(p); 
         printf("-> (%d,%d)", p.first, p.second);
     }
     return;
@@ -301,100 +303,9 @@ bool Map::aEstrellita(int grid[][COL], Pair src, Pair dest) {
 }
 //Funcion que le manda la ruta a los enemigos
 std::vector<Pair> Map::getPath(int grid[][COL], Pair src, Pair dest) {
-    std::vector<Pair> emptyResult;
-
-    if (!isValid(src.first, src.second) || !isValid(dest.first, dest.second))
-        return emptyResult;
-
-    if (!isUnBlocked(grid, src.first, src.second) || !isUnBlocked(grid, dest.first, dest.second))
-        return emptyResult;
-
-    if (isDestination(src.first, src.second, dest))
-        return { src };
-
-    bool closedList[ROW][COL];
-    memset(closedList, false, sizeof(closedList));
-
-    cell cellDetails[ROW][COL];
-
-    for (int i = 0; i < ROW; i++) {
-        for (int j = 0; j < COL; j++) {
-            cellDetails[i][j].f = FLT_MAX;
-            cellDetails[i][j].g = FLT_MAX;
-            cellDetails[i][j].h = FLT_MAX;
-            cellDetails[i][j].parent_i = i;
-            cellDetails[i][j].parent_j = j;
-        }
+    if (aEstrellita(grid, src, dest)) {
+        return lastPath;
+    } else {
+        return {}; // camino vacío
     }
-
-    int i = src.first, j = src.second;
-    cellDetails[i][j].f = 0.0;
-    cellDetails[i][j].g = 0.0;
-    cellDetails[i][j].h = 0.0;
-    cellDetails[i][j].parent_i = i;
-    cellDetails[i][j].parent_j = j;
-
-    set<pPairs> openList;
-    openList.insert(make_pair(0.0, make_pair(i, j)));
-
-    while (!openList.empty()) {
-        pPairs p = *openList.begin();
-        openList.erase(openList.begin());
-
-        i = p.second.first;
-        j = p.second.second;
-        closedList[i][j] = true;
-
-        int directions[4][2] = { {-1,0}, {1,0}, {0,-1}, {0,1} };
-
-        for (int d = 0; d < 4; ++d) {
-            int new_i = i + directions[d][0];
-            int new_j = j + directions[d][1];
-
-            if (isValid(new_i, new_j)) {
-                if (isDestination(new_i, new_j, dest)) {
-                    cellDetails[new_i][new_j].parent_i = i;
-                    cellDetails[new_i][new_j].parent_j = j;
-
-                    // Construir el camino
-                    stack<Pair> s;
-                    int row = new_i, col = new_j;
-
-                    while (!(cellDetails[row][col].parent_i == row && cellDetails[row][col].parent_j == col)) {
-                        s.push({ row, col });
-                        int temp_row = cellDetails[row][col].parent_i;
-                        int temp_col = cellDetails[row][col].parent_j;
-                        row = temp_row;
-                        col = temp_col;
-                    }
-                    s.push({ row, col });
-
-                    std::vector<Pair> path;
-                    while (!s.empty()) {
-                        path.push_back(s.top());
-                        s.pop();
-                    }
-                    return path;
-                }
-                else if (!closedList[new_i][new_j] && isUnBlocked(grid, new_i, new_j)) {
-                    double gNew = cellDetails[i][j].g + 1.0;
-                    double hNew = calculateHValue(new_i, new_j, dest);
-                    double fNew = gNew + hNew;
-
-                    if (cellDetails[new_i][new_j].f == FLT_MAX || cellDetails[new_i][new_j].f > fNew) {
-                        openList.insert(make_pair(fNew, make_pair(new_i, new_j)));
-
-                        cellDetails[new_i][new_j].f = fNew;
-                        cellDetails[new_i][new_j].g = gNew;
-                        cellDetails[new_i][new_j].h = hNew;
-                        cellDetails[new_i][new_j].parent_i = i;
-                        cellDetails[new_i][new_j].parent_j = j;
-                    }
-                }
-            }
-        }
-    }
-
-    // No se encontró un camino
-    return emptyResult;
 }

@@ -9,18 +9,21 @@
 
 class Torre_Arco : public Torre {
 private:
-    int nivel = 0;
-    int Enfriamiento = 0;
-    int DistanciaDeAtaque = 0;
-
+    int nivel;
+    int Enfriamiento;
+    int DistanciaDeAtaque;
+    int EnfriamientoEspecial;
+    int TipoAtaque;
 public:
     // Constructor por defecto
     Torre_Arco();
 
     int Atacar() override;
     void SubirNivel() override;
-    void TipoDamage() override;
+    void AtacarEnemigo(std::vector<std::shared_ptr<EnemyController>>& enemigos) override;
     int DistanciaAtaque() override;
+    int AtaqueEspecial();
+
 };
 
 #endif //TORRE_ARCO_H

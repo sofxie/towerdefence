@@ -1,24 +1,29 @@
 #ifndef ENEMYCONTROLLER_H
 #define ENEMYCONTROLLER_H
 
+#include <memory>
 #include "Map.h"
 #include "Enemy.h"
 #include <vector>
 #include <utility>
 
+using namespace std;
+
 class EnemyController {
 private:
-    Enemy* enemy;
-    std::vector<std::pair<int, int>> path; // Ruta generada por A*
+    shared_ptr<Enemy> enemy;
+    vector<pair<int, int>> path; // Ruta generada por A*
     int currentStep; // Paso actual en la ruta
     int x, y; // Posición actual en la grilla
 
-public:
-    EnemyController(Enemy* e, int startX, int startY);
 
-    void calculatePath(Map& map, int grid[ROW][COL], std::pair<int, int> dest);
+public:
+    EnemyController(shared_ptr<Enemy> e, int startX, int startY);
+
+    void calculatePath(Map& map, int grid[ROW][COL], pair<int, int> dest);
     void move();
-    std::pair<int, int> getPosition() const;
+    shared_ptr<Enemy> getEnemy() const;
+    pair<int, int> getPosition() const;
 };
 
 #endif // ENEMYCONTROLLER_H

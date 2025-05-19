@@ -5,41 +5,43 @@
 // Constructor
 View::View(sf::RenderWindow &window)
     : window(window), // Referencia a la ventana que dibuja
-    boton1(sf::Vector2f(SIZE * 2, SIZE)), // Botones
-    boton2(sf::Vector2f(SIZE * 2, SIZE)),
-    boton3(sf::Vector2f(SIZE * 2, SIZE)),
-    botonOleada(sf::Vector2f(SIZE*2, SIZE)){
+    botonOleada(sf::Vector2f(SIZE*2, SIZE)){ // Botones
 
     // Imagen del mapa
     texture.loadFromFile("Imagenes/pasto.png");
     texture1.loadFromFile("Imagenes/pasto2.png");
 
+    // Imagen de los botones
+    textureBot1.loadFromFile("Imagenes/TArquerosBot.png");
+    textureBot2.loadFromFile("Imagenes/TArtilleroBot.jpeg");
+    textureBot3.loadFromFile("Imagenes/TMagoBot.png");
+
     // Asociar textura a sprite
     sprite.setTexture(texture);
     sprite1.setTexture(texture1);
+    spriteBot1.setTexture(textureBot1);
+    spriteBot2.setTexture(textureBot2);
+    spriteBot3.setTexture(textureBot3);
 
     // Modificar tamano de imagen
     sprite.setScale(static_cast<float>(SIZE) / texture.getSize().x,
     static_cast<float>(SIZE) / texture.getSize().y);
     sprite1.setScale(static_cast<float>(SIZE) / texture1.getSize().x,
     static_cast<float>(SIZE) / texture1.getSize().y);
+    spriteBot1.setScale(0.06f, 0.06f);
+    spriteBot2.setScale(0.06f, 0.06f);
+    spriteBot3.setScale(0.06f, 0.06f);
 
     // Posicionar y diseñar botones
-    boton1.setPosition(SIZE * 11, SIZE);
-    boton1.setFillColor(sf::Color::Blue);
-
-    boton2.setPosition(SIZE * 11, SIZE * 3);
-    boton2.setFillColor(sf::Color::Red);
-
-    boton3.setPosition(SIZE * 11, SIZE * 5);
-    boton3.setFillColor(sf::Color::Yellow);
-
+    spriteBot1.setPosition(SIZE * 11, SIZE);
+    spriteBot2.setPosition(SIZE * 11, SIZE * 3);
+    spriteBot3.setPosition(SIZE * 11, SIZE * 5);
     botonOleada.setPosition(SIZE * 11, SIZE * 7);
     botonOleada.setFillColor(sf::Color::Magenta);
 }
 
 // Dibujar las celdas del mapa
-void View::mapa(const int grid[ROW][COL], const sf::Color celdaColor[ROW][COL]) {
+void View::mapa(const int grid[ROW][COL], sf::Sprite celdaColor[ROW][COL]) {
     Celda(grid);
     Color(celdaColor);
 }
@@ -64,9 +66,9 @@ void View::drawHover(int mouseX, int mouseY) {
 
 // Identificar Clicks en un boton
 int View::botonClick(int mouseX, int mouseY) {
-    if (boton1.getGlobalBounds().contains(mouseX, mouseY)) return 1;
-    if (boton2.getGlobalBounds().contains(mouseX, mouseY)) return 2;
-    if (boton3.getGlobalBounds().contains(mouseX, mouseY)) return 3;
+    if (spriteBot1.getGlobalBounds().contains(mouseX, mouseY)) return 1;
+    if (spriteBot2.getGlobalBounds().contains(mouseX, mouseY)) return 2;
+    if (spriteBot3.getGlobalBounds().contains(mouseX, mouseY)) return 3;
     if (botonOleada.getGlobalBounds().contains(mouseX, mouseY)) return 4;
     return 0;
 }
@@ -89,14 +91,12 @@ void View::Celda(const int grid[ROW][COL]) {
 }
 
 // Pintar las celdas de color
-void View::Color(const sf::Color celdaColor[ROW][COL]) {
+void View::Color( sf::Sprite celdaColor[ROW][COL]) {
     for (int i = 0; i < ROW; ++i) {
         for (int j = 0; j < COL; ++j) {
-            if (celdaColor[i][j] != sf::Color::Transparent) {
-                sf::RectangleShape colorTile(sf::Vector2f(SIZE, SIZE));
-                colorTile.setPosition(j * SIZE, i * SIZE);
-                colorTile.setFillColor(celdaColor[i][j]);
-                window.draw(colorTile);
+            if (celdaColor[i][j].getTexture() != nullptr) {
+                celdaColor[i][j].setPosition(j * SIZE, i * SIZE);
+                window.draw(celdaColor[i][j]);
             }
         }
     }
@@ -104,9 +104,9 @@ void View::Color(const sf::Color celdaColor[ROW][COL]) {
 
 // Dibuja los botones en la interfaz
 void View::Boton() {
-    window.draw(boton1);
-    window.draw(boton2);
-    window.draw(boton3);
+    window.draw(spriteBot1);
+    window.draw(spriteBot2);
+    window.draw(spriteBot3);
     window.draw(botonOleada);
 }
 
