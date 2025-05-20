@@ -220,7 +220,7 @@ void Controler::crearOleada(std::vector<Pair> ruta) {
     void Controler::update() {
         float deltaTime = reloj.restart().asSeconds();
 
-        if (oleadasActivas && oleadaClock.getElapsedTime().asSeconds() > 15.0f) {
+        if (oleadasActivas && oleadaClock.getElapsedTime().asSeconds() > 10.0f) {
             std::vector<Pair> ruta = mapa.getPath(grid, src, dest);
             crearOleada(ruta); // Nueva oleada automática
         }
