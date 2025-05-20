@@ -37,6 +37,9 @@ private:
     sf::Texture TArtillero1;
     sf::Texture TMago1;
     sf::Texture TArquero2;
+    sf::Texture TArtillero2;
+    sf::Texture TMago2;
+
     // Seleccion de torres
     int modoSeleccionado;  // 0 = ninguno, 1 = azul, 2 = rojo
     // Coordenadas de celda inicio

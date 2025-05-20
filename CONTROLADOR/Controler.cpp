@@ -84,14 +84,11 @@ void Controler::crearOleada(std::vector<Pair> ruta) {
 }
 
 
-    // Comprobar si hay oleadas activas
-
-
-
     // Manejar eventos
     void Controler::events() {
         sf::Event event{};
         while (window.pollEvent(event)) {
+
             // Click izquierdo
             if (event.type == sf::Event::MouseButtonPressed && event.mouseButton.button == sf::Mouse::Left) {
                 // Obtiene posiciones X y Y
@@ -118,7 +115,7 @@ void Controler::crearOleada(std::vector<Pair> ruta) {
                         grid[row][col] = 0;
                         TArquero1.loadFromFile("Imagenes/Arquero1.jpeg");
                         auto torre = std::make_shared<Torre_Arco>();
-                        torre->setPosicion(row, col);
+                        torre->setPosition(row, col);
                         torres.push_back(torre);
                         celdaColor[row][col].setTexture(TArquero1);
                         celdaColor[row][col].setScale(0.051f, 0.051f);
@@ -130,6 +127,21 @@ void Controler::crearOleada(std::vector<Pair> ruta) {
                             grid[row][col] = 1;
                             celdaColor[row][col].setColor(sf::Color::Transparent);
                         }
+                    }
+                    else {
+                        std::cout << "Mejorar torre en " << row << " " << col << "\n";
+
+                        for (std::shared_ptr<Torre> torreTem : torres) {
+                            if (torreTem->getPosicion().first == row && torreTem->getPosicion().second == col) {
+                                std::cout << "Mejorar torre en " << row << " " << col << "\n";
+                                torreTem->SubirNivel();
+                                std::cout << torreTem->GetNivel() << "\n";
+                                break;
+                            }
+                        }
+
+                        TArquero2.loadFromFile("Imagenes/TArquerosBot.png");
+                        celdaColor[row][col].setTexture(TArquero2);
                     }
             }
                 else if (modoSeleccionado == 2) {
@@ -146,6 +158,21 @@ void Controler::crearOleada(std::vector<Pair> ruta) {
                             grid[row][col] = 1;
                             celdaColor[row][col].setColor(sf::Color::Transparent);
                         }
+                    }
+                    else {
+                        std::cout << "Mejorar torre en " << row << " " << col << "\n";
+
+                        for (std::shared_ptr<Torre> torreTem : torres) {
+                            if (torreTem->getPosicion().first == row && torreTem->getPosicion().second == col) {
+                                std::cout << "Mejorar torre en " << row << " " << col << "\n";
+                                torreTem->SubirNivel();
+                                std::cout << torreTem->GetNivel() << "\n";
+                                break;
+                            }
+                        }
+
+                        TArtillero2.loadFromFile("Imagenes/TArtilleroBot.jpeg");
+                        celdaColor[row][col].setTexture(TArtillero2);
                     }
                 }
                 else if (modoSeleccionado == 3) {
@@ -165,6 +192,21 @@ void Controler::crearOleada(std::vector<Pair> ruta) {
                             celdaColor[row][col].setColor(sf::Color::Transparent);
                         }
                     }
+                    else {
+                        std::cout << "Mejorar torre en " << row << " " << col << "\n";
+
+                        for (std::shared_ptr<Torre> torreTem : torres) {
+                            if (torreTem->getPosicion().first == row && torreTem->getPosicion().second == col) {
+                                std::cout << "Mejorar torre en " << row << " " << col << "\n";
+                                torreTem->SubirNivel();
+                                std::cout << torreTem->GetNivel() << "\n";
+                                break;
+                            }
+                        }
+
+                        TMago2.loadFromFile("Imagenes/TMagoBot.png");
+                        celdaColor[row][col].setTexture(TMago2);
+                    }
                 }
                 else if (modoSeleccionado == 4) {
                     std::vector<Pair> ruta = mapa.getPath(grid, src, dest);
@@ -178,7 +220,7 @@ void Controler::crearOleada(std::vector<Pair> ruta) {
     void Controler::update() {
         float deltaTime = reloj.restart().asSeconds();
 
-        if (oleadasActivas && oleadaClock.getElapsedTime().asSeconds() > 5.0f) {
+        if (oleadasActivas && oleadaClock.getElapsedTime().asSeconds() > 15.0f) {
             std::vector<Pair> ruta = mapa.getPath(grid, src, dest);
             crearOleada(ruta); // Nueva oleada automática
         }
@@ -201,14 +243,18 @@ void Controler::crearOleada(std::vector<Pair> ruta) {
         for (auto& enemigo : enemigos) {
             enemigo.actualizar(deltaTime);
         }
-
-        // Actualizar torres
+        // Por cada torre
         for (auto& torre : torres) {
+            // Ataca enemigo dentro de la lista de enemigos
             torre->AtacarEnemigo(listaDeEnemigos);
         }
+        for (size_t i = 0; i < listaDeEnemigos.size(); ++i) {
+            if (listaDeEnemigos[i]->getEnemy()->getHealth() <= 0) {
+                enemigos[i].Speed(0);
+            }
+        }
+
     }
-
-
 
     // Rederizar el mapa y los elementos graficos
     void Controler::render() {
