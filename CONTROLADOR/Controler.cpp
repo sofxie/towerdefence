@@ -78,6 +78,7 @@ Controler::Controler(std::vector<std::shared_ptr<EnemyController>>& enemigos)
     void Controler::events() {
         sf::Event event{};
         while (window.pollEvent(event)) {
+
             // Click izquierdo
             if (event.type == sf::Event::MouseButtonPressed && event.mouseButton.button == sf::Mouse::Left) {
                 // Obtiene posiciones X y Y
@@ -235,6 +236,11 @@ Controler::Controler(std::vector<std::shared_ptr<EnemyController>>& enemigos)
         for (auto& torre : torres) {
             // Ataca enemigo dentro de la lista de enemigos
             torre->AtacarEnemigo(listaDeEnemigos);
+        }
+        for (size_t i = 0; i < listaDeEnemigos.size(); ++i) {
+            if (listaDeEnemigos[i]->getEnemy()->getHealth() <= 0) {
+                enemigos[i].Speed(0);
+            }
         }
 
     }

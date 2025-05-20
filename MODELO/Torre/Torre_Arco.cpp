@@ -9,29 +9,24 @@ Torre_Arco::Torre_Arco()
 
 // Funcion para retornar cantidad de daño
 int Torre_Arco::Atacar() {
-    std::cout << "Atacar" << std::endl;
     int damage = 0;
     if (nivel == 1) {
         if (Enfriamiento == 0) {
-            Enfriamiento = 10;
-            damage = 5;
+            Enfriamiento = 5000;
+            damage = 300;
         }
     }
     else if (nivel == 2) {
         if (Enfriamiento == 0) {
-            Enfriamiento = 8;
+            Enfriamiento = 4000;
             damage = 20;
         }
     }
     else if (nivel == 3) {
         if (Enfriamiento == 0) {
-            Enfriamiento = 6;
+            Enfriamiento = 2500;
             damage = 50;
         }
-    }
-    else {
-        Enfriamiento = Enfriamiento - 1;
-        return 0;
     }
     return damage;
 }
@@ -70,15 +65,31 @@ void Torre_Arco::AtacarEnemigo(std::vector<std::shared_ptr<EnemyController>>& en
         // 3. Calcular distancia entre los dos objetos
         float distancia = std::sqrt(std::pow(ex - row, 2) + std::pow(ey - col, 2));
         int dis = DistanciaAtaque();
-        std::cout<<"Distancia Calculada:"<< distancia<<"Distancia"<<dis<<std::endl;
         int dano = Atacar();  // Si está listo para atacar
+        if (nivel == 1) {
+                dano = 10;
+
+        }
+        else if (nivel == 2) {
+                dano = 25;
+
+        }
+        else if (nivel == 3) {
+                dano = 50;
+
+        }
+
 
         // Si esta dentro del area, realizar ataque
         if (distancia <= DistanciaAtaque()) {
-            if (dano > 0) {
-                enemigo->getEnemy()->takeArrowDamage(dano);  // Atacar al enemigo real
-                std::cout << "Torre Arco inflige " << dano << " de daño." << std::endl;
-                break;  // Solo ataca una vez por ciclo
+            if (enemigo->getEnemy()->getHealth() <= 0) {
+            }
+            else {
+                if (dano > 0) {
+                    enemigo->getEnemy()->takeDamage(dano, 1);  // Atacar al enemigo real
+                    std::cout << "Torre Arco inflige " << dano << " de daño." << std::endl;  // Solo ataca una vez por ciclo
+                    break;
+                }
             }
         }
     }

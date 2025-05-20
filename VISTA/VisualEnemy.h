@@ -17,6 +17,7 @@ struct VisualEnemy {
     sf::Vector2f position;
     sf::Vector2f targetPosition;
     sf::RectangleShape shape;
+    bool vivo = true;
 
     VisualEnemy(std::shared_ptr<Enemy> e, const std::vector<Pair>& p)
         : enemy(e), path(p) {
@@ -29,6 +30,10 @@ struct VisualEnemy {
                 targetPosition = sf::Vector2f(path[1].second * SIZE, path[1].first * SIZE);
             }
         }
+    }
+    void Speed(float vel) {
+        enemy->setSpeed(vel);
+        vivo = false;
     }
     void actualizar(float deltaTime) {
         if (currentStep >= path.size() - 1) return;
@@ -51,8 +56,12 @@ struct VisualEnemy {
     }
 
     void dibujar(sf::RenderWindow& window) {
-        shape.setPosition(position);
-        window.draw(shape);
+        if (vivo == false) {
+        }
+        else {
+            shape.setPosition(position);
+            window.draw(shape);
+        }
     }
 
     bool haTerminado() const {
