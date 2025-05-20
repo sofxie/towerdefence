@@ -11,20 +11,16 @@ using namespace std;
 
 class Torre {
 protected:
-    std::pair<int, int> position;
 public:
     virtual int Atacar() = 0;
     virtual void SubirNivel() = 0;
     virtual void AtacarEnemigo(std::vector<std::shared_ptr<EnemyController>>& enemigos) = 0;
     virtual int DistanciaAtaque() = 0;
+    virtual void setPosition(int x, int y) = 0;
 
-    void setPosicion(int x, int y) {
-        position = {x, y};
-    }
+    virtual std::pair<int, int> getPosicion() = 0;
 
-    std::pair<int, int> getPosicion() const {
-        return position;
-    }
+    virtual int GetNivel() = 0;
 
     virtual ~Torre() = default;    // Destructor virtual para permitir herencia segura
 };

@@ -1,4 +1,4 @@
-#ifndef ENEMY_H
+ #ifndef ENEMY_H
 #define ENEMY_H
 
 #include <string>
@@ -22,15 +22,14 @@ public:
     // Getters (accesores de los atributos)
     int getHealth() const;
     float getSpeed() const;
+    void setSpeed(float spd);
     int getArrowResistance() const;
     int getMagicResistance() const;
     int getArtilleryResistance() const;
     EnemyType getType() const;
 
     // Reducción de vida. Según el daño que recibe el enemigo
-    virtual void takeArrowDamage(int dmg);
-    virtual void takeMagicDamage(int dmg);
-    virtual void takeArtilleryDamage(int dmg);
+    virtual void takeDamage(int dmg, int type);
 
     bool isAlive() const;
 
@@ -75,7 +74,6 @@ class Harpy : public Enemy {
 public:
     Harpy();
     Harpy(int hp, float spd, int arRes, int mgRes, int artRes); // Nuevo
-    void takeArtilleryDamage(int dmg) override;
 };
 
 class Mercenary : public Enemy {
