@@ -20,6 +20,7 @@ public:
     void update(); // Actualizar mapa
     void render(); // Proyectar en la interfaz
     void crearOleada(std::vector<Pair> ruta); // Crear oleada de enemigos
+    bool oleadasActivas = false; // Comprobar si hay oleadas activas
 
 
 private:
@@ -50,6 +51,7 @@ private:
     sf::Clock reloj;
     std::vector<VisualEnemy> enemigos;
     Wave wave; // Oleada de enemigos
+    sf ::Clock oleadaClock;// Temporizador de oleadas
 };
 
 

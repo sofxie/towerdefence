@@ -73,6 +73,9 @@ Controler::Controler(std::vector<std::shared_ptr<EnemyController>>& enemigos)
         genaracionOleada++;
     }
 
+    // Comprobar si hay oleadas activas
+
+
 
     // Manejar eventos
     void Controler::events() {

@@ -14,7 +14,7 @@ void Wave::spawnEnemies() {
     std::mt19937 gen(rd());
     std::uniform_int_distribution<> dist(0, 3);
 
-    int baseEnemies = 10 + ((generation / 2) * 5); // 10 + 5 por cada 2 generaciones
+    int baseEnemies = 4 + ((generation / 2) * 5); // 4 + 5 por cada 2 generaciones
 
     for (int i = 0; i < baseEnemies; ++i) {
         switch (dist(gen)) {
