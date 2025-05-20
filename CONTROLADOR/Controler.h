@@ -52,6 +52,11 @@ private:
     std::vector<VisualEnemy> enemigos;
     Wave wave; // Oleada de enemigos
     sf ::Clock oleadaClock;// Temporizador de oleadas
+    std::vector<std::unique_ptr<Enemy>> enemiesToSpawn;  // Enemigos por salir
+    std::vector<Pair> rutaOleada;                        // Ruta para los enemigos
+    int spawnIndex = 0;                                  // Índice del siguiente enemigo
+    sf::Clock spawnClock;                                // Controla el tiempo entre spawns
+
 };
 
 
