@@ -5,7 +5,7 @@ using namespace std;
 
 // Constructor por defecto
 Torre_Arco::Torre_Arco()
-    : nivel(1), Enfriamiento(2), DistanciaDeAtaque(10), EnfriamientoEspecial(10), TipoAtaque(1){}
+    : nivel(1), Enfriamiento(2), DistanciaDeAtaque(10), EnfriamientoEspecial(10), TipoAtaque(1), position({-1, -1}){}
 
 // Funcion para retornar cantidad de daño
 int Torre_Arco::Atacar() {
@@ -48,6 +48,10 @@ void Torre_Arco::SubirNivel() {
   std::cout << "Torre de Arco sube al nivel " << nivel << "." << std::endl;
 }
 
+int Torre_Arco::GetNivel() {
+    return nivel;
+}
+
 // Funcion para Atacar enemigos en x distancia
 // Toma como entrada la lista de enemigos
 void Torre_Arco::AtacarEnemigo(std::vector<std::shared_ptr<EnemyController>>& enemigos) {
@@ -78,6 +82,14 @@ void Torre_Arco::AtacarEnemigo(std::vector<std::shared_ptr<EnemyController>>& en
             }
         }
     }
+}
+
+void Torre_Arco::setPosition(int x, int y) {
+    position = {x, y};
+}
+
+std::pair<int, int> Torre_Arco::getPosicion() {
+    return position;
 }
 
 // Funcion para implementar Ataque especial

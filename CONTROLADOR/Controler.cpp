@@ -104,7 +104,7 @@ Controler::Controler(std::vector<std::shared_ptr<EnemyController>>& enemigos)
                         grid[row][col] = 0;
                         TArquero1.loadFromFile("Imagenes/Arquero1.jpeg");
                         auto torre = std::make_shared<Torre_Arco>();
-                        torre->setPosicion(row, col);
+                        torre->setPosition(row, col);
                         torres.push_back(torre);
                         celdaColor[row][col].setTexture(TArquero1);
                         celdaColor[row][col].setScale(0.051f, 0.051f);
@@ -116,6 +116,21 @@ Controler::Controler(std::vector<std::shared_ptr<EnemyController>>& enemigos)
                             grid[row][col] = 1;
                             celdaColor[row][col].setColor(sf::Color::Transparent);
                         }
+                    }
+                    else {
+                        std::cout << "Mejorar torre en " << row << " " << col << "\n";
+
+                        for (std::shared_ptr<Torre> torreTem : torres) {
+                            if (torreTem->getPosicion().first == row && torreTem->getPosicion().second == col) {
+                                std::cout << "Mejorar torre en " << row << " " << col << "\n";
+                                torreTem->SubirNivel();
+                                std::cout << torreTem->GetNivel() << "\n";
+                                break;
+                            }
+                        }
+
+                        TArquero2.loadFromFile("Imagenes/TArquerosBot.png");
+                        celdaColor[row][col].setTexture(TArquero2);
                     }
             }
                 else if (modoSeleccionado == 2) {
@@ -132,6 +147,21 @@ Controler::Controler(std::vector<std::shared_ptr<EnemyController>>& enemigos)
                             grid[row][col] = 1;
                             celdaColor[row][col].setColor(sf::Color::Transparent);
                         }
+                    }
+                    else {
+                        std::cout << "Mejorar torre en " << row << " " << col << "\n";
+
+                        for (std::shared_ptr<Torre> torreTem : torres) {
+                            if (torreTem->getPosicion().first == row && torreTem->getPosicion().second == col) {
+                                std::cout << "Mejorar torre en " << row << " " << col << "\n";
+                                torreTem->SubirNivel();
+                                std::cout << torreTem->GetNivel() << "\n";
+                                break;
+                            }
+                        }
+
+                        TArtillero2.loadFromFile("Imagenes/TArtilleroBot.jpeg");
+                        celdaColor[row][col].setTexture(TArtillero2);
                     }
                 }
                 else if (modoSeleccionado == 3) {
@@ -150,6 +180,21 @@ Controler::Controler(std::vector<std::shared_ptr<EnemyController>>& enemigos)
                             grid[row][col] = 1;
                             celdaColor[row][col].setColor(sf::Color::Transparent);
                         }
+                    }
+                    else {
+                        std::cout << "Mejorar torre en " << row << " " << col << "\n";
+
+                        for (std::shared_ptr<Torre> torreTem : torres) {
+                            if (torreTem->getPosicion().first == row && torreTem->getPosicion().second == col) {
+                                std::cout << "Mejorar torre en " << row << " " << col << "\n";
+                                torreTem->SubirNivel();
+                                std::cout << torreTem->GetNivel() << "\n";
+                                break;
+                            }
+                        }
+
+                        TMago2.loadFromFile("Imagenes/TMagoBot.png");
+                        celdaColor[row][col].setTexture(TMago2);
                     }
                 }
                 else if (modoSeleccionado == 4) {
