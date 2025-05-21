@@ -1,27 +1,24 @@
 #include "Wave.h"
-#include <algorithm>
-#include <numeric>
-#include <iomanip>
-#include <iostream>
+
 
 Wave::Wave(int gen) : generation(gen), timesGetEnemiesCalled(0) {
     spawnEnemies();
 }
 
-void Wave::spawnEnemies() {
+void Wave::spawnEnemies() { // Generar enemigos
     enemies.clear();
     std::random_device rd;
     std::mt19937 gen(rd());
-    std::uniform_int_distribution<> dist(0, 3);
+    std::uniform_int_distribution<> dist(0, 3); // 0 a 3 (4 tipos de enemigos)
 
     int baseEnemies = 2 + ((generation / 2) * 2); // 4 + 2 por cada 2 generaciones
 
     for (int i = 0; i < baseEnemies; ++i) {
-        switch (dist(gen)) {
-            case 0: enemies.push_back(std::make_unique<Ogre>()); break;
-            case 1: enemies.push_back(std::make_unique<DarkElf>()); break;
-            case 2: enemies.push_back(std::make_unique<Harpy>()); break;
-            case 3: enemies.push_back(std::make_unique<Mercenary>()); break;
+        switch (dist(gen)) { // Generar enemigos aleatorios
+            case 0: enemies.push_back(std::make_unique<Ogre>()); break; // Ogre
+            case 1: enemies.push_back(std::make_unique<DarkElf>()); break; // DarkElf
+            case 2: enemies.push_back(std::make_unique<Harpy>()); break; // Harpy
+            case 3: enemies.push_back(std::make_unique<Mercenary>()); break; // Mercenary
         }
     }
 

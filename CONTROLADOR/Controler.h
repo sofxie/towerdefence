@@ -21,6 +21,7 @@ public:
     void render(); // Proyectar en la interfaz
     void crearOleada(std::vector<Pair> ruta); // Crear oleada de enemigos
     bool oleadasActivas = false; // Comprobar si hay oleadas activas
+    std::vector<sf::Vector2f> getPosicionEnemigos() const; // Obtener posicion de enemigos
 
 
 private:

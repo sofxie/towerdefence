@@ -6,6 +6,11 @@
 #include "Enemy.h"
 #include <vector>
 #include <utility>
+#include <memory>
+#include "Const.h"
+#include <SFML/Graphics.hpp>
+#include "Controler.h"
+#include "VisualEnemy.h"
 
 using namespace std;
 
@@ -24,6 +29,7 @@ public:
     void move();
     shared_ptr<Enemy> getEnemy() const;
     pair<int, int> getPosition() const;
+
 };
 
 #endif // ENEMYCONTROLLER_H

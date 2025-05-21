@@ -35,7 +35,7 @@ public:
 
     bool isAlive() const;
 
-    virtual std::string getFullDescription() const {
+    virtual std::string getFullDescription() const { // Descripción completa del enemigo
         std::ostringstream oss;
         oss << typeToString(type) << " ["
             << "HP: " << health << ", "
@@ -46,7 +46,7 @@ public:
         return oss.str();
     }
 
-    static std::string typeToString(EnemyType type) {
+    static std::string typeToString(EnemyType type) { // Convertir tipo a string
         switch(type) {
             case EnemyType::Ogre: return "Ogro";
             case EnemyType::DarkElf: return "Elfo Oscuro";

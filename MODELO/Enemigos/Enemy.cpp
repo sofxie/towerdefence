@@ -6,13 +6,13 @@ Enemy::Enemy(int hp, float spd, int arRes, int mgRes, int artRes, EnemyType t)
     : health(hp), speed(spd), arrowResistance(arRes),
       magicResistance(mgRes), artilleryResistance(artRes), type(t) {}
 
-int Enemy::getHealth() const { return health; }
-float Enemy::getSpeed() const { return speed; }
-void Enemy::setSpeed(float spd) { speed = spd; }
-int Enemy::getArrowResistance() const { return arrowResistance; }
-int Enemy::getMagicResistance() const { return magicResistance; }
-int Enemy::getArtilleryResistance() const { return artilleryResistance; }
-EnemyType Enemy::getType() const { return type; }
+int Enemy::getHealth() const { return health; } // Obtener vida
+float Enemy::getSpeed() const { return speed; } // Obtener velocidad
+void Enemy::setSpeed(float spd) { speed = spd; } // Cambiar velocidad
+int Enemy::getArrowResistance() const { return arrowResistance; } // Obtener resistencia a flechas
+int Enemy::getMagicResistance() const { return magicResistance; } // Obtener resistencia a magia
+int Enemy::getArtilleryResistance() const { return artilleryResistance; } // Obtener resistencia a artillería
+EnemyType Enemy::getType() const { return type; } // Obtener tipo de enemigo
 
 
 void Enemy::takeDamage(int dmg, int type2) { // Reducción de vida
@@ -34,6 +34,7 @@ bool Enemy::isAlive() const { // Comprobar si el enemigo está vivo
     return health > 0;
 }
 
+// Implementación de las clases derivadas de los enemigos con sus caracteristicas
 Ogre::Ogre()
     : Enemy(
         // HP aleatorio
@@ -44,7 +45,7 @@ Ogre::Ogre()
             return hp_dist(gen);
         }(),
 
-        // Speed aleatorio entre 8.0f y 13.0f (rango alrededor de 10.5f)
+        // Speed aleatorio entre 8.0f y 13.0f
         []() {
             std::random_device rd;
             std::mt19937 gen(rd());
@@ -59,7 +60,7 @@ Ogre::Ogre()
         EnemyType::Ogre
     ) {}
 
-// Constructor con parámetros personalizados (opcional)
+// Constructor con parámetros personalizados
 Ogre::Ogre(int hp, float spd, int arRes, int mgRes, int artRes)
     : Enemy(hp, spd, arRes, mgRes, artRes, EnemyType::Ogre) {}
 
