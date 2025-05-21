@@ -13,19 +13,19 @@ int Torre_Arco::Atacar() {
     if (nivel == 1) {
         if (Enfriamiento == 0) {
             Enfriamiento = 5000;
-            damage = 300;
+            damage = 10;
         }
     }
     else if (nivel == 2) {
         if (Enfriamiento == 0) {
             Enfriamiento = 4000;
-            damage = 20;
+            damage = 30;
         }
     }
     else if (nivel == 3) {
         if (Enfriamiento == 0) {
             Enfriamiento = 2500;
-            damage = 50;
+            damage = 60;
         }
     }
     return damage;
@@ -67,16 +67,15 @@ void Torre_Arco::AtacarEnemigo(std::vector<std::shared_ptr<EnemyController>>& en
         int dis = DistanciaAtaque();
         int dano = Atacar();  // Si está listo para atacar
         if (nivel == 1) {
-                dano = 10;
+                dano = 20;
 
         }
         else if (nivel == 2) {
-                dano = 25;
+                dano = 50;
 
         }
         else if (nivel == 3) {
-                dano = 50;
-
+                dano = 100;
         }
 
 
@@ -88,7 +87,14 @@ void Torre_Arco::AtacarEnemigo(std::vector<std::shared_ptr<EnemyController>>& en
                 if (dano > 0) {
                     enemigo->getEnemy()->takeDamage(dano, 1);  // Atacar al enemigo real
                     std::cout << "Torre Arco inflige " << dano << " de daño." << std::endl;  // Solo ataca una vez por ciclo
-                    break;
+                    if (EnfriamientoEspecial > 0) {
+                        EnfriamientoEspecial--;
+                        break;
+                    }
+                    else {
+                        EnfriamientoEspecial = 10;
+                    }
+
                 }
             }
         }

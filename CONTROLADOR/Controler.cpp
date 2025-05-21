@@ -10,7 +10,10 @@
 #include <vector>
 #include <memory>
 
-    using namespace std;
+#include "Torre/Torre_Artillero.h"
+#include "Torre/Torre_Mago.h"
+
+using namespace std;
 
 
     // Constructor
@@ -138,6 +141,9 @@ Controler::Controler(std::vector<std::shared_ptr<EnemyController>>& enemigos)
                     if (mapa.blocked(grid, row, col)) {
                         grid[row][col] = 0;
                         TArtillero1.loadFromFile("Imagenes/Artillero1.jpeg");
+                        auto torre = std::make_shared<Torre_Artillero>();
+                        torre->setPosition(row, col);
+                        torres.push_back(torre);
                         celdaColor[row][col].setTexture(TArtillero1);
                         celdaColor[row][col].setScale(0.051f, 0.051f);
                         bool found = mapa.aEstrellita(grid, src, dest);
@@ -169,11 +175,12 @@ Controler::Controler(std::vector<std::shared_ptr<EnemyController>>& enemigos)
                     if (mapa.blocked(grid, row, col)) {
                         grid[row][col] = 0;
                         TMago1.loadFromFile("Imagenes/Mago1.jpeg");
+                        auto torre = std::make_shared<Torre_Mago>();
+                        torre->setPosition(row, col);
+                        torres.push_back(torre);
                         celdaColor[row][col].setTexture(TMago1);
                         celdaColor[row][col].setScale(0.051f, 0.051f);
                         bool found = mapa.aEstrellita(grid, src, dest);
-                        std::vector<Pair> ruta = mapa.getPath(grid, src, dest);
-                        crearOleada(ruta);
                         if (!found) {
                             printf("ME BLOQUEARON\n");
 
