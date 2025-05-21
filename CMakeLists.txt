@@ -21,6 +21,8 @@ add_executable(towerdefence main.cpp
         MODELO/Torre/Torre_Arco.h
         MODELO/Torre/Torre_Artillero.cpp
         MODELO/Torre/Torre_Artillero.h
+        Modelo/Torre/Torre_Mago.h
+        Modelo/Torre/Torre_Mago.cpp
         MODELO/Enemigos/EnemyController.cpp)
 target_link_libraries(towerdefence sfml-system sfml-window sfml-graphics)
 

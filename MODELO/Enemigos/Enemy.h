@@ -3,6 +3,8 @@
 
 #include <string>
 #include <sstream>
+#include <random>
+#include <iostream>
 
 enum class EnemyType { Ogre, DarkElf, Harpy, Mercenary };
 

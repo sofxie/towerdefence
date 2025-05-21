@@ -1,6 +1,5 @@
 #include "Enemy.h"
 
-#include <iostream>
 
 // Implementación de la clase base Enemy
 Enemy::Enemy(int hp, float spd, int arRes, int mgRes, int artRes, EnemyType t)
@@ -16,7 +15,7 @@ int Enemy::getArtilleryResistance() const { return artilleryResistance; }
 EnemyType Enemy::getType() const { return type; }
 
 
-void Enemy::takeDamage(int dmg, int type2) {
+void Enemy::takeDamage(int dmg, int type2) { // Reducción de vida
     if (type2 == 1) {
         std::cout << "Vida " << health << std::endl;
         health -= dmg * (100 - arrowResistance) / 100;
@@ -31,24 +30,96 @@ void Enemy::takeDamage(int dmg, int type2) {
     }
 }
 
-bool Enemy::isAlive() const {
+bool Enemy::isAlive() const { // Comprobar si el enemigo está vivo
     return health > 0;
 }
 
+Ogre::Ogre()
+    : Enemy(
+        // HP aleatorio
+        []() {
+            std::random_device rd;
+            std::mt19937 gen(rd());
+            std::uniform_int_distribution<int> hp_dist(180, 280);
+            return hp_dist(gen);
+        }(),
 
-// Implementación de las clases derivadas
-Ogre::Ogre() : Enemy(150, 10.5f, 20, 10, 30, EnemyType::Ogre) {}
+        // Speed aleatorio entre 8.0f y 13.0f (rango alrededor de 10.5f)
+        []() {
+            std::random_device rd;
+            std::mt19937 gen(rd());
+            std::uniform_real_distribution<float> spd_dist(8.0f, 13.0f);
+            return spd_dist(gen);
+        }(),
+
+        // Valores fijos para el resto de parámetros
+        20,   // damage
+        10,   // armor
+        30,   // reward
+        EnemyType::Ogre
+    ) {}
+
+// Constructor con parámetros personalizados (opcional)
 Ogre::Ogre(int hp, float spd, int arRes, int mgRes, int artRes)
     : Enemy(hp, spd, arRes, mgRes, artRes, EnemyType::Ogre) {}
 
-DarkElf::DarkElf() : Enemy(100, 15.5f, 40, 60, 20, EnemyType::DarkElf) {}
+DarkElf::DarkElf()
+    : Enemy(
+        []() { // HP aleatorio (80-120)
+            std::random_device rd;
+            std::mt19937 gen(rd());
+            std::uniform_int_distribution<int> dist(80, 120);
+            return dist(gen);
+        }(),
+        []() { // Speed aleatorio (13.0f-18.0f)
+            std::random_device rd;
+            std::mt19937 gen(rd());
+            std::uniform_real_distribution<float> dist(13.0f, 18.0f);
+            return dist(gen);
+        }(),
+        40, 60, 20, EnemyType::DarkElf
+    ) {}
+
 DarkElf::DarkElf(int hp, float spd, int arRes, int mgRes, int artRes)
     : Enemy(hp, spd, arRes, mgRes, artRes, EnemyType::DarkElf) {}
 
-Harpy::Harpy() : Enemy(75, 20.0f, 60, 30, 10, EnemyType::Harpy) {}
+Harpy::Harpy()
+    : Enemy(
+        []() { // HP aleatorio (60-120)
+            std::random_device rd;
+            std::mt19937 gen(rd());
+            std::uniform_int_distribution<int> dist(60, 120);
+            return dist(gen);
+        }(),
+        []() { // Speed aleatorio (18.0f-22.0f)
+            std::random_device rd;
+            std::mt19937 gen(rd());
+            std::uniform_real_distribution<float> dist(18.0f, 22.0f);
+            return dist(gen);
+        }(),
+        60, 30, 10, EnemyType::Harpy
+    ) {}
+
+// Nota: Corregí un typo (bp -> hp en el constructor parametrizado)
 Harpy::Harpy(int hp, float spd, int arRes, int mgRes, int artRes)
     : Enemy(hp, spd, arRes, mgRes, artRes, EnemyType::Harpy) {}
 
-Mercenary::Mercenary() : Enemy(50, 15.0f, 30, 30, 30, EnemyType::Mercenary) {}
+Mercenary::Mercenary()
+    : Enemy(
+        []() { // HP aleatorio (60-100)
+            std::random_device rd;
+            std::mt19937 gen(rd());
+            std::uniform_int_distribution<int> dist(60, 100);
+            return dist(gen);
+        }(),
+        []() { // Speed aleatorio (13.0f-17.0f)
+            std::random_device rd;
+            std::mt19937 gen(rd());
+            std::uniform_real_distribution<float> dist(13.0f, 17.0f);
+            return dist(gen);
+        }(),
+        30, 30, 30, EnemyType::Mercenary
+    ) {}
+
 Mercenary::Mercenary(int hp, float spd, int arRes, int mgRes, int artRes)
     : Enemy(hp, spd, arRes, mgRes, artRes, EnemyType::Mercenary) {}
