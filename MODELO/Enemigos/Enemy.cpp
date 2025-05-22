@@ -37,18 +37,18 @@ bool Enemy::isAlive() const {
 
 
 // Implementación de las clases derivadas
-Ogre::Ogre() : Enemy(150, 20.5f, 20, 10, 30, EnemyType::Ogre) {}
+Ogre::Ogre() : Enemy(150, 10.5f, 20, 10, 30, EnemyType::Ogre) {}
 Ogre::Ogre(int hp, float spd, int arRes, int mgRes, int artRes)
     : Enemy(hp, spd, arRes, mgRes, artRes, EnemyType::Ogre) {}
 
-DarkElf::DarkElf() : Enemy(300, 25.5f, 40, 60, 20, EnemyType::DarkElf) {}
+DarkElf::DarkElf() : Enemy(100, 15.5f, 40, 60, 20, EnemyType::DarkElf) {}
 DarkElf::DarkElf(int hp, float spd, int arRes, int mgRes, int artRes)
     : Enemy(hp, spd, arRes, mgRes, artRes, EnemyType::DarkElf) {}
 
-Harpy::Harpy() : Enemy(250, 30.0f, 60, 30, 10, EnemyType::Harpy) {}
+Harpy::Harpy() : Enemy(75, 20.0f, 60, 30, 10, EnemyType::Harpy) {}
 Harpy::Harpy(int hp, float spd, int arRes, int mgRes, int artRes)
     : Enemy(hp, spd, arRes, mgRes, artRes, EnemyType::Harpy) {}
 
-Mercenary::Mercenary() : Enemy(120, 35.0f, 30, 30, 30, EnemyType::Mercenary) {}
+Mercenary::Mercenary() : Enemy(50, 15.0f, 30, 30, 30, EnemyType::Mercenary) {}
 Mercenary::Mercenary(int hp, float spd, int arRes, int mgRes, int artRes)
     : Enemy(hp, spd, arRes, mgRes, artRes, EnemyType::Mercenary) {}

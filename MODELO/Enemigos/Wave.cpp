@@ -14,7 +14,7 @@ void Wave::spawnEnemies() {
     std::mt19937 gen(rd());
     std::uniform_int_distribution<> dist(0, 3);
 
-    int baseEnemies = 10 + ((generation / 2) * 5); // 10 + 5 por cada 2 generaciones
+    int baseEnemies = 2 + ((generation / 2) * 2); // 4 + 2 por cada 2 generaciones
 
     for (int i = 0; i < baseEnemies; ++i) {
         switch (dist(gen)) {
@@ -81,8 +81,8 @@ void Wave::evolve() {
         // --------------------------------------------------------
         // 2.2 REPRODUCCIÓN (crear nueva generación)
         // --------------------------------------------------------
-        // Número de descendientes aumenta con las generaciones (3-6)
-        int offspringCount = 3 + (generation % 4);
+        // Número de descendientes aumenta con las generaciones
+        int offspringCount = 1 + (generation % 2);
 
         for (int i = 0; i < offspringCount; ++i) {
             // ----------------------------------------------------
@@ -230,7 +230,7 @@ std::vector<std::unique_ptr<Enemy>>& Wave::getEnemies() {
     // Incrementar el contador de llamadas
     timesGetEnemiesCalled++;
 
-    if (timesGetEnemiesCalled == 2) {
+    if (timesGetEnemiesCalled == 3) {
         evolve();
     }
 

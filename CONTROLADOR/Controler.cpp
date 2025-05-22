@@ -47,34 +47,44 @@ Controler::Controler(std::vector<std::shared_ptr<EnemyController>>& enemigos)
     }
 
     // Crear oleada de enemigos
-    void Controler::crearOleada(std::vector<Pair> ruta) {
-        // 1. Prepara la ruta
+void Controler::crearOleada(std::vector<Pair> ruta) {
+    static int llamadasOleadas = 0;
 
-        // 2. Limpia enemigos anteriores
-        enemigos.clear();
-
-        // 3. Crea nueva wave si es necesario (opcional)
-        if (wave.getGeneration() != genaracionOleada) {
-            wave = Wave(genaracionOleada);
-        }
-
-        // 4. Obtiene enemigos (incrementa timesGetEnemiesCalled)
-        auto& currentEnemies = wave.getEnemies();
-
-        // 5. Crea los VisualEnemy
-    for (const auto& e : currentEnemies) {
-        // Obtiene posicion de los enemigos
-        int startX = ruta.front().first;
-        int startY = ruta.front().second;
-        // Inserta en lista para ser atacados
-        listaDeEnemigos.emplace_back(std::make_shared<EnemyController>(std::make_shared<Enemy>(*e), startX, startY));
-        // Inserta en lista para dibujarse
-        enemigos.emplace_back(std::make_shared<Enemy>(*e), ruta);
-        }
-
-        // 6. Incrementa la generación para la próxima oleada
-        genaracionOleada++;
+    // Activar control de oleadas
+    if (!oleadasActivas) {
+        oleadasActivas = true;
+        std::cout << "Oleada activa\n";
+    } else {
+        std::cout << "Oleada no activa\n";
     }
+
+    // Guardar ruta
+    rutaOleada = ruta;
+
+    // Nueva wave si es necesario
+    if (wave.getGeneration() != genaracionOleada) {
+        llamadasOleadas++;
+        wave = Wave(genaracionOleada);
+    }
+
+    if (llamadasOleadas > 2) {
+        wave.evolve();
+    }
+
+    // Preparar enemigos a spawnear
+    const auto& currentEnemies = wave.getEnemies();
+    enemiesToSpawn.clear();
+    for (const auto& e : currentEnemies) {
+        enemiesToSpawn.push_back(std::make_unique<Enemy>(*e));
+    }
+
+    // Reiniciar control de spawn
+    spawnIndex = 0;
+    spawnClock.restart();
+    oleadaClock.restart();
+
+    genaracionOleada++;
+}
 
 
     // Manejar eventos
@@ -233,27 +243,28 @@ Controler::Controler(std::vector<std::shared_ptr<EnemyController>>& enemigos)
     void Controler::update() {
         float deltaTime = reloj.restart().asSeconds();
 
-        // Actualizar enemigos
-        for (auto& enemigo : enemigos) {
-            enemigo.actualizar(deltaTime);
+        if (oleadasActivas && oleadaClock.getElapsedTime().asSeconds() > 10.0f) {
+            std::vector<Pair> ruta = mapa.getPath(grid, src, dest);
+            crearOleada(ruta); // Nueva oleada automática
         }
 
-        // Control de oleadas
-        static sf::Clock oleadaClock;
-        static bool primeraLlamada = true;
+        // Lanzar enemigos uno a uno
+        if (spawnIndex < enemiesToSpawn.size() && spawnClock.getElapsedTime().asSeconds() >= 2.5f) {
+            int startX = rutaOleada.front().first;
+            int startY = rutaOleada.front().second;
 
-        if (oleadaClock.getElapsedTime().asSeconds() > 15.0f) {
-            if (primeraLlamada) {
-                std::vector<Pair> ruta = mapa.getPath(grid, src, dest);
-                crearOleada(ruta);// Primera llamada
-                primeraLlamada = false;
-            }
-            else {
-                // Segunda llamada activa evolución
-                wave.getEnemies();
-                primeraLlamada = true;
-            }
-            oleadaClock.restart();
+            // Crea el enemigo visual y de lógica
+            auto enemyCopy = std::make_shared<Enemy>(*enemiesToSpawn[spawnIndex]);
+            listaDeEnemigos.emplace_back(std::make_shared<EnemyController>(enemyCopy, startX, startY));
+            enemigos.emplace_back(enemyCopy, rutaOleada);
+
+            spawnIndex++;
+            spawnClock.restart();
+        }
+
+        // Actualizar enemigos existentes
+        for (auto& enemigo : enemigos) {
+            enemigo.actualizar(deltaTime);
         }
         // Por cada torre
         for (auto& torre : torres) {
