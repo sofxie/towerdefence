@@ -66,10 +66,13 @@ Controler::Controler(std::vector<std::shared_ptr<EnemyController>>& enemigos)
         // Obtiene posicion de los enemigos
         int startX = ruta.front().first;
         int startY = ruta.front().second;
+
+        // Enemigos Creados para vincular la logica de ataque e imagen
+        auto GlobalEnemy = std::make_shared<Enemy>(*e);
         // Inserta en lista para ser atacados
-        listaDeEnemigos.emplace_back(std::make_shared<EnemyController>(std::make_shared<Enemy>(*e), startX, startY));
+        listaDeEnemigos.emplace_back(std::make_shared<EnemyController>(GlobalEnemy, startX, startY));
         // Inserta en lista para dibujarse
-        enemigos.emplace_back(std::make_shared<Enemy>(*e), ruta);
+        enemigos.emplace_back(GlobalEnemy, ruta);
         }
 
         // 6. Incrementa la generación para la próxima oleada
@@ -260,22 +263,30 @@ Controler::Controler(std::vector<std::shared_ptr<EnemyController>>& enemigos)
             // Ataca enemigo dentro de la lista de enemigos
             torre->AtacarEnemigo(listaDeEnemigos);
         }
-        for (size_t i = 0; i < listaDeEnemigos.size(); ++i) {
-            if (listaDeEnemigos[i]->getEnemy()->getHealth() <= 0) {
-                enemigos[i].Speed(0);
-            }
-        }
-
+        // Elimina del vector de visualizar enemigos si la vida es 0
+        enemigos.erase(std::remove_if(enemigos.begin(), enemigos.end(),
+            [](const auto& ec) {
+                return ec.enemy->getHealth() <= 0; // Vida es 0
+            }),
+        enemigos.end()
+        );
+        // Elimina del vector de atacar enemigos si la vida es 0
+        listaDeEnemigos.erase(
+        std::remove_if(listaDeEnemigos.begin(), listaDeEnemigos.end(),
+            [](const auto& ec) {
+                return ec->getEnemy()->getHealth() <= 0;
+            }),
+        listaDeEnemigos.end());
     }
 
-    // Rederizar el mapa y los elementos graficos
-    void Controler::render() {
-        window.clear();
-        vista.mapa(grid,celdaColor);
-        vista.torres(modoSeleccionado);
-        vista.drawHover(sf::Mouse::getPosition(window).x, sf::Mouse::getPosition(window).y);
-        for (auto& enemigo : enemigos) {
-            enemigo.dibujar(window);
-        } // Dibujar enemigos
-        window.display(); // Mostrar la ventana
-    }
+// Rederizar el mapa y los elementos graficos
+void Controler::render() {
+    window.clear();
+    vista.mapa(grid,celdaColor);
+    vista.torres(modoSeleccionado);
+    vista.drawHover(sf::Mouse::getPosition(window).x, sf::Mouse::getPosition(window).y);
+    for (auto& enemigo : enemigos) {
+        enemigo.dibujar(window);
+    } // Dibujar enemigos
+    window.display(); // Mostrar la ventana
+}

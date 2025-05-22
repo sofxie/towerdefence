@@ -21,7 +21,8 @@ add_executable(towerdefence main.cpp
         MODELO/Torre/Torre_Arco.h
         MODELO/Torre/Torre_Artillero.cpp
         MODELO/Torre/Torre_Artillero.h
-        MODELO/Enemigos/EnemyController.cpp)
+        MODELO/Enemigos/EnemyController.cpp
+        MODELO/Torre/Torre_Mago.cpp)
 target_link_libraries(towerdefence sfml-system sfml-window sfml-graphics)
 
 file(COPY ${CMAKE_SOURCE_DIR}/Imagenes DESTINATION ${CMAKE_BINARY_DIR})
