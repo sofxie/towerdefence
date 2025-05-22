@@ -9,6 +9,12 @@
 #include "VisualEnemy.h"
 #include "Torre/Torre.h"
 #include <vector>
+#include "Const.h"
+#include "Enemigos/Enemy.h"
+#include "iostream"
+#include "Torre/Torre_Arco.h"
+
+#include <memory>
 
 
 class Controler {
@@ -21,8 +27,7 @@ public:
     void render(); // Proyectar en la interfaz
     void crearOleada(std::vector<Pair> ruta); // Crear oleada de enemigos
     bool oleadasActivas = false; // Comprobar si hay oleadas activas
-    std::vector<sf::Vector2f> getPosicionEnemigos() const; // Obtener posicion de enemigos
-
+    std::vector<std::pair<int, int>> getPosicionEnemigos() const;
 
 private:
     sf::RenderWindow window;
@@ -60,6 +65,7 @@ private:
     std::vector<Pair> rutaOleada;                        // Ruta para los enemigos
     int spawnIndex = 0;                                  // Índice del siguiente enemigo
     sf::Clock spawnClock;                                // Controla el tiempo entre spawns
+
 
 };
 

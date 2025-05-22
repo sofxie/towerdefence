@@ -1,14 +1,5 @@
-#include "iostream"
 #include "Controler.h"
-#include "VisualEnemy.h"
-#include "Enemigos/Wave.h"
-#include "Map.h"
-#include "Const.h"
-#include "Torre/Torre.h"
-#include "Enemigos/Enemy.h"
-#include "Torre/Torre_Arco.h"
-#include <vector>
-#include <memory>
+
 
 #include "Torre/Torre_Artillero.h"
 #include "Torre/Torre_Mago.h"
@@ -86,14 +77,18 @@ void Controler::crearOleada(std::vector<Pair> ruta) {
     genaracionOleada++;
 }
 
+/**
+ * Funcion nueva para obtener la posicion de los enemigos
+ */
 //Odtener posicion de enemigos
-std::vector<sf::Vector2f> Controler::getPosicionEnemigos() const {
-    std::vector<sf::Vector2f> posiciones;
-    for (const auto& enemigo : enemigos) {
-        posiciones.push_back(enemigo.getPositionE());
+std::vector<std::pair<int, int>> Controler::getPosicionEnemigos() const {
+    std::vector<std::pair<int, int>> posiciones;
+    for (const auto& controlador : listaDeEnemigos) {
+        posiciones.push_back(controlador->getPosition());
     }
     return posiciones;
 }
+
 
     // Manejar eventos
     void Controler::events() {
@@ -251,6 +246,13 @@ std::vector<sf::Vector2f> Controler::getPosicionEnemigos() const {
     void Controler::update() {
         float deltaTime = reloj.restart().asSeconds();
 
+        auto posiciones = getPosicionEnemigos();
+        std::cout << "Posiciones de enemigos:\n";
+        for (const auto& pos : posiciones) {
+            std::cout << "Fila: " << pos.first << ", Columna: " << pos.second << "\n";
+        }
+
+
         if (oleadasActivas && oleadaClock.getElapsedTime().asSeconds() > 10.0f) {
             std::vector<Pair> ruta = mapa.getPath(grid, src, dest);
             crearOleada(ruta); // Nueva oleada automática
@@ -274,6 +276,7 @@ std::vector<sf::Vector2f> Controler::getPosicionEnemigos() const {
         for (auto& enemigo : enemigos) {
             enemigo.actualizar(deltaTime);
         }
+
         // Por cada torre
         for (auto& torre : torres) {
             // Ataca enemigo dentro de la lista de enemigos

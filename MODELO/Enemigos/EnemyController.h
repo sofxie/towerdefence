@@ -8,9 +8,7 @@
 #include <utility>
 #include <memory>
 #include "Const.h"
-#include <SFML/Graphics.hpp>
-#include "Controler.h"
-#include "VisualEnemy.h"
+
 
 using namespace std;
 
