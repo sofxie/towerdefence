@@ -135,15 +135,17 @@ void Controler::events() {
                             grid[row][col] = 1;
                             celdaColor[row][col].setColor(sf::Color::Transparent);
                         }
-                        if (Oro < 50) {
-                            printf("Oro insuficiente\n");
-
-                            // Revertir torre
-                            grid[row][col] = 1;
-                            celdaColor[row][col].setColor(sf::Color::Transparent);
-                        }
                         else {
-                            Oro = Oro - 50;
+                            if (Oro < 50) {
+                                printf("Oro insuficiente\n");
+
+                                // Revertir torre
+                                grid[row][col] = 1;
+                                celdaColor[row][col].setColor(sf::Color::Transparent);
+                            }
+                            else {
+                                Oro = Oro - 50;
+                            }
                         }
                     }
                     else {
@@ -193,15 +195,17 @@ void Controler::events() {
                             grid[row][col] = 1;
                             celdaColor[row][col].setColor(sf::Color::Transparent);
                         }
-                        if (Oro < 100) {
-                            printf("Oro insuficiente\n");
-
-                            // Revertir torre
-                            grid[row][col] = 1;
-                            celdaColor[row][col].setColor(sf::Color::Transparent);
-                        }
                         else {
-                            Oro = Oro - 100;
+                            if (Oro < 100) {
+                                printf("Oro insuficiente\n");
+
+                                // Revertir torre
+                                grid[row][col] = 1;
+                                celdaColor[row][col].setColor(sf::Color::Transparent);
+                            }
+                            else {
+                                Oro = Oro - 100;
+                            }
                         }
                     }
                     else {
@@ -251,15 +255,17 @@ void Controler::events() {
                             grid[row][col] = 1;
                             celdaColor[row][col].setColor(sf::Color::Transparent);
                         }
-                        if (Oro < 75) {
-                            printf("Oro insuficiente\n");
-
-                            // Revertir torre
-                            grid[row][col] = 1;
-                            celdaColor[row][col].setColor(sf::Color::Transparent);
-                        }
                         else {
-                            Oro = Oro - 75;
+                            if (Oro < 75) {
+                                printf("Oro insuficiente\n");
+
+                                // Revertir torre
+                                grid[row][col] = 1;
+                                celdaColor[row][col].setColor(sf::Color::Transparent);
+                            }
+                            else {
+                                Oro = Oro - 75;
+                            }
                         }
                     }
                     else {
