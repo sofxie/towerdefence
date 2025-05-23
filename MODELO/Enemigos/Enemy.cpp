@@ -4,7 +4,7 @@
 // Implementación de la clase base Enemy
 Enemy::Enemy(int hp, float spd, int arRes, int mgRes, int artRes, EnemyType t)
     : health(hp), speed(spd), arrowResistance(arRes),
-      magicResistance(mgRes), artilleryResistance(artRes), type(t) {}
+      magicResistance(mgRes), artilleryResistance(artRes), type(t), YaCobradoOro(false) {}
 
 int Enemy::getHealth() const { return health; } // Obtener vida
 float Enemy::getSpeed() const { return speed; } // Obtener velocidad
@@ -13,6 +13,13 @@ int Enemy::getArrowResistance() const { return arrowResistance; } // Obtener res
 int Enemy::getMagicResistance() const { return magicResistance; } // Obtener resistencia a magia
 int Enemy::getArtilleryResistance() const { return artilleryResistance; } // Obtener resistencia a artillería
 EnemyType Enemy::getType() const { return type; } // Obtener tipo de enemigo
+bool Enemy::GetEstadoCobrado() {
+    return YaCobradoOro;
+}
+
+void Enemy::Cobrar() {
+    YaCobradoOro = true;
+}
 
 
 void Enemy::takeDamage(int dmg, int type2) { // Reducción de vida

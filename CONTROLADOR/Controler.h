@@ -28,6 +28,7 @@ public:
     void crearOleada(std::vector<Pair> ruta); // Crear oleada de enemigos
     bool oleadasActivas = false; // Comprobar si hay oleadas activas
     std::vector<std::pair<int, int>> getPosicionEnemigos() const;
+    int Oro = 500;
 
 private:
     sf::RenderWindow window;

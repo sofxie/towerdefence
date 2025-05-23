@@ -16,8 +16,10 @@ protected: // Atributos de la clase(Caracterisrticas de los enemigos)
     int magicResistance;
     int artilleryResistance;
     EnemyType type;
+    bool YaCobradoOro;
 
 public:
+
     Enemy(int hp, float spd, int arRes, int mgRes, int artRes, EnemyType t);
     virtual ~Enemy() = default;
 
@@ -34,6 +36,9 @@ public:
     virtual void takeDamage(int dmg, int type);
 
     bool isAlive() const;
+
+    virtual void Cobrar();
+    virtual bool GetEstadoCobrado();
 
     virtual std::string getFullDescription() const { // Descripción completa del enemigo
         std::ostringstream oss;

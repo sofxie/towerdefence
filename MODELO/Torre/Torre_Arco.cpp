@@ -5,7 +5,7 @@ using namespace std;
 
 // Constructor por defecto
 Torre_Arco::Torre_Arco()
-    : nivel(1), Enfriamiento(2), DistanciaDeAtaque(10), EnfriamientoEspecial(10), TipoAtaque(1), position({-1, -1}){}
+    : nivel(1), Enfriamiento(2), DistanciaDeAtaque(10), EnfriamientoEspecial(5), TipoAtaque(1), position({-1, -1}){}
 
 // Funcion para retornar cantidad de daño
 int Torre_Arco::Atacar() {
@@ -80,7 +80,7 @@ void Torre_Arco::AtacarEnemigo(std::vector<std::shared_ptr<EnemyController>>& en
 
 
         // Si esta dentro del area, realizar ataque
-        if (distancia <= DistanciaAtaque()) {
+        if (distancia <= DistanciaDeAtaque) {
             if (enemigo->getEnemy()->getHealth() <= 0) {
             }
             else {
@@ -92,7 +92,7 @@ void Torre_Arco::AtacarEnemigo(std::vector<std::shared_ptr<EnemyController>>& en
                         break;
                     }
                     else {
-                        EnfriamientoEspecial = 10;
+                        EnfriamientoEspecial = 5;
                     }
 
                 }
