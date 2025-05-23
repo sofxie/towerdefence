@@ -333,11 +333,32 @@ void Controler::events() {
             controlador->move();
         }
 
-        auto posiciones = getPosicionEnemigos();
-        std::cout << "Posiciones de enemigos:\n";
-        for (const auto& pos : posiciones) {
-            std::cout << "Fila: " << pos.first << ", Columna: " << pos.second << "\n";
+        // auto posiciones = getPosicionEnemigos();
+        // std::cout << "Posiciones de enemigos:\n";
+        // for (const auto& pos : posiciones) {
+        //     std::cout << "Fila: " << pos.first << ", Columna: " << pos.second << "\n";
+        // }
+
+        if (rutaUpdateClock.getElapsedTime().asSeconds() >= 1.0f) {
+            for (auto& enemigo : enemigos) {
+                // Obtener su posición actual visual
+                sf::Vector2f posVisual = enemigo.getPositionE();
+
+                // Convertir a coordenadas de grilla
+                int fila = static_cast<int>(posVisual.y / SIZE);
+                int columna = static_cast<int>(posVisual.x / SIZE);
+                Pair posicionActual(fila, columna);
+
+                if (posicionActual != dest) {
+                    std::vector<Pair> nuevaRuta = mapa.getPath(grid, posicionActual, dest);
+                    if (!nuevaRuta.empty()) {
+                        enemigo.setPath(nuevaRuta); // Nueva ruta en tiempo real
+                    }
+                }
+            }
+            rutaUpdateClock.restart();
         }
+
 
         // Por cada torre
         for (auto& torre : torres) {

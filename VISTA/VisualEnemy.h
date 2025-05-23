@@ -72,16 +72,17 @@ struct VisualEnemy {
     }
 
     void setPath(const std::vector<Pair>& nuevaRuta) {
-        if (nuevaRuta.empty()) return;
-
-        path = nuevaRuta;
-        currentStep = 0;
-        position = sf::Vector2f(path[0].second * SIZE, path[0].first * SIZE);
-
-        if (path.size() > 1) {
-            targetPosition = sf::Vector2f(path[1].second * SIZE, path[1].first * SIZE);
+        if (!nuevaRuta.empty()) {
+            path = nuevaRuta;
+            currentStep = 0;
+            position = sf::Vector2f(path[0].second * SIZE, path[0].first * SIZE);
+            if (path.size() > 1) {
+                targetPosition = sf::Vector2f(path[1].second * SIZE, path[1].first * SIZE);
+            }
         }
     }
+
+
     std::pair<int, int> getGridPosition() const {
         int fila = static_cast<int>(position.y / SIZE);
         int columna = static_cast<int>(position.x / SIZE);
