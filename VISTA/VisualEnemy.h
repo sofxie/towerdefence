@@ -67,6 +67,10 @@ struct VisualEnemy {
     bool haTerminado() const {
         return currentStep >= path.size() - 1;
     }
+    sf::Vector2f getPositionE() const {
+        return position;
+    }
+
 };
 
 #endif // VISUALENEMY_H

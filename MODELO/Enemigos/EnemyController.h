@@ -6,6 +6,9 @@
 #include "Enemy.h"
 #include <vector>
 #include <utility>
+#include <memory>
+#include "Const.h"
+
 
 using namespace std;
 
@@ -24,6 +27,7 @@ public:
     void move();
     shared_ptr<Enemy> getEnemy() const;
     pair<int, int> getPosition() const;
+
 };
 
 #endif // ENEMYCONTROLLER_H

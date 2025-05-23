@@ -1,6 +1,5 @@
 #include "EnemyController.h"
-#include <memory>
-#include "Const.h"
+
 using namespace std;
 
 EnemyController::EnemyController(::shared_ptr<Enemy> e, int startX, int startY)
@@ -23,8 +22,8 @@ void EnemyController::move() {
 std::shared_ptr<Enemy> EnemyController::getEnemy() const {
     return enemy;
 }
-
 std::pair<int, int> EnemyController::getPosition() const {
     return { x, y };
 }
+
 

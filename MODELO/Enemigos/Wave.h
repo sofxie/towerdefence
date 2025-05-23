@@ -9,6 +9,8 @@
 #include <map>
 #include <random>
 #include <iostream>
+#include <numeric>
+
 
 class Wave {
 private:
