@@ -303,12 +303,6 @@ void Controler::events() {
     void Controler::update() {
         float deltaTime = reloj.restart().asSeconds();
 
-        auto posiciones = getPosicionEnemigos();
-        std::cout << "Posiciones de enemigos:\n";
-        for (const auto& pos : posiciones) {
-            std::cout << "Fila: " << pos.first << ", Columna: " << pos.second << "\n";
-        }
-
 
         if (oleadasActivas && oleadaClock.getElapsedTime().asSeconds() > 10.0f) {
             std::vector<Pair> ruta = mapa.getPath(grid, src, dest);
