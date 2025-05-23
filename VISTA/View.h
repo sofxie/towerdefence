@@ -34,6 +34,8 @@ private:
     sf::Sprite spriteBot2;
     sf::Texture textureBot3;
     sf::Sprite spriteBot3;
+    sf::Texture textureBotOleada;
+    sf::Sprite spriteBotOleada;
     sf::RectangleShape botonOleada;
 
     // Dibuja celdas y colores

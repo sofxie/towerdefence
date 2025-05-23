@@ -15,6 +15,7 @@ View::View(sf::RenderWindow &window)
     textureBot1.loadFromFile("Imagenes/TArquerosBot.png");
     textureBot2.loadFromFile("Imagenes/TArtilleroBot.jpeg");
     textureBot3.loadFromFile("Imagenes/TMagoBot.png");
+    textureBotOleada.loadFromFile("Imagenes/MagoOscuro.png");
 
     // Asociar textura a sprite
     sprite.setTexture(texture);
@@ -22,6 +23,7 @@ View::View(sf::RenderWindow &window)
     spriteBot1.setTexture(textureBot1);
     spriteBot2.setTexture(textureBot2);
     spriteBot3.setTexture(textureBot3);
+    spriteBotOleada.setTexture(textureBotOleada);
 
     // Modificar tamano de imagen
     sprite.setScale(static_cast<float>(SIZE) / texture.getSize().x,
@@ -31,13 +33,13 @@ View::View(sf::RenderWindow &window)
     spriteBot1.setScale(0.06f, 0.06f);
     spriteBot2.setScale(0.06f, 0.06f);
     spriteBot3.setScale(0.06f, 0.06f);
+    spriteBotOleada.setScale(0.06f, 0.06f);
 
     // Posicionar y diseñar botones
     spriteBot1.setPosition(SIZE * 11, SIZE);
     spriteBot2.setPosition(SIZE * 11, SIZE * 3);
     spriteBot3.setPosition(SIZE * 11, SIZE * 5);
-    botonOleada.setPosition(SIZE * 11, SIZE * 7);
-    botonOleada.setFillColor(sf::Color::Magenta);
+    spriteBotOleada.setPosition(SIZE * 11, SIZE * 7);
 }
 
 // Dibujar las celdas del mapa
