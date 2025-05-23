@@ -7,6 +7,7 @@
 #include "Enemigos/Enemy.h"
 #include "Const.h"
 #include <cmath>
+#include "Map.h"
 
 using Pair = std::pair<int, int>;
 
@@ -35,9 +36,29 @@ struct VisualEnemy {
         enemy->setSpeed(vel);
         vivo = false;
     }
-    void actualizar(float deltaTime) {
+    void actualizar(float deltaTime, int grid[ROW][COL], Map& mapa) {
         if (currentStep >= path.size() - 1) return;
 
+        // Verificar si la siguiente celda está bloqueada
+        if (currentStep + 1 < path.size()) {
+            Pair nextCell = path[currentStep + 1];
+            if (grid[nextCell.first][nextCell.second] != 1) {
+                // Recalcular ruta desde la posición actual
+                Pair currentCell = getGridPosition();
+                Pair destCell = path.back();  // Destino original
+
+                std::vector<Pair> newPath = mapa.getPath(grid, currentCell, destCell);
+
+                if (!newPath.empty()) {
+                    setPath(newPath);  // Actualizar la ruta
+                } else {
+                    vivo = false;  // No hay camino válido
+                    return;
+                }
+            }
+        }
+
+        // Movimiento original (sin cambios)
         sf::Vector2f direction = targetPosition - position;
         float length = std::sqrt(direction.x * direction.x + direction.y * direction.y);
         if (length != 0) direction /= length;
@@ -52,7 +73,7 @@ struct VisualEnemy {
                 targetPosition = sf::Vector2f(path[currentStep + 1].second * SIZE,
                                               path[currentStep + 1].first * SIZE);
             }
-        }
+            }
     }
 
     void dibujar(sf::RenderWindow& window) {

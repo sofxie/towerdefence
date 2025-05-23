@@ -45,7 +45,3 @@ void EnemyController::setPath(const std::vector<std::pair<int, int>>& nuevaRuta)
     path = nuevaRuta;
     currentStep = mejorPaso;
 }
-
-
-
-

@@ -93,7 +93,6 @@ std::vector<std::pair<int, int>> Controler::getPosicionEnemigos() const {
 }
 
 
-
 // Manejar eventos
 void Controler::events() {
     sf::Event event{};
@@ -324,13 +323,18 @@ void Controler::events() {
         }
 
         // Actualizar enemigos existentes
-        for (auto& enemigo : enemigos) {
-            enemigo.actualizar(deltaTime);
-        }
+        // for (auto& enemigo : enemigos) {
+        //     enemigo.actualizar(deltaTime);
+        // }
 
         // Actualizar enemigos lógicos (posición en tiles)
         for (auto& controlador : listaDeEnemigos) {
             controlador->move();
+        }
+
+        // Actualizar enemigos con el grid y mapa actual
+        for (auto& enemigo : enemigos) {
+            enemigo.actualizar(deltaTime, grid, mapa);  // Pasar grid y mapa
         }
 
         // auto posiciones = getPosicionEnemigos();
@@ -338,27 +342,6 @@ void Controler::events() {
         // for (const auto& pos : posiciones) {
         //     std::cout << "Fila: " << pos.first << ", Columna: " << pos.second << "\n";
         // }
-
-        if (rutaUpdateClock.getElapsedTime().asSeconds() >= 1.0f) {
-            for (auto& enemigo : enemigos) {
-                // Obtener su posición actual visual
-                sf::Vector2f posVisual = enemigo.getPositionE();
-
-                // Convertir a coordenadas de grilla
-                int fila = static_cast<int>(posVisual.y / SIZE);
-                int columna = static_cast<int>(posVisual.x / SIZE);
-                Pair posicionActual(fila, columna);
-
-                if (posicionActual != dest) {
-                    std::vector<Pair> nuevaRuta = mapa.getPath(grid, posicionActual, dest);
-                    if (!nuevaRuta.empty()) {
-                        enemigo.setPath(nuevaRuta); // Nueva ruta en tiempo real
-                    }
-                }
-            }
-            rutaUpdateClock.restart();
-        }
-
 
         // Por cada torre
         for (auto& torre : torres) {
