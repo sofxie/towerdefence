@@ -47,44 +47,37 @@ Controler::Controler(std::vector<std::shared_ptr<EnemyController>>& enemigos)
     }
 
     // Crear oleada de enemigos
-void Controler::crearOleada(std::vector<Pair> ruta) {
-    static int llamadasOleadas = 0;
+    void Controler::crearOleada(std::vector<Pair> ruta) {
+        // 1. Prepara la ruta
 
-    // Activar control de oleadas
-    if (!oleadasActivas) {
-        oleadasActivas = true;
-        std::cout << "Oleada activa\n";
-    } else {
-        std::cout << "Oleada no activa\n";
-    }
+        // 2. Limpia enemigos anteriores
+        enemigos.clear();
 
-    // Guardar ruta
-    rutaOleada = ruta;
+        // 3. Crea nueva wave si es necesario (opcional)
+        if (wave.getGeneration() != genaracionOleada) {
+            wave = Wave(genaracionOleada);
+        }
 
-    // Nueva wave si es necesario
-    if (wave.getGeneration() != genaracionOleada) {
-        llamadasOleadas++;
-        wave = Wave(genaracionOleada);
-    }
+        // 4. Obtiene enemigos (incrementa timesGetEnemiesCalled)
+        auto& currentEnemies = wave.getEnemies();
 
-    if (llamadasOleadas > 2) {
-        wave.evolve();
-    }
-
-    // Preparar enemigos a spawnear
-    const auto& currentEnemies = wave.getEnemies();
-    enemiesToSpawn.clear();
+        // 5. Crea los VisualEnemy
     for (const auto& e : currentEnemies) {
-        enemiesToSpawn.push_back(std::make_unique<Enemy>(*e));
+        // Obtiene posicion de los enemigos
+        int startX = ruta.front().first;
+        int startY = ruta.front().second;
+
+        // Enemigos Creados para vincular la logica de ataque e imagen
+        auto GlobalEnemy = std::make_shared<Enemy>(*e);
+        // Inserta en lista para ser atacados
+        listaDeEnemigos.emplace_back(std::make_shared<EnemyController>(GlobalEnemy, startX, startY));
+        // Inserta en lista para dibujarse
+        enemigos.emplace_back(GlobalEnemy, ruta);
+        }
+
+        // 6. Incrementa la generación para la próxima oleada
+        genaracionOleada++;
     }
-
-    // Reiniciar control de spawn
-    spawnIndex = 0;
-    spawnClock.restart();
-    oleadaClock.restart();
-
-    genaracionOleada++;
-}
 
 
     // Manejar eventos
@@ -243,50 +236,57 @@ void Controler::crearOleada(std::vector<Pair> ruta) {
     void Controler::update() {
         float deltaTime = reloj.restart().asSeconds();
 
-        if (oleadasActivas && oleadaClock.getElapsedTime().asSeconds() > 10.0f) {
-            std::vector<Pair> ruta = mapa.getPath(grid, src, dest);
-            crearOleada(ruta); // Nueva oleada automática
-        }
-
-        // Lanzar enemigos uno a uno
-        if (spawnIndex < enemiesToSpawn.size() && spawnClock.getElapsedTime().asSeconds() >= 2.5f) {
-            int startX = rutaOleada.front().first;
-            int startY = rutaOleada.front().second;
-
-            // Crea el enemigo visual y de lógica
-            auto enemyCopy = std::make_shared<Enemy>(*enemiesToSpawn[spawnIndex]);
-            listaDeEnemigos.emplace_back(std::make_shared<EnemyController>(enemyCopy, startX, startY));
-            enemigos.emplace_back(enemyCopy, rutaOleada);
-
-            spawnIndex++;
-            spawnClock.restart();
-        }
-
-        // Actualizar enemigos existentes
+        // Actualizar enemigos
         for (auto& enemigo : enemigos) {
             enemigo.actualizar(deltaTime);
+        }
+
+        // Control de oleadas
+        static sf::Clock oleadaClock;
+        static bool primeraLlamada = true;
+
+        if (oleadaClock.getElapsedTime().asSeconds() > 15.0f) {
+            if (primeraLlamada) {
+                std::vector<Pair> ruta = mapa.getPath(grid, src, dest);
+                crearOleada(ruta);// Primera llamada
+                primeraLlamada = false;
+            }
+            else {
+                // Segunda llamada activa evolución
+                wave.getEnemies();
+                primeraLlamada = true;
+            }
+            oleadaClock.restart();
         }
         // Por cada torre
         for (auto& torre : torres) {
             // Ataca enemigo dentro de la lista de enemigos
             torre->AtacarEnemigo(listaDeEnemigos);
         }
-        for (size_t i = 0; i < listaDeEnemigos.size(); ++i) {
-            if (listaDeEnemigos[i]->getEnemy()->getHealth() <= 0) {
-                enemigos[i].Speed(0);
-            }
-        }
-
+        // Elimina del vector de visualizar enemigos si la vida es 0
+        enemigos.erase(std::remove_if(enemigos.begin(), enemigos.end(),
+            [](const auto& ec) {
+                return ec.enemy->getHealth() <= 0; // Vida es 0
+            }),
+        enemigos.end()
+        );
+        // Elimina del vector de atacar enemigos si la vida es 0
+        listaDeEnemigos.erase(
+        std::remove_if(listaDeEnemigos.begin(), listaDeEnemigos.end(),
+            [](const auto& ec) {
+                return ec->getEnemy()->getHealth() <= 0;
+            }),
+        listaDeEnemigos.end());
     }
 
-    // Rederizar el mapa y los elementos graficos
-    void Controler::render() {
-        window.clear();
-        vista.mapa(grid,celdaColor);
-        vista.torres(modoSeleccionado);
-        vista.drawHover(sf::Mouse::getPosition(window).x, sf::Mouse::getPosition(window).y);
-        for (auto& enemigo : enemigos) {
-            enemigo.dibujar(window);
-        } // Dibujar enemigos
-        window.display(); // Mostrar la ventana
-    }
+// Rederizar el mapa y los elementos graficos
+void Controler::render() {
+    window.clear();
+    vista.mapa(grid,celdaColor);
+    vista.torres(modoSeleccionado);
+    vista.drawHover(sf::Mouse::getPosition(window).x, sf::Mouse::getPosition(window).y);
+    for (auto& enemigo : enemigos) {
+        enemigo.dibujar(window);
+    } // Dibujar enemigos
+    window.display(); // Mostrar la ventana
+}
