@@ -26,6 +26,7 @@ public:
     void calculatePath(Map& map, int grid[ROW][COL], pair<int, int> dest);
     void move();
     shared_ptr<Enemy> getEnemy() const;
+    void setPath(const std::vector<std::pair<int, int>>& nuevaRuta);
     pair<int, int> getPosition() const;
 
 };

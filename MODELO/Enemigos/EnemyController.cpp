@@ -26,4 +26,26 @@ std::pair<int, int> EnemyController::getPosition() const {
     return { x, y };
 }
 
+void EnemyController::setPath(const std::vector<std::pair<int, int>>& nuevaRuta) {
+    // Buscar el paso más cercano en la nueva ruta al enemigo
+    int mejorPaso = 0;
+    float menorDistancia = std::numeric_limits<float>::max();
+
+    for (int i = 0; i < nuevaRuta.size(); ++i) {
+        float dx = static_cast<float>(nuevaRuta[i].first - x);
+        float dy = static_cast<float>(nuevaRuta[i].second - y);
+        float distancia = dx * dx + dy * dy;  // Distancia al cuadrado
+
+        if (distancia < menorDistancia) {
+            menorDistancia = distancia;
+            mejorPaso = i;
+        }
+    }
+
+    path = nuevaRuta;
+    currentStep = mejorPaso;
+}
+
+
+
 

@@ -83,19 +83,21 @@ void Controler::crearOleada(std::vector<Pair> ruta) {
 //Odtener posicion de enemigos
 std::vector<std::pair<int, int>> Controler::getPosicionEnemigos() const {
     std::vector<std::pair<int, int>> posiciones;
-    for (const auto& controlador : listaDeEnemigos) {
-        posiciones.push_back(controlador->getPosition());
+    for (const auto& enemigo : enemigos) {
+        int fila = static_cast<int>(enemigo.getPositionE().y / SIZE);
+        int columna = static_cast<int>(enemigo.getPositionE().x / SIZE);
+        posiciones.emplace_back(fila, columna);
     }
     return posiciones;
 }
 
 
-    // Manejar eventos
-    void Controler::events() {
-        sf::Event event{};
-        while (window.pollEvent(event)) {
 
-            // Click izquierdo
+// Manejar eventos
+void Controler::events() {
+    sf::Event event{};
+    while (window.pollEvent(event)) {
+        // Click izquierdo
             if (event.type == sf::Event::MouseButtonPressed && event.mouseButton.button == sf::Mouse::Left) {
                 // Obtiene posiciones X y Y
                 int mouseX = event.mouseButton.x;
@@ -245,12 +247,22 @@ std::vector<std::pair<int, int>> Controler::getPosicionEnemigos() const {
 
     void Controler::update() {
         float deltaTime = reloj.restart().asSeconds();
+        //
+        // if (rutaUpdateClock.getElapsedTime().asSeconds() >= 1.0f) {
+        //     for (size_t i = 0; i < listaDeEnemigos.size(); ++i) {
+        //         auto& controlador = listaDeEnemigos[i];
+        //         auto posicionActual = controlador->getPosition();
+        //
+        //         if (posicionActual != dest) {
+        //             std::vector<Pair> nuevaRuta = mapa.getPath(grid, posicionActual, dest);
+        //             if (!nuevaRuta.empty()) {
+        //                 enemigos[i].setPath(nuevaRuta);  // Actualiza ruta del VisualEnemy
+        //             }
+        //         }
+        //     }
+        //     rutaUpdateClock.restart();
+        // }
 
-        auto posiciones = getPosicionEnemigos();
-        std::cout << "Posiciones de enemigos:\n";
-        for (const auto& pos : posiciones) {
-            std::cout << "Fila: " << pos.first << ", Columna: " << pos.second << "\n";
-        }
 
 
         if (oleadasActivas && oleadaClock.getElapsedTime().asSeconds() > 10.0f) {
@@ -277,6 +289,17 @@ std::vector<std::pair<int, int>> Controler::getPosicionEnemigos() const {
             enemigo.actualizar(deltaTime);
         }
 
+        // Actualizar enemigos lógicos (posición en tiles)
+        for (auto& controlador : listaDeEnemigos) {
+            controlador->move();
+        }
+
+        auto posiciones = getPosicionEnemigos();
+        std::cout << "Posiciones de enemigos:\n";
+        for (const auto& pos : posiciones) {
+            std::cout << "Fila: " << pos.first << ", Columna: " << pos.second << "\n";
+        }
+
         // Por cada torre
         for (auto& torre : torres) {
             // Ataca enemigo dentro de la lista de enemigos
@@ -297,7 +320,6 @@ std::vector<std::pair<int, int>> Controler::getPosicionEnemigos() const {
         vista.torres(modoSeleccionado);
         vista.drawHover(sf::Mouse::getPosition(window).x, sf::Mouse::getPosition(window).y);
         for (auto& enemigo : enemigos) {
-            enemigo.dibujar(window);
-        } // Dibujar enemigos
+            enemigo.dibujar(window);} // Dibujar enemigos
         window.display(); // Mostrar la ventana
     }
