@@ -36,7 +36,6 @@ private:
     sf::Sprite spriteBot3;
     sf::Texture textureBotOleada;
     sf::Sprite spriteBotOleada;
-    sf::RectangleShape botonOleada;
 
     // Dibuja celdas y colores
     void Celda(const int gric[ROW][COL]);

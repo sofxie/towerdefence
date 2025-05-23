@@ -4,8 +4,7 @@
 
 // Constructor
 View::View(sf::RenderWindow &window)
-    : window(window), // Referencia a la ventana que dibuja
-    botonOleada(sf::Vector2f(SIZE*2, SIZE)){ // Botones
+    : window(window){ // Botones
 
     // Imagen del mapa
     texture.loadFromFile("Imagenes/pasto.png");
@@ -15,7 +14,7 @@ View::View(sf::RenderWindow &window)
     textureBot1.loadFromFile("Imagenes/TArquerosBot.png");
     textureBot2.loadFromFile("Imagenes/TArtilleroBot.jpeg");
     textureBot3.loadFromFile("Imagenes/TMagoBot.png");
-    textureBotOleada.loadFromFile("Imagenes/MagoOscuro.png");
+    textureBotOleada.loadFromFile("Imagenes/Villano.jpeg");
 
     // Asociar textura a sprite
     sprite.setTexture(texture);
@@ -71,7 +70,7 @@ int View::botonClick(int mouseX, int mouseY) {
     if (spriteBot1.getGlobalBounds().contains(mouseX, mouseY)) return 1;
     if (spriteBot2.getGlobalBounds().contains(mouseX, mouseY)) return 2;
     if (spriteBot3.getGlobalBounds().contains(mouseX, mouseY)) return 3;
-    if (botonOleada.getGlobalBounds().contains(mouseX, mouseY)) return 4;
+    if (spriteBotOleada.getGlobalBounds().contains(mouseX, mouseY)) return 4;
     return 0;
 }
 
@@ -109,6 +108,6 @@ void View::Boton() {
     window.draw(spriteBot1);
     window.draw(spriteBot2);
     window.draw(spriteBot3);
-    window.draw(botonOleada);
+    window.draw(spriteBotOleada);
 }
 

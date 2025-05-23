@@ -22,8 +22,25 @@ struct VisualEnemy {
 
     VisualEnemy(std::shared_ptr<Enemy> e, const std::vector<Pair>& p)
         : enemy(e), path(p) {
+
         shape.setSize(sf::Vector2f(SIZE * 0.8f, SIZE * 0.8f));
-        shape.setFillColor(sf::Color::Black);
+       // shape.setOrigin(shape.getSize() / 2.f); // Centrado para que no se vea desfasado
+
+        // Color según tipo de enemigo
+        EnemyType tipo = enemy->getType();
+
+        if (tipo == EnemyType::Ogre) {
+            shape.setFillColor(sf::Color::Green);
+        } else if (tipo == EnemyType::Harpy) {
+            shape.setFillColor(sf::Color::Red);
+        } else if (tipo == EnemyType::Mercenary) {
+            shape.setFillColor(sf::Color(0, 0, 139)); // Azul oscuro
+        } else if (tipo == EnemyType::DarkElf) {
+            shape.setFillColor(sf::Color::Black);
+        } else {
+            shape.setFillColor(sf::Color::White); // Color por defecto
+        }
+
 
         if (!path.empty()) {
             position = sf::Vector2f(path[0].second * SIZE, path[0].first * SIZE);
