@@ -7,6 +7,7 @@
 using namespace std;
 
 
+
     // Constructor
 Controler::Controler(std::vector<std::shared_ptr<EnemyController>>& enemigos)
         :
@@ -135,16 +136,32 @@ void Controler::events() {
                             grid[row][col] = 1;
                             celdaColor[row][col].setColor(sf::Color::Transparent);
                         }
+                        if (Oro < 50) {
+                            printf("Oro insuficiente\n");
+
+                            // Revertir torre
+                            grid[row][col] = 1;
+                            celdaColor[row][col].setColor(sf::Color::Transparent);
+                        }
+                        else {
+                            Oro = Oro - 50;
+                        }
                     }
                     else {
 
                         for (std::shared_ptr<Torre> torreTem : torres) {
                             if (torreTem->getPosicion().first == row && torreTem->getPosicion().second == col) {
                                 if (grid[row][col] == 0) {
-                                    std::cout << "Mejorar torre en " << row << " " << col << "\n";
-                                    torreTem->SubirNivel();
-                                    std::cout << torreTem->GetNivel() << "\n";
-                                    break;
+                                    if (Oro >= 50) {
+                                        Oro = Oro - 50;
+                                        std::cout << "Mejorar torre en " << row << " " << col << "\n";
+                                        torreTem->SubirNivel();
+                                        std::cout << torreTem->GetNivel() << "\n";
+                                        break;
+                                    }
+                                    else {
+                                        std::cout << " \n Mejorar torre en " << row << " " << col << " imposible por oro insuficiente\n";
+                                    }
                                 }
                                 else {
                                     std::cout << "No es el tipo correcto " << "\n";
@@ -153,8 +170,10 @@ void Controler::events() {
                         }
 
                         if (grid[row][col] == 0) {
-                            TArquero2.loadFromFile("Imagenes/TArquerosBot.png");
-                            celdaColor[row][col].setTexture(TArquero2);
+                            if (Oro >= 50) {
+                                TArquero2.loadFromFile("Imagenes/TArquerosBot.png");
+                                celdaColor[row][col].setTexture(TArquero2);
+                            }
                         }
                     }
             }
@@ -175,16 +194,32 @@ void Controler::events() {
                             grid[row][col] = 1;
                             celdaColor[row][col].setColor(sf::Color::Transparent);
                         }
+                        if (Oro < 100) {
+                            printf("Oro insuficiente\n");
+
+                            // Revertir torre
+                            grid[row][col] = 1;
+                            celdaColor[row][col].setColor(sf::Color::Transparent);
+                        }
+                        else {
+                            Oro = Oro - 100;
+                        }
                     }
                     else {
 
                         for (std::shared_ptr<Torre> torreTem : torres) {
                             if (torreTem->getPosicion().first == row && torreTem->getPosicion().second == col) {
                                 if (grid[row][col] == 2) {
-                                    std::cout << "Mejorar torre en " << row << " " << col << "\n";
-                                    torreTem->SubirNivel();
-                                    std::cout << torreTem->GetNivel() << "\n";
-                                    break;
+                                    if (Oro >= 100) {
+                                        Oro = Oro - 100;
+                                        std::cout << "Mejorar torre en " << row << " " << col << "\n";
+                                        torreTem->SubirNivel();
+                                        std::cout << torreTem->GetNivel() << "\n";
+                                        break;
+                                    }
+                                    else {
+                                        std::cout << " \n Mejorar torre en " << row << " " << col << " imposible por oro insuficiente\n";
+                                    }
                                 }
                                 else {
                                     std::cout << "No es el tipo correcto " << "\n";
@@ -193,8 +228,10 @@ void Controler::events() {
                         }
 
                         if (grid[row][col] == 2) {
-                            TArtillero2.loadFromFile("Imagenes/TArtilleroBot.jpeg");
-                            celdaColor[row][col].setTexture(TArtillero2);
+                            if (Oro >= 100) {
+                                TArtillero2.loadFromFile("Imagenes/TArtilleroBot.jpeg");
+                                celdaColor[row][col].setTexture(TArtillero2);
+                            }
                         }
                     }
                 }
@@ -215,15 +252,31 @@ void Controler::events() {
                             grid[row][col] = 1;
                             celdaColor[row][col].setColor(sf::Color::Transparent);
                         }
+                        if (Oro < 75) {
+                            printf("Oro insuficiente\n");
+
+                            // Revertir torre
+                            grid[row][col] = 1;
+                            celdaColor[row][col].setColor(sf::Color::Transparent);
+                        }
+                        else {
+                            Oro = Oro - 75;
+                        }
                     }
                     else {
 
                         for (std::shared_ptr<Torre> torreTem : torres) {
                             if (grid[row][col] == 3) {
-                                std::cout << "Mejorar torre en " << row << " " << col << "\n";
-                                torreTem->SubirNivel();
-                                std::cout << torreTem->GetNivel() << "\n";
-                                break;
+                                if (Oro >= 75) {
+                                    Oro = Oro - 75;
+                                    std::cout << "Mejorar torre en " << row << " " << col << "\n";
+                                    torreTem->SubirNivel();
+                                    std::cout << torreTem->GetNivel() << "\n";
+                                    break;
+                                }
+                                else {
+                                    std::cout << " \n Mejorar torre en " << row << " " << col << " imposible por oro insuficiente\n";
+                                }
                             }
                             else {
                                 std::cout << "No es el tipo correcto " << "\n";
@@ -231,8 +284,10 @@ void Controler::events() {
                         }
 
                         if (grid[row][col] == 3) {
-                            TMago2.loadFromFile("Imagenes/TMagoBot.png");
-                            celdaColor[row][col].setTexture(TMago2);
+                            if (Oro >= 75) {
+                                TMago2.loadFromFile("Imagenes/TMagoBot.png");
+                                celdaColor[row][col].setTexture(TMago2);
+                            }
                         }
                     }
                 }
@@ -247,22 +302,12 @@ void Controler::events() {
 
     void Controler::update() {
         float deltaTime = reloj.restart().asSeconds();
-        //
-        // if (rutaUpdateClock.getElapsedTime().asSeconds() >= 1.0f) {
-        //     for (size_t i = 0; i < listaDeEnemigos.size(); ++i) {
-        //         auto& controlador = listaDeEnemigos[i];
-        //         auto posicionActual = controlador->getPosition();
-        //
-        //         if (posicionActual != dest) {
-        //             std::vector<Pair> nuevaRuta = mapa.getPath(grid, posicionActual, dest);
-        //             if (!nuevaRuta.empty()) {
-        //                 enemigos[i].setPath(nuevaRuta);  // Actualiza ruta del VisualEnemy
-        //             }
-        //         }
-        //     }
-        //     rutaUpdateClock.restart();
-        // }
 
+        auto posiciones = getPosicionEnemigos();
+        std::cout << "Posiciones de enemigos:\n";
+        for (const auto& pos : posiciones) {
+            std::cout << "Fila: " << pos.first << ", Columna: " << pos.second << "\n";
+        }
 
 
         if (oleadasActivas && oleadaClock.getElapsedTime().asSeconds() > 10.0f) {
@@ -308,6 +353,26 @@ void Controler::events() {
         for (size_t i = 0; i < listaDeEnemigos.size(); ++i) {
             if (listaDeEnemigos[i]->getEnemy()->getHealth() <= 0) {
                 enemigos[i].Speed(0);
+                if (listaDeEnemigos[i]->getEnemy()->GetEstadoCobrado() == false) {
+                    listaDeEnemigos[i]->getEnemy()->Cobrar();
+                    EnemyType tempEne = listaDeEnemigos[i]->getEnemy()->getType();
+                    if (tempEne == EnemyType::Ogre) {
+                        Oro = Oro + 25;
+                        std::cout << "Oro Actual" << Oro << "\n";
+                    }
+                    else if (tempEne == EnemyType::Harpy) {
+                        Oro = Oro + 15;
+                        std::cout << "Oro Actual" << Oro << "\n";
+                    }
+                    else if (tempEne == EnemyType::Mercenary) {
+                        Oro = Oro + 10;
+                        std::cout << "Oro Actual" << Oro << "\n";
+                    }
+                    else if (tempEne == EnemyType::DarkElf) {
+                        Oro = Oro + 20;
+                        std::cout << "Oro Actual" << Oro << "\n";
+                    }
+                }
             }
         }
 

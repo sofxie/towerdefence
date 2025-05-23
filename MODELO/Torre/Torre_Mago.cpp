@@ -1,12 +1,4 @@
-//
-// Created by ariel on 20/5/2025.
-//
-
 #include "Torre_Mago.h"
-//
-// Created by sofia on 2025/5/18.
-//
-
 #include <iostream>
 #include <cmath>
 using namespace std;
