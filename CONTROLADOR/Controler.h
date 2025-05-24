@@ -46,6 +46,9 @@ private:
     sf::Texture TArquero2;
     sf::Texture TArtillero2;
     sf::Texture TMago2;
+    sf::Texture TArquero3;
+    sf::Texture TArtillero3;
+    sf::Texture TMago3;
 
     // Seleccion de torres
     int modoSeleccionado;  // 0 = ninguno, 1 = azul, 2 = rojo

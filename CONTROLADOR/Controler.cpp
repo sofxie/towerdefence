@@ -3,6 +3,7 @@
 
 #include "Torre/Torre_Artillero.h"
 #include "Torre/Torre_Mago.h"
+#include <filesystem>
 
 using namespace std;
 
@@ -172,7 +173,12 @@ void Controler::events() {
 
                         if (grid[row][col] == 0) {
                             if (Oro >= 50) {
-                                TArquero2.loadFromFile("Imagenes/TArquerosBot.png");
+                                TArquero2.loadFromFile("Imagenes/Arquero2.jpeg");
+                                std::string imagePath = "Imagenes/Arquero2.jpeg";
+                                if (!TArquero2.loadFromFile(imagePath)) {
+                                    std::cerr << "Failed to load " << imagePath << std::endl;
+                                }
+                                std::cout << "Current working directory: " << filesystem::current_path() << std::endl;
                                 celdaColor[row][col].setTexture(TArquero2);
                             }
                         }
@@ -232,7 +238,7 @@ void Controler::events() {
 
                         if (grid[row][col] == 2) {
                             if (Oro >= 100) {
-                                TArtillero2.loadFromFile("Imagenes/TArtilleroBot.jpeg");
+                                TArtillero2.loadFromFile("Imagenes/Artillero2.jpeg");
                                 celdaColor[row][col].setTexture(TArtillero2);
                             }
                         }
@@ -290,7 +296,7 @@ void Controler::events() {
 
                         if (grid[row][col] == 3) {
                             if (Oro >= 75) {
-                                TMago2.loadFromFile("Imagenes/TMagoBot.png");
+                                TMago2.loadFromFile("Imagenes/Mago2.jpeg");
                                 celdaColor[row][col].setTexture(TMago2);
                             }
                         }

@@ -92,7 +92,6 @@ bool Map::aEstrellita(int grid[][COL], Pair src, Pair dest) {
     }
     // Si esta no hay paso
     if (isUnBlocked(grid, src.first, src.second) == false || isUnBlocked(grid, dest.first, dest.second) == false) {
-        printf("No solution\n");
         return false;
     }
     // Si ya encontro el destino
