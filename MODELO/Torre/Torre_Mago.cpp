@@ -114,8 +114,18 @@ void Torre_Mago::AtacarEnemigo(std::vector<std::shared_ptr<EnemyController>>& en
                     else {
                         AtaqueEspecialAct = true;
                     }
-                    EnfriamientoEspecial = 50;
+                    if (nivel == 1) {
+                        EnfriamientoEspecial = 15;
+                    }
+                    else if (nivel == 2) {
+                        EnfriamientoEspecial = 10;
+                    }
+                    else {
+                        EnfriamientoEspecial = 5;
+                    }
+
                 }
+                std::cout << EnfriamientoEspecial << std::endl;
                 if (dano > 0) {
                     enemigo->getEnemy()->takeDamage(dano, 3);  // Atacar al enemigo real
                     std::cout << "Torre Mago inflige " << dano << " de daño." << std::endl;  // Solo ataca una vez por ciclo
