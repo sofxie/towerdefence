@@ -381,18 +381,22 @@ void Controler::events() {
                     EnemyType tempEne = listaDeEnemigos[i]->getEnemy()->getType();
                     if (tempEne == EnemyType::Ogre) {
                         Oro = Oro + 25;
+                        kills++;
                         std::cout << "Oro Actual" << Oro << "\n";
                     }
                     else if (tempEne == EnemyType::Harpy) {
                         Oro = Oro + 15;
+                        kills++;
                         std::cout << "Oro Actual" << Oro << "\n";
                     }
                     else if (tempEne == EnemyType::Mercenary) {
                         Oro = Oro + 10;
+                        kills++;
                         std::cout << "Oro Actual" << Oro << "\n";
                     }
                     else if (tempEne == EnemyType::DarkElf) {
                         Oro = Oro + 20;
+                        kills++;
                         std::cout << "Oro Actual" << Oro << "\n";
                     }
                 }
