@@ -159,6 +159,25 @@ void Controler::events() {
                                         std::cout << "Mejorar torre en " << row << " " << col << "\n";
                                         torreTem->SubirNivel();
                                         std::cout << torreTem->GetNivel() << "\n";
+
+                                        if (torreTem->GetNivel() == 2) {
+                                            TArquero2.loadFromFile("Imagenes/Arquero2.jpeg");
+                                            std::string imagePath = "Imagenes/Arquero2.jpeg";
+                                            if (!TArquero2.loadFromFile(imagePath)) {
+                                                std::cerr << "Failed to load " << imagePath << std::endl;
+                                            }
+                                            std::cout << "Current working directory: " << filesystem::current_path() << std::endl;
+                                            celdaColor[row][col].setTexture(TArquero2);
+                                        }
+                                        else {
+                                            TArquero3.loadFromFile("Imagenes/Arquero3.jpeg");
+                                            std::string imagePath = "Imagenes/Arquero3.jpeg";
+                                            if (!TArquero3.loadFromFile(imagePath)) {
+                                                std::cerr << "Failed to load " << imagePath << std::endl;
+                                            }
+                                            std::cout << "Current working directory: " << filesystem::current_path() << std::endl;
+                                            celdaColor[row][col].setTexture(TArquero3);
+                                        }
                                         break;
                                     }
                                     else {
@@ -168,18 +187,6 @@ void Controler::events() {
                                 else {
                                     std::cout << "No es el tipo correcto " << "\n";
                                 }
-                            }
-                        }
-
-                        if (grid[row][col] == 0) {
-                            if (Oro >= 50) {
-                                TArquero2.loadFromFile("Imagenes/Arquero2.jpeg");
-                                std::string imagePath = "Imagenes/Arquero2.jpeg";
-                                if (!TArquero2.loadFromFile(imagePath)) {
-                                    std::cerr << "Failed to load " << imagePath << std::endl;
-                                }
-                                std::cout << "Current working directory: " << filesystem::current_path() << std::endl;
-                                celdaColor[row][col].setTexture(TArquero2);
                             }
                         }
                     }
@@ -224,6 +231,16 @@ void Controler::events() {
                                         std::cout << "Mejorar torre en " << row << " " << col << "\n";
                                         torreTem->SubirNivel();
                                         std::cout << torreTem->GetNivel() << "\n";
+
+                                        if (torreTem->GetNivel() == 2) {
+                                            TArtillero2.loadFromFile("Imagenes/Artillero2.jpeg");
+                                            celdaColor[row][col].setTexture(TArtillero2);
+                                        }
+                                        else {
+                                            TArtillero3.loadFromFile("Imagenes/Artillero3.jpeg");
+                                            celdaColor[row][col].setTexture(TArtillero3);
+                                        }
+
                                         break;
                                     }
                                     else {
@@ -233,13 +250,6 @@ void Controler::events() {
                                 else {
                                     std::cout << "No es el tipo correcto " << "\n";
                                 }
-                            }
-                        }
-
-                        if (grid[row][col] == 2) {
-                            if (Oro >= 100) {
-                                TArtillero2.loadFromFile("Imagenes/Artillero2.jpeg");
-                                celdaColor[row][col].setTexture(TArtillero2);
                             }
                         }
                     }
@@ -283,6 +293,16 @@ void Controler::events() {
                                     std::cout << "Mejorar torre en " << row << " " << col << "\n";
                                     torreTem->SubirNivel();
                                     std::cout << torreTem->GetNivel() << "\n";
+
+                                    if (torreTem->GetNivel() == 2) {
+                                        TMago2.loadFromFile("Imagenes/Mago2.jpeg");
+                                        celdaColor[row][col].setTexture(TMago2);
+                                    }
+                                    else {
+                                        TMago3.loadFromFile("Imagenes/Mago3.jpeg");
+                                        celdaColor[row][col].setTexture(TMago3);
+                                    }
+
                                     break;
                                 }
                                 else {
@@ -291,13 +311,6 @@ void Controler::events() {
                             }
                             else {
                                 std::cout << "No es el tipo correcto " << "\n";
-                            }
-                        }
-
-                        if (grid[row][col] == 3) {
-                            if (Oro >= 75) {
-                                TMago2.loadFromFile("Imagenes/Mago2.jpeg");
-                                celdaColor[row][col].setTexture(TMago2);
                             }
                         }
                     }
