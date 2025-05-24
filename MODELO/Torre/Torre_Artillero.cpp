@@ -9,7 +9,7 @@ using namespace std;
 
 // Constructor por defecto
 Torre_Artillero::Torre_Artillero()
-    : nivel(1), Enfriamiento(2), DistanciaDeAtaque(20), EnfriamientoEspecial(10), TipoAtaque(1), position({-1, -1}){}
+    : nivel(1), Enfriamiento(2), DistanciaDeAtaque(3), EnfriamientoEspecial(10), TipoAtaque(1), position({-1, -1}){}
 
 // Funcion para retornar cantidad de daño
 int Torre_Artillero::Atacar() {
@@ -55,9 +55,7 @@ int Torre_Artillero::GetNivel() {
 // Toma como entrada la lista de enemigos
 void Torre_Artillero::AtacarEnemigo(std::vector<std::shared_ptr<EnemyController>>& enemigos) {
     // Espera a que pase el cooldown
-    if (EnfriamientoEspecial > 0) {
-        EnfriamientoEspecial--;
-    }
+
     if (Enfriamiento > 0) {
         Enfriamiento--;
         return;
@@ -86,17 +84,30 @@ void Torre_Artillero::AtacarEnemigo(std::vector<std::shared_ptr<EnemyController>
 
         }
 
-        if (EnfriamientoEspecial == 0) {
-            dano = 1000;
-            EnfriamientoEspecial = 10;
-        }
 
 
         // Si esta dentro del area, realizar ataque
         if (distancia <= DistanciaAtaque()) {
+
             if (enemigo->getEnemy()->getHealth() <= 0) {
             }
             else {
+                if (EnfriamientoEspecial > 0) {
+                    EnfriamientoEspecial--;
+                }
+                if (EnfriamientoEspecial <= 0) {
+                    dano = 1000;
+                    if (nivel == 1) {
+                        EnfriamientoEspecial = 10;
+                    }
+                    else if (nivel == 2) {
+                        EnfriamientoEspecial = 8;
+                    }
+                    else {
+                        EnfriamientoEspecial = 5;
+                    }
+                }
+                std::cout << dano << " dano realizado " << EnfriamientoEspecial << endl;
                 if (dano > 0) {
                     enemigo->getEnemy()->takeDamage(dano, 2);  // Atacar al enemigo real
                     std::cout << "Torre Artilleria inflige " << dano << " de daño." << std::endl;  // Solo ataca una vez por ciclo

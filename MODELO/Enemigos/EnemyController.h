@@ -30,6 +30,8 @@ public:
     void setPath(const std::vector<std::pair<int, int>>& nuevaRuta);
     pair<int, int> getPosition() const;
 
+    void UpdateCord(int xt, int yt);
+
 };
 
 #endif // ENEMYCONTROLLER_H

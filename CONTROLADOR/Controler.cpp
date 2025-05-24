@@ -343,11 +343,11 @@ void Controler::events() {
             enemigo.actualizar(deltaTime, grid, mapa);  // Pasar grid y mapa
         }
 
-        // auto posiciones = getPosicionEnemigos();
-        // std::cout << "Posiciones de enemigos:\n";
-        // for (const auto& pos : posiciones) {
-        //     std::cout << "Fila: " << pos.first << ", Columna: " << pos.second << "\n";
-        // }
+        auto posiciones = getPosicionEnemigos();
+        for (size_t i = 0; i < posiciones.size(); ++i) {
+            listaDeEnemigos[i]->UpdateCord(posiciones[i].first, posiciones[i].second);
+        }
+
 
         // Por cada torre
         for (auto& torre : torres) {
