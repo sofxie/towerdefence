@@ -29,6 +29,7 @@ public:
     bool oleadasActivas = false; // Comprobar si hay oleadas activas
     std::vector<std::pair<int, int>> getPosicionEnemigos() const;
     int Oro = 500;
+    int kills = 0;
 
 private:
     sf::RenderWindow window;
