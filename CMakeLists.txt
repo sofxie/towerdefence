@@ -26,3 +26,4 @@ add_executable(towerdefence main.cpp
 target_link_libraries(towerdefence sfml-system sfml-window sfml-graphics)
 
 file(COPY ${CMAKE_SOURCE_DIR}/Imagenes DESTINATION ${CMAKE_BINARY_DIR})
+file(COPY ${CMAKE_SOURCE_DIR}/Font DESTINATION ${CMAKE_BINARY_DIR})

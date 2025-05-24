@@ -4,7 +4,8 @@
 #include "Torre/Torre_Artillero.h"
 #include "Torre/Torre_Mago.h"
 #include <filesystem>
-
+#include <string>
+#include <sstream>
 using namespace std;
 
 
@@ -13,7 +14,7 @@ using namespace std;
 Controler::Controler(std::vector<std::shared_ptr<EnemyController>>& enemigos)
         :
         // Crear una ventana de 800x600
-        window(sf::VideoMode(800, 600), "Tower Defense"), // Inicializar
+        window(sf::VideoMode(1000, 600), "Tower Defense"), // Inicializar
         modoSeleccionado(0), // Inicializar modo de torres (0 por default)
         listaDeEnemigos(enemigos),
         src({9,0}), // Coordenadas de Inicio
@@ -39,7 +40,8 @@ Controler::Controler(std::vector<std::shared_ptr<EnemyController>>& enemigos)
         }
     }
 
-    // Crear oleada de enemigos
+
+// Crear oleada de enemigos
 void Controler::crearOleada(std::vector<Pair> ruta) {
     static int llamadasOleadas = 0;
 

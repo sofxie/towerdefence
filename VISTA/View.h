@@ -2,6 +2,7 @@
 #define VIEW_H
 #include "Const.h"
 #include <SFML/Graphics.hpp>
+#include <string>
 
 class View {
 public:
@@ -21,11 +22,25 @@ public:
 private:
     sf::RenderWindow& window; // Referencia a la ventana renderizado
 
+    // Para texto del juego
+    sf::Font font;
+    sf::Text text;
+
     // Textura y Sprite asociada para imagenes del mapa
     sf::Texture texture;
     sf::Sprite sprite;
     sf::Texture texture1;
     sf::Sprite sprite1;
+    sf::Texture texturebg;
+    sf::Sprite spritebg;
+
+    // Textura y Sprite asociada para vida
+    sf::Texture texturevida1;
+    sf::Sprite spritevida1;
+    sf::Texture texturevida2;
+    sf::Sprite spritevida2;
+    sf::Texture texturevida3;
+    sf::Sprite spritevida3;
 
     // Botones para las torres
     sf::Texture textureBot1;
@@ -36,6 +51,9 @@ private:
     sf::Sprite spriteBot3;
     sf::Texture textureBotOleada;
     sf::Sprite spriteBotOleada;
+
+    // Cargar la fuente
+    void LoadFont(sf::Font& font,std::string str);
 
     // Dibuja celdas y colores
     void Celda(const int gric[ROW][COL]);

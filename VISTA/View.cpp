@@ -6,39 +6,68 @@
 View::View(sf::RenderWindow &window)
     : window(window){ // Botones
 
+    // Fuente para texto de Oro
+    text.setFont(font);
+    text.setString("0");
+    text.setOrigin(text.getLocalBounds().width/2, text.getLocalBounds().height/2);
+    text.setPosition(SIZE*13, SIZE);
+
     // Imagen del mapa
     texture.loadFromFile("Imagenes/pasto.png");
     texture1.loadFromFile("Imagenes/pasto2.png");
+    texturebg.loadFromFile("Imagenes/Panel.png");
+
+    // Imagen Vida
+    texturevida1.loadFromFile("Imagenes/Vida.png");
+    texturevida2.loadFromFile("Imagenes/Vida.png");
+    texturevida3.loadFromFile("Imagenes/Vida.png");
 
     // Imagen de los botones
-    textureBot1.loadFromFile("Imagenes/TArquerosBot.png");
+    textureBot1.loadFromFile("Imagenes/TArqueroBot.jpeg");
     textureBot2.loadFromFile("Imagenes/TArtilleroBot.jpeg");
-    textureBot3.loadFromFile("Imagenes/TMagoBot.png");
-    textureBotOleada.loadFromFile("Imagenes/Villano.jpeg");
+    textureBot3.loadFromFile("Imagenes/TMagoBot.jpeg");
+    textureBotOleada.loadFromFile("Imagenes/VillanoBOT.png");
 
     // Asociar textura a sprite
     sprite.setTexture(texture);
     sprite1.setTexture(texture1);
+    spritebg.setTexture(texturebg);
     spriteBot1.setTexture(textureBot1);
     spriteBot2.setTexture(textureBot2);
     spriteBot3.setTexture(textureBot3);
     spriteBotOleada.setTexture(textureBotOleada);
+    spritevida1.setTexture(texturevida1);
+    spritevida2.setTexture(texturevida2);
+    spritevida3.setTexture(texturevida3);
 
     // Modificar tamano de imagen
     sprite.setScale(static_cast<float>(SIZE) / texture.getSize().x,
     static_cast<float>(SIZE) / texture.getSize().y);
     sprite1.setScale(static_cast<float>(SIZE) / texture1.getSize().x,
     static_cast<float>(SIZE) / texture1.getSize().y);
-    spriteBot1.setScale(0.06f, 0.06f);
-    spriteBot2.setScale(0.06f, 0.06f);
-    spriteBot3.setScale(0.06f, 0.06f);
-    spriteBotOleada.setScale(0.06f, 0.06f);
+    spritebg.setScale(static_cast<float>(400) / texture1.getSize().x,
+    static_cast<float>(465) / texture1.getSize().y);
+    spriteBot1.setScale(0.05f, 0.05f);
+    spriteBot2.setScale(0.05f, 0.05f);
+    spriteBot3.setScale(0.05f, 0.05f);
+    spriteBotOleada.setScale(static_cast<float>(382) / texture1.getSize().x,
+    static_cast<float>(300) / texture1.getSize().y);
+    spritevida1.setScale(static_cast<float>(200) / texture1.getSize().x,
+    static_cast<float>(200) / texture1.getSize().y);
+    spritevida2.setScale(static_cast<float>(200) / texture1.getSize().x,
+    static_cast<float>(200) / texture1.getSize().y);
+    spritevida3.setScale(static_cast<float>(200) / texture1.getSize().x,
+    static_cast<float>(200) / texture1.getSize().y);
 
     // Posicionar y diseñar botones
-    spriteBot1.setPosition(SIZE * 11, SIZE);
-    spriteBot2.setPosition(SIZE * 11, SIZE * 3);
-    spriteBot3.setPosition(SIZE * 11, SIZE * 5);
-    spriteBotOleada.setPosition(SIZE * 11, SIZE * 7);
+    spritebg.setPosition(SIZE*10, 0);
+    spriteBot1.setPosition(SIZE * 11.2, SIZE*4.5);
+    spriteBot2.setPosition(SIZE * 12.75, SIZE*4.5);
+    spriteBot3.setPosition(SIZE * 14.3, SIZE*4.5);
+    spriteBotOleada.setPosition(SIZE * 11.2, SIZE * 3);
+    spritevida1.setPosition(SIZE*12, SIZE*2);
+    spritevida2.setPosition(SIZE*13, SIZE*2);
+    spritevida3.setPosition(SIZE*14, SIZE*2);
 }
 
 // Dibujar las celdas del mapa
@@ -50,6 +79,14 @@ void View::mapa(const int grid[ROW][COL], sf::Sprite celdaColor[ROW][COL]) {
 // Agregar Botones a la ventana
 void View::torres(int modoSeleccionado) {
     Boton(); // Agrega boton
+    LoadFont(font,"Font/Pixel Emulator.otf"); // Agregar texto
+}
+
+// Texto
+void View::LoadFont(sf::Font &font, std::string str) {
+    if (!font.loadFromFile(str)) {
+        std::cerr << "Error loading font" << std::endl;
+    }
 }
 
 // Efecto resaltado con el cursor
@@ -105,9 +142,14 @@ void View::Color( sf::Sprite celdaColor[ROW][COL]) {
 
 // Dibuja los botones en la interfaz
 void View::Boton() {
+    window.draw(spritebg);
     window.draw(spriteBot1);
     window.draw(spriteBot2);
     window.draw(spriteBot3);
     window.draw(spriteBotOleada);
+    window.draw(text);
+    window.draw(spritevida1);
+    window.draw(spritevida2);
+    window.draw(spritevida3);
 }
 
