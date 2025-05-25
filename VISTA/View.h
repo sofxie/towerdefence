@@ -18,6 +18,12 @@ public:
     int botonClick(int mouseX, int mouseY);
     // Dibuja los botones en la ventana
     void Boton();
+    // Obtener el valor del oro
+    void Oro(int Oro);
+    // Dibuja la cantidad de Vida
+    void drawVida(int Vida);
+    // Proyectar el GameOver
+    void GameOver();
 
 private:
     sf::RenderWindow& window; // Referencia a la ventana renderizado
@@ -33,14 +39,9 @@ private:
     sf::Sprite sprite1;
     sf::Texture texturebg;
     sf::Sprite spritebg;
-
-    // Textura y Sprite asociada para vida
-    sf::Texture texturevida1;
-    sf::Sprite spritevida1;
-    sf::Texture texturevida2;
-    sf::Sprite spritevida2;
-    sf::Texture texturevida3;
-    sf::Sprite spritevida3;
+    sf::Texture texCorazon;
+    sf::Texture textureGO;
+    sf::Sprite spriteGO;
 
     // Botones para las torres
     sf::Texture textureBot1;

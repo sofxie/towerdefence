@@ -20,7 +20,13 @@ bool Enemy::GetEstadoCobrado() {
 void Enemy::Cobrar() {
     YaCobradoOro = true;
 }
+bool Enemy::GetDestino() {
+    return LlegaDestino;
+}
 
+void Enemy::Destino() {
+    LlegaDestino = true;
+}
 
 void Enemy::takeDamage(int dmg, int type2) { // Reducción de vida
     if (type2 == 1) {

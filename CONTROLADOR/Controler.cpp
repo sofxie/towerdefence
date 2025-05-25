@@ -6,6 +6,11 @@
 #include <filesystem>
 #include <string>
 #include <sstream>
+#include <iostream>
+#include <utility>
+using std::pair;
+using std::ostream;
+
 using namespace std;
 
 
@@ -29,16 +34,17 @@ Controler::Controler(std::vector<std::shared_ptr<EnemyController>>& enemigos)
                 grid[i][j] = 1;  // Rellenarlo con 1 Accesible
             }
         reloj.restart();
+
     }
 
-    // Ejecutar el juego
-    void Controler::run() {
-        while (window.isOpen()) {
-            events(); // Llamar eventos para manejar interacciones
-            update(); // Llamar actualizar para el estado de juego
-            render(); // Llamar renderizado para dibujar el estado en la ventana
-        }
+// Ejecutar el juego
+void Controler::run() {
+    while (window.isOpen()) {
+        events(); // Llamar eventos para manejar interacciones
+        update(); // Llamar actualizar para el estado de juego
+        render(); // Llamar renderizado para dibujar el estado en la ventana
     }
+}
 
 
 // Crear oleada de enemigos
@@ -164,20 +170,10 @@ void Controler::events() {
 
                                         if (torreTem->GetNivel() == 2) {
                                             TArquero2.loadFromFile("Imagenes/Arquero2.jpeg");
-                                            std::string imagePath = "Imagenes/Arquero2.jpeg";
-                                            if (!TArquero2.loadFromFile(imagePath)) {
-                                                std::cerr << "Failed to load " << imagePath << std::endl;
-                                            }
-                                            std::cout << "Current working directory: " << filesystem::current_path() << std::endl;
                                             celdaColor[row][col].setTexture(TArquero2);
                                         }
                                         else {
                                             TArquero3.loadFromFile("Imagenes/Arquero3.jpeg");
-                                            std::string imagePath = "Imagenes/Arquero3.jpeg";
-                                            if (!TArquero3.loadFromFile(imagePath)) {
-                                                std::cerr << "Failed to load " << imagePath << std::endl;
-                                            }
-                                            std::cout << "Current working directory: " << filesystem::current_path() << std::endl;
                                             celdaColor[row][col].setTexture(TArquero3);
                                         }
                                         break;
@@ -324,30 +320,37 @@ void Controler::events() {
             }
         }
     }
+}
+void Controler::eliminarenemigos() {
+
+}
+
+
+void Controler::update() {
+    // Enviar el valor de oro para proyectar la cantidad
+    vista.Oro(Oro);
+
+    float deltaTime = reloj.restart().asSeconds();
+
+
+    if (oleadasActivas && oleadaClock.getElapsedTime().asSeconds() > 10.0f) {
+        std::vector<Pair> ruta = mapa.getPath(grid, src, dest);
+        crearOleada(ruta); // Nueva oleada automática
     }
 
-    void Controler::update() {
-        float deltaTime = reloj.restart().asSeconds();
+    // Lanzar enemigos uno a uno
+    if (spawnIndex < enemiesToSpawn.size() && spawnClock.getElapsedTime().asSeconds() >= 2.5f) {
+        int startX = rutaOleada.front().first;
+        int startY = rutaOleada.front().second;
 
+        // Crea el enemigo visual y de lógica
+        auto enemyCopy = std::make_shared<Enemy>(*enemiesToSpawn[spawnIndex]);
+        listaDeEnemigos.emplace_back(std::make_shared<EnemyController>(enemyCopy, startX, startY));
+        enemigos.emplace_back(enemyCopy, rutaOleada);
 
-        if (oleadasActivas && oleadaClock.getElapsedTime().asSeconds() > 10.0f) {
-            std::vector<Pair> ruta = mapa.getPath(grid, src, dest);
-            crearOleada(ruta); // Nueva oleada automática
-        }
-
-        // Lanzar enemigos uno a uno
-        if (spawnIndex < enemiesToSpawn.size() && spawnClock.getElapsedTime().asSeconds() >= 2.5f) {
-            int startX = rutaOleada.front().first;
-            int startY = rutaOleada.front().second;
-
-            // Crea el enemigo visual y de lógica
-            auto enemyCopy = std::make_shared<Enemy>(*enemiesToSpawn[spawnIndex]);
-            listaDeEnemigos.emplace_back(std::make_shared<EnemyController>(enemyCopy, startX, startY));
-            enemigos.emplace_back(enemyCopy, rutaOleada);
-
-            spawnIndex++;
-            spawnClock.restart();
-        }
+        spawnIndex++;
+        spawnClock.restart();
+    }
 
         // Actualizar enemigos existentes
         // for (auto& enemigo : enemigos) {
@@ -362,13 +365,25 @@ void Controler::events() {
         // Actualizar enemigos con el grid y mapa actual
         for (auto& enemigo : enemigos) {
             enemigo.actualizar(deltaTime, grid, mapa);  // Pasar grid y mapa
+
+            // Revision si ya llego al destino
+            sf::Vector2f posPixel = enemigo.getPositionE();  // posición en píxeles
+            Pair posGrid = {
+                static_cast<int>(posPixel.x / SIZE),  // columna
+                static_cast<int>(posPixel.y / SIZE)   // fila
+            };
+            Pair destino = {8, 0};
+            // Quitar vida al jugador
+            if (posGrid == destino) {
+                Vida--;
+                break;
+            }
         }
 
         auto posiciones = getPosicionEnemigos();
         for (size_t i = 0; i < posiciones.size(); ++i) {
             listaDeEnemigos[i]->UpdateCord(posiciones[i].first, posiciones[i].second);
         }
-
 
         // Por cada torre
         for (auto& torre : torres) {
@@ -407,13 +422,18 @@ void Controler::events() {
 
     }
 
-    // Rederizar el mapa y los elementos graficos
-    void Controler::render() {
-        window.clear();
+// Rederizar el mapa y los elementos graficos
+void Controler::render() {
+    window.clear();
+    if (Vida <= 0) {
+        vista.GameOver();
+    } else {
         vista.mapa(grid,celdaColor);
         vista.torres(modoSeleccionado);
         vista.drawHover(sf::Mouse::getPosition(window).x, sf::Mouse::getPosition(window).y);
+        vista.drawVida(Vida);
         for (auto& enemigo : enemigos) {
             enemigo.dibujar(window);} // Dibujar enemigos
-        window.display(); // Mostrar la ventana
     }
+    window.display(); // Mostrar la ventana
+}

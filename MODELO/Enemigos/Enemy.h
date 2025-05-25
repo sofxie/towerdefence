@@ -17,6 +17,7 @@ protected: // Atributos de la clase(Caracterisrticas de los enemigos)
     int artilleryResistance;
     EnemyType type;
     bool YaCobradoOro;
+    bool LlegaDestino;
 
 public:
 
@@ -39,6 +40,9 @@ public:
 
     virtual void Cobrar();
     virtual bool GetEstadoCobrado();
+
+    virtual void Destino();
+    virtual bool GetDestino();
 
     virtual std::string getFullDescription() const { // Descripción completa del enemigo
         std::ostringstream oss;

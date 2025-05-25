@@ -1,6 +1,8 @@
 #include "View.h"
 #include "Const.h"
 #include "VisualEnemy.h"
+#include <sstream>
+#include <string>
 
 // Constructor
 View::View(sf::RenderWindow &window)
@@ -17,10 +19,9 @@ View::View(sf::RenderWindow &window)
     texture1.loadFromFile("Imagenes/pasto2.png");
     texturebg.loadFromFile("Imagenes/Panel.png");
 
-    // Imagen Vida
-    texturevida1.loadFromFile("Imagenes/Vida.png");
-    texturevida2.loadFromFile("Imagenes/Vida.png");
-    texturevida3.loadFromFile("Imagenes/Vida.png");
+    texCorazon.loadFromFile("Imagenes/Vida.png");
+    textureGO.loadFromFile("Imagenes/GameOver.png");
+
 
     // Imagen de los botones
     textureBot1.loadFromFile("Imagenes/TArqueroBot.jpeg");
@@ -36,9 +37,6 @@ View::View(sf::RenderWindow &window)
     spriteBot2.setTexture(textureBot2);
     spriteBot3.setTexture(textureBot3);
     spriteBotOleada.setTexture(textureBotOleada);
-    spritevida1.setTexture(texturevida1);
-    spritevida2.setTexture(texturevida2);
-    spritevida3.setTexture(texturevida3);
 
     // Modificar tamano de imagen
     sprite.setScale(static_cast<float>(SIZE) / texture.getSize().x,
@@ -52,12 +50,6 @@ View::View(sf::RenderWindow &window)
     spriteBot3.setScale(0.05f, 0.05f);
     spriteBotOleada.setScale(static_cast<float>(382) / texture1.getSize().x,
     static_cast<float>(300) / texture1.getSize().y);
-    spritevida1.setScale(static_cast<float>(200) / texture1.getSize().x,
-    static_cast<float>(200) / texture1.getSize().y);
-    spritevida2.setScale(static_cast<float>(200) / texture1.getSize().x,
-    static_cast<float>(200) / texture1.getSize().y);
-    spritevida3.setScale(static_cast<float>(200) / texture1.getSize().x,
-    static_cast<float>(200) / texture1.getSize().y);
 
     // Posicionar y diseñar botones
     spritebg.setPosition(SIZE*10, 0);
@@ -65,9 +57,6 @@ View::View(sf::RenderWindow &window)
     spriteBot2.setPosition(SIZE * 12.75, SIZE*4.5);
     spriteBot3.setPosition(SIZE * 14.3, SIZE*4.5);
     spriteBotOleada.setPosition(SIZE * 11.2, SIZE * 3);
-    spritevida1.setPosition(SIZE*12, SIZE*2);
-    spritevida2.setPosition(SIZE*13, SIZE*2);
-    spritevida3.setPosition(SIZE*14, SIZE*2);
 }
 
 // Dibujar las celdas del mapa
@@ -88,6 +77,39 @@ void View::LoadFont(sf::Font &font, std::string str) {
         std::cerr << "Error loading font" << std::endl;
     }
 }
+
+// Obtiene valor de Oro
+void View::Oro(int Oro) {
+    std::stringstream ss;
+    ss<<Oro;
+    text.setString(ss.str());
+}
+
+// Funcion para dibujar los corazones
+void View::drawVida(int vidas) {
+    const int maxVidas = 3;
+    const int startX = SIZE * 12;
+    const int y = SIZE * 2;
+    for (int i = 0; i < vidas && i < maxVidas; ++i) {
+        sf::Sprite spriteVida;
+        spriteVida.setTexture(texCorazon);
+        spriteVida.setScale(static_cast<float>(200) / texture1.getSize().x,
+        static_cast<float>(200) / texture1.getSize().y);
+        spriteVida.setPosition(startX + SIZE * i, y);
+        window.draw(spriteVida);
+    }
+}
+
+// Funcion Proyecta el GameOver
+void View::GameOver() {
+    spriteGO.setTexture(textureGO);
+    spriteGO.setScale(static_cast<float>(1000) / textureGO.getSize().x,
+    static_cast<float>(600) / textureGO.getSize().y);
+    spriteGO.setPosition(0,0);
+    window.draw(spriteGO);
+
+}
+
 
 // Efecto resaltado con el cursor
 void View::drawHover(int mouseX, int mouseY) {
@@ -148,8 +170,5 @@ void View::Boton() {
     window.draw(spriteBot3);
     window.draw(spriteBotOleada);
     window.draw(text);
-    window.draw(spritevida1);
-    window.draw(spritevida2);
-    window.draw(spritevida3);
 }
 
