@@ -51,26 +51,30 @@ void Controler::run() {
 void Controler::crearOleada(std::vector<Pair> ruta) {
     static int llamadasOleadas = 0;
 
-    // Activar control de oleadas
-    if (!oleadasActivas) {
-        oleadasActivas = true;
-        std::cout << "Oleada activa\n";
-    } else {
-        std::cout << "Oleada no activa\n";
-    }
-
     // Guardar ruta
     rutaOleada = ruta;
 
     // Nueva wave si es necesario
-    if (wave.getGeneration() != genaracionOleada) {
+    if (wave.getGeneration() != genaracionOleada) {// Si la generación de la oleada no coincide con la actual
         llamadasOleadas++;
         wave = Wave(genaracionOleada);
     }
 
+
     if (llamadasOleadas > 2) {
-        wave.evolve();
+        probabilidad = std::min(100, (llamadasOleadas - 2) * 10); // 90%, 80%, ..., 100%
+
+        std::random_device rd;
+        std::mt19937 gen(rd());
+        std::uniform_int_distribution<> dist(1, 100);
+
+        if (dist(gen) <= probabilidad) {
+            wave.evolve(); // Evoluciona
+        } else {
+             Wave(generacionOleada); // No evoluciona, se reinicia la oleada
+        }
     }
+
 
     // Preparar enemigos a spawnear
     const auto& currentEnemies = wave.getEnemies();
@@ -106,6 +110,7 @@ std::vector<std::pair<int, int>> Controler::getPosicionEnemigos() const {
 void Controler::events() {
     sf::Event event{};
     while (window.pollEvent(event)) {
+
         // Click izquierdo
             if (event.type == sf::Event::MouseButtonPressed && event.mouseButton.button == sf::Mouse::Left) {
                 // Obtiene posiciones X y Y
@@ -316,11 +321,13 @@ void Controler::events() {
                 else if (modoSeleccionado == 4) {
                     std::vector<Pair> ruta = mapa.getPath(grid, src, dest);
                     crearOleada(ruta);
+                    oleadaEnCurso = true; // Indicar que hay una oleada en curso
                 }
             }
         }
     }
 }
+
 void Controler::eliminarenemigos() {
 
 }
@@ -332,11 +339,15 @@ void Controler::update() {
 
     float deltaTime = reloj.restart().asSeconds();
 
+     vista.updateStats(kills, wave.getWaveSpawnCount(), wave.getTotalEnemiesCreated(),
+           wave.getEnemiesStats() , probabilidad, wave.getMutationCount());
 
-    if (oleadasActivas && oleadaClock.getElapsedTime().asSeconds() > 10.0f) {
-        std::vector<Pair> ruta = mapa.getPath(grid, src, dest);
-        crearOleada(ruta); // Nueva oleada automática
-    }
+
+    if (oleadaEnCurso && oleadasActivas && oleadaClock.getElapsedTime().asSeconds() > 15.5f) {
+            std::vector<Pair> ruta = mapa.getPath(grid, src, dest);
+            crearOleada(ruta);
+        }
+
 
     // Lanzar enemigos uno a uno
     if (spawnIndex < enemiesToSpawn.size() && spawnClock.getElapsedTime().asSeconds() >= 2.5f) {
@@ -436,4 +447,5 @@ void Controler::render() {
             enemigo.dibujar(window);} // Dibujar enemigos
     }
     window.display(); // Mostrar la ventana
+
 }
