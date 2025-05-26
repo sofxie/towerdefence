@@ -50,6 +50,14 @@ void Controler::run() {
 // Crear oleada de enemigos
 void Controler::crearOleada(std::vector<Pair> ruta) {
     static int llamadasOleadas = 0;
+    // Activar control de oleadas
+    if (!oleadasActivas) {
+        oleadasActivas = true;
+        std::cout << "Oleada activa\n";
+    } else {
+        std::cout << "Oleada no activa\n";
+    }
+
 
     // Guardar ruta
     rutaOleada = ruta;
@@ -321,7 +329,8 @@ void Controler::events() {
                 else if (modoSeleccionado == 4) {
                     std::vector<Pair> ruta = mapa.getPath(grid, src, dest);
                     crearOleada(ruta);
-                    oleadaEnCurso = true; // Indicar que hay una oleada en curso
+                    activados = true; // Activar oleadas
+
                 }
             }
         }
@@ -343,10 +352,10 @@ void Controler::update() {
            wave.getEnemiesStats() , probabilidad, wave.getMutationCount());
 
 
-    if (oleadaEnCurso && oleadasActivas && oleadaClock.getElapsedTime().asSeconds() > 15.5f) {
-            std::vector<Pair> ruta = mapa.getPath(grid, src, dest);
-            crearOleada(ruta);
-        }
+    if (activados && oleadasActivas && oleadaClock.getElapsedTime().asSeconds() > 15.5f ){
+        std::vector<Pair> ruta = mapa.getPath(grid, src, dest);
+        crearOleada(ruta); // Nueva oleada automática
+    }
 
 
     // Lanzar enemigos uno a uno
