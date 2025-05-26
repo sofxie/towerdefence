@@ -119,6 +119,20 @@ void Controler::events() {
     sf::Event event{};
     while (window.pollEvent(event)) {
 
+            if (event.type == sf::Event::KeyPressed) {
+                if (event.key.code == sf::Keyboard::Down) {
+                    float offset = vista.getFitnessScrollOffset();
+                    vista.setFitnessScrollOffset(offset + 5.0f);
+                }
+                if (event.key.code == sf::Keyboard::Up) {
+                    float offset = vista.getFitnessScrollOffset();
+                    vista.setFitnessScrollOffset(std::max(0.0f, offset - 5.0f)); // Evitar que suba demasiado
+                }
+            }
+
+
+
+
         // Click izquierdo
             if (event.type == sf::Event::MouseButtonPressed && event.mouseButton.button == sf::Mouse::Left) {
                 // Obtiene posiciones X y Y
