@@ -170,6 +170,8 @@ void Controler::events() {
                             // Revertir torre
                             grid[row][col] = 1;
                             celdaColor[row][col].setColor(sf::Color::Transparent);
+                            torres.pop_back();
+
                         }
                         else {
                             if (Oro < 50) {
@@ -178,6 +180,8 @@ void Controler::events() {
                                 // Revertir torre
                                 grid[row][col] = 1;
                                 celdaColor[row][col].setColor(sf::Color::Transparent);
+                                torres.pop_back();
+
                             }
                             else {
                                 Oro = Oro - 50;
@@ -232,6 +236,8 @@ void Controler::events() {
                             // Revertir torre
                             grid[row][col] = 1;
                             celdaColor[row][col].setColor(sf::Color::Transparent);
+                            torres.pop_back();
+
                         }
                         else {
                             if (Oro < 100) {
@@ -240,6 +246,8 @@ void Controler::events() {
                                 // Revertir torre
                                 grid[row][col] = 1;
                                 celdaColor[row][col].setColor(sf::Color::Transparent);
+                                torres.pop_back();
+
                             }
                             else {
                                 Oro = Oro - 100;
@@ -295,6 +303,8 @@ void Controler::events() {
                             // Revertir torre
                             grid[row][col] = 1;
                             celdaColor[row][col].setColor(sf::Color::Transparent);
+                            torres.pop_back();
+
                         }
                         else {
                             if (Oro < 75) {
@@ -303,6 +313,8 @@ void Controler::events() {
                                 // Revertir torre
                                 grid[row][col] = 1;
                                 celdaColor[row][col].setColor(sf::Color::Transparent);
+                                torres.pop_back();
+
                             }
                             else {
                                 Oro = Oro - 75;
@@ -361,8 +373,11 @@ void Controler::update() {
     vista.Oro(Oro);
 
     float deltaTime = reloj.restart().asSeconds();
+    int nivel_torres1 = 0;
+    for (auto torre : torres) {
+        nivel_torres1 = nivel_torres1 + torre->GetNivel();    }
 
-     vista.updateStats(kills, wave.getWaveSpawnCount(), wave.getTotalEnemiesCreated(),
+     vista.updateStats(kills, wave.getWaveSpawnCount(), nivel_torres1,
            wave.getEnemiesStats() , probabilidad, wave.getMutationCount());
 
 
@@ -417,7 +432,6 @@ void Controler::update() {
                 listaDeEnemigos[i]->getEnemy()->Cobrar();
                 break;
             }
-            std::cout << Vida << " es la vida actual" << std::endl;
         }
     }
 

@@ -1,12 +1,20 @@
 CMakeFiles/towerdefence.dir/main.cpp.obj: \
- C:\Users\ariel\CLionProjects\towerdefence\main.cpp \
- C:/Program\ Files/JetBrains/CLion\ 2024.3.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/iostream \
+ C:\Users\ariel\OneDrive\Documentos\GitHub\towerdefence\main.cpp \
+ C:\Users\ariel\OneDrive\Documentos\GitHub\towerdefence\CONTROLADOR/Controler.h \
+ C:/Users/ariel/Downloads/SFML-2.6.2-windows-gcc-13.1.0-mingw-64-bit/SFML-2.6.2/include/SFML/Graphics.hpp \
+ C:/Users/ariel/Downloads/SFML-2.6.2-windows-gcc-13.1.0-mingw-64-bit/SFML-2.6.2/include/SFML/Window.hpp \
+ C:/Users/ariel/Downloads/SFML-2.6.2-windows-gcc-13.1.0-mingw-64-bit/SFML-2.6.2/include/SFML/System.hpp \
+ C:/Users/ariel/Downloads/SFML-2.6.2-windows-gcc-13.1.0-mingw-64-bit/SFML-2.6.2/include/SFML/Config.hpp \
+ C:/Users/ariel/Downloads/SFML-2.6.2-windows-gcc-13.1.0-mingw-64-bit/SFML-2.6.2/include/SFML/System/Clock.hpp \
+ C:/Users/ariel/Downloads/SFML-2.6.2-windows-gcc-13.1.0-mingw-64-bit/SFML-2.6.2/include/SFML/System/Export.hpp \
+ C:/Users/ariel/Downloads/SFML-2.6.2-windows-gcc-13.1.0-mingw-64-bit/SFML-2.6.2/include/SFML/System/Time.hpp \
+ C:/Users/ariel/Downloads/SFML-2.6.2-windows-gcc-13.1.0-mingw-64-bit/SFML-2.6.2/include/SFML/System/Err.hpp \
+ C:/Program\ Files/JetBrains/CLion\ 2024.3.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/ostream \
  C:/Program\ Files/JetBrains/CLion\ 2024.3.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/requires_hosted.h \
  C:/Program\ Files/JetBrains/CLion\ 2024.3.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/x86_64-w64-mingw32/bits/c++config.h \
  C:/Program\ Files/JetBrains/CLion\ 2024.3.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/x86_64-w64-mingw32/bits/os_defines.h \
  C:/Program\ Files/JetBrains/CLion\ 2024.3.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/x86_64-w64-mingw32/bits/cpu_defines.h \
  C:/Program\ Files/JetBrains/CLion\ 2024.3.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/pstl/pstl_config.h \
- C:/Program\ Files/JetBrains/CLion\ 2024.3.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/ostream \
  C:/Program\ Files/JetBrains/CLion\ 2024.3.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/ios \
  C:/Program\ Files/JetBrains/CLion\ 2024.3.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/iosfwd \
  C:/Program\ Files/JetBrains/CLion\ 2024.3.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/stringfwd.h \
@@ -148,23 +156,15 @@ CMakeFiles/towerdefence.dir/main.cpp.obj: \
  C:/Program\ Files/JetBrains/CLion\ 2024.3.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/locale_facets.tcc \
  C:/Program\ Files/JetBrains/CLion\ 2024.3.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/basic_ios.tcc \
  C:/Program\ Files/JetBrains/CLion\ 2024.3.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/ostream.tcc \
- C:/Program\ Files/JetBrains/CLion\ 2024.3.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/istream \
- C:/Program\ Files/JetBrains/CLion\ 2024.3.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/istream.tcc \
- C:/mingw64/include/SFML/Graphics.hpp C:/mingw64/include/SFML/Window.hpp \
- C:/mingw64/include/SFML/System.hpp C:/mingw64/include/SFML/Config.hpp \
- C:/mingw64/include/SFML/System/Clock.hpp \
- C:/mingw64/include/SFML/System/Export.hpp \
- C:/mingw64/include/SFML/System/Time.hpp \
- C:/mingw64/include/SFML/System/Err.hpp \
- C:/mingw64/include/SFML/System/FileInputStream.hpp \
- C:/mingw64/include/SFML/System/InputStream.hpp \
- C:/mingw64/include/SFML/System/NonCopyable.hpp \
- C:/mingw64/include/SFML/System/Lock.hpp \
- C:/mingw64/include/SFML/System/MemoryInputStream.hpp \
- C:/mingw64/include/SFML/System/Mutex.hpp \
- C:/mingw64/include/SFML/System/Sleep.hpp \
- C:/mingw64/include/SFML/System/String.hpp \
- C:/mingw64/include/SFML/System/Utf.hpp \
+ C:/Users/ariel/Downloads/SFML-2.6.2-windows-gcc-13.1.0-mingw-64-bit/SFML-2.6.2/include/SFML/System/FileInputStream.hpp \
+ C:/Users/ariel/Downloads/SFML-2.6.2-windows-gcc-13.1.0-mingw-64-bit/SFML-2.6.2/include/SFML/System/InputStream.hpp \
+ C:/Users/ariel/Downloads/SFML-2.6.2-windows-gcc-13.1.0-mingw-64-bit/SFML-2.6.2/include/SFML/System/NonCopyable.hpp \
+ C:/Users/ariel/Downloads/SFML-2.6.2-windows-gcc-13.1.0-mingw-64-bit/SFML-2.6.2/include/SFML/System/Lock.hpp \
+ C:/Users/ariel/Downloads/SFML-2.6.2-windows-gcc-13.1.0-mingw-64-bit/SFML-2.6.2/include/SFML/System/MemoryInputStream.hpp \
+ C:/Users/ariel/Downloads/SFML-2.6.2-windows-gcc-13.1.0-mingw-64-bit/SFML-2.6.2/include/SFML/System/Mutex.hpp \
+ C:/Users/ariel/Downloads/SFML-2.6.2-windows-gcc-13.1.0-mingw-64-bit/SFML-2.6.2/include/SFML/System/Sleep.hpp \
+ C:/Users/ariel/Downloads/SFML-2.6.2-windows-gcc-13.1.0-mingw-64-bit/SFML-2.6.2/include/SFML/System/String.hpp \
+ C:/Users/ariel/Downloads/SFML-2.6.2-windows-gcc-13.1.0-mingw-64-bit/SFML-2.6.2/include/SFML/System/Utf.hpp \
  C:/Program\ Files/JetBrains/CLion\ 2024.3.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/algorithm \
  C:/Program\ Files/JetBrains/CLion\ 2024.3.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/stl_algo.h \
  C:/Program\ Files/JetBrains/CLion\ 2024.3.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/algorithmfwd.h \
@@ -183,63 +183,63 @@ CMakeFiles/towerdefence.dir/main.cpp.obj: \
  C:/Program\ Files/JetBrains/CLion\ 2024.3.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/codecvt.h \
  C:/Program\ Files/JetBrains/CLion\ 2024.3.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/locale_facets_nonio.tcc \
  C:/Program\ Files/JetBrains/CLion\ 2024.3.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/locale_conv.h \
- C:/mingw64/include/SFML/System/Utf.inl \
+ C:/Users/ariel/Downloads/SFML-2.6.2-windows-gcc-13.1.0-mingw-64-bit/SFML-2.6.2/include/SFML/System/Utf.inl \
  C:/Program\ Files/JetBrains/CLion\ 2024.3.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/iterator \
  C:/Program\ Files/JetBrains/CLion\ 2024.3.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/stream_iterator.h \
- C:/mingw64/include/SFML/System/String.inl \
- C:/mingw64/include/SFML/System/Thread.hpp \
- C:/mingw64/include/SFML/System/Thread.inl \
- C:/mingw64/include/SFML/System/ThreadLocal.hpp \
- C:/mingw64/include/SFML/System/ThreadLocalPtr.hpp \
- C:/mingw64/include/SFML/System/ThreadLocalPtr.inl \
- C:/mingw64/include/SFML/System/Vector2.hpp \
- C:/mingw64/include/SFML/System/Vector2.inl \
- C:/mingw64/include/SFML/System/Vector3.hpp \
- C:/mingw64/include/SFML/System/Vector3.inl \
- C:/mingw64/include/SFML/Window/Clipboard.hpp \
- C:/mingw64/include/SFML/Window/Export.hpp \
- C:/mingw64/include/SFML/Window/Context.hpp \
- C:/mingw64/include/SFML/Window/GlResource.hpp \
- C:/mingw64/include/SFML/Window/ContextSettings.hpp \
- C:/mingw64/include/SFML/Window/Cursor.hpp \
- C:/mingw64/include/SFML/Window/Event.hpp \
- C:/mingw64/include/SFML/Window/Joystick.hpp \
- C:/mingw64/include/SFML/Window/Keyboard.hpp \
- C:/mingw64/include/SFML/Window/Mouse.hpp \
- C:/mingw64/include/SFML/Window/Sensor.hpp \
- C:/mingw64/include/SFML/Window/Touch.hpp \
- C:/mingw64/include/SFML/Window/VideoMode.hpp \
+ C:/Users/ariel/Downloads/SFML-2.6.2-windows-gcc-13.1.0-mingw-64-bit/SFML-2.6.2/include/SFML/System/String.inl \
+ C:/Users/ariel/Downloads/SFML-2.6.2-windows-gcc-13.1.0-mingw-64-bit/SFML-2.6.2/include/SFML/System/Thread.hpp \
+ C:/Users/ariel/Downloads/SFML-2.6.2-windows-gcc-13.1.0-mingw-64-bit/SFML-2.6.2/include/SFML/System/Thread.inl \
+ C:/Users/ariel/Downloads/SFML-2.6.2-windows-gcc-13.1.0-mingw-64-bit/SFML-2.6.2/include/SFML/System/ThreadLocal.hpp \
+ C:/Users/ariel/Downloads/SFML-2.6.2-windows-gcc-13.1.0-mingw-64-bit/SFML-2.6.2/include/SFML/System/ThreadLocalPtr.hpp \
+ C:/Users/ariel/Downloads/SFML-2.6.2-windows-gcc-13.1.0-mingw-64-bit/SFML-2.6.2/include/SFML/System/ThreadLocalPtr.inl \
+ C:/Users/ariel/Downloads/SFML-2.6.2-windows-gcc-13.1.0-mingw-64-bit/SFML-2.6.2/include/SFML/System/Vector2.hpp \
+ C:/Users/ariel/Downloads/SFML-2.6.2-windows-gcc-13.1.0-mingw-64-bit/SFML-2.6.2/include/SFML/System/Vector2.inl \
+ C:/Users/ariel/Downloads/SFML-2.6.2-windows-gcc-13.1.0-mingw-64-bit/SFML-2.6.2/include/SFML/System/Vector3.hpp \
+ C:/Users/ariel/Downloads/SFML-2.6.2-windows-gcc-13.1.0-mingw-64-bit/SFML-2.6.2/include/SFML/System/Vector3.inl \
+ C:/Users/ariel/Downloads/SFML-2.6.2-windows-gcc-13.1.0-mingw-64-bit/SFML-2.6.2/include/SFML/Window/Clipboard.hpp \
+ C:/Users/ariel/Downloads/SFML-2.6.2-windows-gcc-13.1.0-mingw-64-bit/SFML-2.6.2/include/SFML/Window/Export.hpp \
+ C:/Users/ariel/Downloads/SFML-2.6.2-windows-gcc-13.1.0-mingw-64-bit/SFML-2.6.2/include/SFML/Window/Context.hpp \
+ C:/Users/ariel/Downloads/SFML-2.6.2-windows-gcc-13.1.0-mingw-64-bit/SFML-2.6.2/include/SFML/Window/GlResource.hpp \
+ C:/Users/ariel/Downloads/SFML-2.6.2-windows-gcc-13.1.0-mingw-64-bit/SFML-2.6.2/include/SFML/Window/ContextSettings.hpp \
+ C:/Users/ariel/Downloads/SFML-2.6.2-windows-gcc-13.1.0-mingw-64-bit/SFML-2.6.2/include/SFML/Window/Cursor.hpp \
+ C:/Users/ariel/Downloads/SFML-2.6.2-windows-gcc-13.1.0-mingw-64-bit/SFML-2.6.2/include/SFML/Window/Event.hpp \
+ C:/Users/ariel/Downloads/SFML-2.6.2-windows-gcc-13.1.0-mingw-64-bit/SFML-2.6.2/include/SFML/Window/Joystick.hpp \
+ C:/Users/ariel/Downloads/SFML-2.6.2-windows-gcc-13.1.0-mingw-64-bit/SFML-2.6.2/include/SFML/Window/Keyboard.hpp \
+ C:/Users/ariel/Downloads/SFML-2.6.2-windows-gcc-13.1.0-mingw-64-bit/SFML-2.6.2/include/SFML/Window/Mouse.hpp \
+ C:/Users/ariel/Downloads/SFML-2.6.2-windows-gcc-13.1.0-mingw-64-bit/SFML-2.6.2/include/SFML/Window/Sensor.hpp \
+ C:/Users/ariel/Downloads/SFML-2.6.2-windows-gcc-13.1.0-mingw-64-bit/SFML-2.6.2/include/SFML/Window/Touch.hpp \
+ C:/Users/ariel/Downloads/SFML-2.6.2-windows-gcc-13.1.0-mingw-64-bit/SFML-2.6.2/include/SFML/Window/VideoMode.hpp \
  C:/Program\ Files/JetBrains/CLion\ 2024.3.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/vector \
  C:/Program\ Files/JetBrains/CLion\ 2024.3.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/stl_uninitialized.h \
  C:/Program\ Files/JetBrains/CLion\ 2024.3.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/stl_vector.h \
  C:/Program\ Files/JetBrains/CLion\ 2024.3.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/stl_bvector.h \
  C:/Program\ Files/JetBrains/CLion\ 2024.3.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/vector.tcc \
- C:/mingw64/include/SFML/Window/Window.hpp \
- C:/mingw64/include/SFML/Window/WindowBase.hpp \
- C:/mingw64/include/SFML/Window/Vulkan.hpp \
- C:/mingw64/include/SFML/Window/WindowHandle.hpp \
+ C:/Users/ariel/Downloads/SFML-2.6.2-windows-gcc-13.1.0-mingw-64-bit/SFML-2.6.2/include/SFML/Window/Window.hpp \
+ C:/Users/ariel/Downloads/SFML-2.6.2-windows-gcc-13.1.0-mingw-64-bit/SFML-2.6.2/include/SFML/Window/WindowBase.hpp \
+ C:/Users/ariel/Downloads/SFML-2.6.2-windows-gcc-13.1.0-mingw-64-bit/SFML-2.6.2/include/SFML/Window/Vulkan.hpp \
+ C:/Users/ariel/Downloads/SFML-2.6.2-windows-gcc-13.1.0-mingw-64-bit/SFML-2.6.2/include/SFML/Window/WindowHandle.hpp \
  C:/Program\ Files/JetBrains/CLion\ 2024.3.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/stdint.h \
  C:/Program\ Files/JetBrains/CLion\ 2024.3.4/bin/mingw/x86_64-w64-mingw32/include/stdint.h \
- C:/mingw64/include/SFML/Window/WindowStyle.hpp \
- C:/mingw64/include/SFML/Graphics/BlendMode.hpp \
- C:/mingw64/include/SFML/Graphics/Export.hpp \
- C:/mingw64/include/SFML/Graphics/CircleShape.hpp \
- C:/mingw64/include/SFML/Graphics/Shape.hpp \
- C:/mingw64/include/SFML/Graphics/Drawable.hpp \
- C:/mingw64/include/SFML/Graphics/RenderStates.hpp \
- C:/mingw64/include/SFML/Graphics/Transform.hpp \
- C:/mingw64/include/SFML/Graphics/Rect.hpp \
- C:/mingw64/include/SFML/Graphics/Rect.inl \
- C:/mingw64/include/SFML/Graphics/Transformable.hpp \
- C:/mingw64/include/SFML/Graphics/VertexArray.hpp \
- C:/mingw64/include/SFML/Graphics/Vertex.hpp \
- C:/mingw64/include/SFML/Graphics/Color.hpp \
- C:/mingw64/include/SFML/Graphics/PrimitiveType.hpp \
- C:/mingw64/include/SFML/Graphics/ConvexShape.hpp \
- C:/mingw64/include/SFML/Graphics/Font.hpp \
- C:/mingw64/include/SFML/Graphics/Glyph.hpp \
- C:/mingw64/include/SFML/Graphics/Texture.hpp \
- C:/mingw64/include/SFML/Graphics/Image.hpp \
+ C:/Users/ariel/Downloads/SFML-2.6.2-windows-gcc-13.1.0-mingw-64-bit/SFML-2.6.2/include/SFML/Window/WindowStyle.hpp \
+ C:/Users/ariel/Downloads/SFML-2.6.2-windows-gcc-13.1.0-mingw-64-bit/SFML-2.6.2/include/SFML/Graphics/BlendMode.hpp \
+ C:/Users/ariel/Downloads/SFML-2.6.2-windows-gcc-13.1.0-mingw-64-bit/SFML-2.6.2/include/SFML/Graphics/Export.hpp \
+ C:/Users/ariel/Downloads/SFML-2.6.2-windows-gcc-13.1.0-mingw-64-bit/SFML-2.6.2/include/SFML/Graphics/CircleShape.hpp \
+ C:/Users/ariel/Downloads/SFML-2.6.2-windows-gcc-13.1.0-mingw-64-bit/SFML-2.6.2/include/SFML/Graphics/Shape.hpp \
+ C:/Users/ariel/Downloads/SFML-2.6.2-windows-gcc-13.1.0-mingw-64-bit/SFML-2.6.2/include/SFML/Graphics/Drawable.hpp \
+ C:/Users/ariel/Downloads/SFML-2.6.2-windows-gcc-13.1.0-mingw-64-bit/SFML-2.6.2/include/SFML/Graphics/RenderStates.hpp \
+ C:/Users/ariel/Downloads/SFML-2.6.2-windows-gcc-13.1.0-mingw-64-bit/SFML-2.6.2/include/SFML/Graphics/Transform.hpp \
+ C:/Users/ariel/Downloads/SFML-2.6.2-windows-gcc-13.1.0-mingw-64-bit/SFML-2.6.2/include/SFML/Graphics/Rect.hpp \
+ C:/Users/ariel/Downloads/SFML-2.6.2-windows-gcc-13.1.0-mingw-64-bit/SFML-2.6.2/include/SFML/Graphics/Rect.inl \
+ C:/Users/ariel/Downloads/SFML-2.6.2-windows-gcc-13.1.0-mingw-64-bit/SFML-2.6.2/include/SFML/Graphics/Transformable.hpp \
+ C:/Users/ariel/Downloads/SFML-2.6.2-windows-gcc-13.1.0-mingw-64-bit/SFML-2.6.2/include/SFML/Graphics/VertexArray.hpp \
+ C:/Users/ariel/Downloads/SFML-2.6.2-windows-gcc-13.1.0-mingw-64-bit/SFML-2.6.2/include/SFML/Graphics/Vertex.hpp \
+ C:/Users/ariel/Downloads/SFML-2.6.2-windows-gcc-13.1.0-mingw-64-bit/SFML-2.6.2/include/SFML/Graphics/Color.hpp \
+ C:/Users/ariel/Downloads/SFML-2.6.2-windows-gcc-13.1.0-mingw-64-bit/SFML-2.6.2/include/SFML/Graphics/PrimitiveType.hpp \
+ C:/Users/ariel/Downloads/SFML-2.6.2-windows-gcc-13.1.0-mingw-64-bit/SFML-2.6.2/include/SFML/Graphics/ConvexShape.hpp \
+ C:/Users/ariel/Downloads/SFML-2.6.2-windows-gcc-13.1.0-mingw-64-bit/SFML-2.6.2/include/SFML/Graphics/Font.hpp \
+ C:/Users/ariel/Downloads/SFML-2.6.2-windows-gcc-13.1.0-mingw-64-bit/SFML-2.6.2/include/SFML/Graphics/Glyph.hpp \
+ C:/Users/ariel/Downloads/SFML-2.6.2-windows-gcc-13.1.0-mingw-64-bit/SFML-2.6.2/include/SFML/Graphics/Texture.hpp \
+ C:/Users/ariel/Downloads/SFML-2.6.2-windows-gcc-13.1.0-mingw-64-bit/SFML-2.6.2/include/SFML/Graphics/Image.hpp \
  C:/Program\ Files/JetBrains/CLion\ 2024.3.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/map \
  C:/Program\ Files/JetBrains/CLion\ 2024.3.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/stl_tree.h \
  C:/Program\ Files/JetBrains/CLion\ 2024.3.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/ext/aligned_buffer.h \
@@ -247,17 +247,83 @@ CMakeFiles/towerdefence.dir/main.cpp.obj: \
  C:/Program\ Files/JetBrains/CLion\ 2024.3.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/stl_map.h \
  C:/Program\ Files/JetBrains/CLion\ 2024.3.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/stl_multimap.h \
  C:/Program\ Files/JetBrains/CLion\ 2024.3.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/erase_if.h \
- C:/mingw64/include/SFML/Graphics/RectangleShape.hpp \
- C:/mingw64/include/SFML/Graphics/RenderTarget.hpp \
- C:/mingw64/include/SFML/Graphics/View.hpp \
- C:/mingw64/include/SFML/Graphics/RenderTexture.hpp \
- C:/mingw64/include/SFML/Graphics/RenderWindow.hpp \
- C:/mingw64/include/SFML/Graphics/Shader.hpp \
- C:/mingw64/include/SFML/Graphics/Glsl.hpp \
- C:/mingw64/include/SFML/Graphics/Glsl.inl \
- C:/mingw64/include/SFML/Graphics/Sprite.hpp \
- C:/mingw64/include/SFML/Graphics/Text.hpp \
- C:/mingw64/include/SFML/Graphics/VertexBuffer.hpp \
- C:\Users\ariel\CLionProjects\towerdefence\Map.h \
+ C:/Users/ariel/Downloads/SFML-2.6.2-windows-gcc-13.1.0-mingw-64-bit/SFML-2.6.2/include/SFML/Graphics/RectangleShape.hpp \
+ C:/Users/ariel/Downloads/SFML-2.6.2-windows-gcc-13.1.0-mingw-64-bit/SFML-2.6.2/include/SFML/Graphics/RenderTarget.hpp \
+ C:/Users/ariel/Downloads/SFML-2.6.2-windows-gcc-13.1.0-mingw-64-bit/SFML-2.6.2/include/SFML/Graphics/View.hpp \
+ C:/Users/ariel/Downloads/SFML-2.6.2-windows-gcc-13.1.0-mingw-64-bit/SFML-2.6.2/include/SFML/Graphics/RenderTexture.hpp \
+ C:/Users/ariel/Downloads/SFML-2.6.2-windows-gcc-13.1.0-mingw-64-bit/SFML-2.6.2/include/SFML/Graphics/RenderWindow.hpp \
+ C:/Users/ariel/Downloads/SFML-2.6.2-windows-gcc-13.1.0-mingw-64-bit/SFML-2.6.2/include/SFML/Graphics/Shader.hpp \
+ C:/Users/ariel/Downloads/SFML-2.6.2-windows-gcc-13.1.0-mingw-64-bit/SFML-2.6.2/include/SFML/Graphics/Glsl.hpp \
+ C:/Users/ariel/Downloads/SFML-2.6.2-windows-gcc-13.1.0-mingw-64-bit/SFML-2.6.2/include/SFML/Graphics/Glsl.inl \
+ C:/Users/ariel/Downloads/SFML-2.6.2-windows-gcc-13.1.0-mingw-64-bit/SFML-2.6.2/include/SFML/Graphics/Sprite.hpp \
+ C:/Users/ariel/Downloads/SFML-2.6.2-windows-gcc-13.1.0-mingw-64-bit/SFML-2.6.2/include/SFML/Graphics/Text.hpp \
+ C:/Users/ariel/Downloads/SFML-2.6.2-windows-gcc-13.1.0-mingw-64-bit/SFML-2.6.2/include/SFML/Graphics/VertexBuffer.hpp \
+ C:/Users/ariel/OneDrive/Documentos/GitHub/towerdefence/MODELO/Map.h \
+ C:/Users/ariel/OneDrive/Documentos/GitHub/towerdefence/CONTROLADOR/Const.h \
  C:/Program\ Files/JetBrains/CLion\ 2024.3.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/utility \
- C:/Program\ Files/JetBrains/CLion\ 2024.3.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/stl_relops.h
+ C:/Program\ Files/JetBrains/CLion\ 2024.3.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/stl_relops.h \
+ C:/Users/ariel/OneDrive/Documentos/GitHub/towerdefence/VISTA/View.h \
+ C:/Program\ Files/JetBrains/CLion\ 2024.3.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/deque \
+ C:/Program\ Files/JetBrains/CLion\ 2024.3.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/stl_deque.h \
+ C:/Program\ Files/JetBrains/CLion\ 2024.3.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/deque.tcc \
+ C:/Users/ariel/OneDrive/Documentos/GitHub/towerdefence/MODELO/Enemigos/Wave.h \
+ C:/Users/ariel/OneDrive/Documentos/GitHub/towerdefence/MODELO/Enemigos/Enemy.h \
+ C:/Program\ Files/JetBrains/CLion\ 2024.3.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/sstream \
+ C:/Program\ Files/JetBrains/CLion\ 2024.3.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/istream \
+ C:/Program\ Files/JetBrains/CLion\ 2024.3.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/istream.tcc \
+ C:/Program\ Files/JetBrains/CLion\ 2024.3.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/sstream.tcc \
+ C:/Program\ Files/JetBrains/CLion\ 2024.3.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/random \
+ C:/Program\ Files/JetBrains/CLion\ 2024.3.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/cmath \
+ C:/Program\ Files/JetBrains/CLion\ 2024.3.4/bin/mingw/x86_64-w64-mingw32/include/math.h \
+ C:/Program\ Files/JetBrains/CLion\ 2024.3.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/specfun.h \
+ C:/Program\ Files/JetBrains/CLion\ 2024.3.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/limits \
+ C:/Program\ Files/JetBrains/CLion\ 2024.3.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/tr1/gamma.tcc \
+ C:/Program\ Files/JetBrains/CLion\ 2024.3.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/tr1/special_function_util.h \
+ C:/Program\ Files/JetBrains/CLion\ 2024.3.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/tr1/bessel_function.tcc \
+ C:/Program\ Files/JetBrains/CLion\ 2024.3.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/tr1/beta_function.tcc \
+ C:/Program\ Files/JetBrains/CLion\ 2024.3.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/tr1/ell_integral.tcc \
+ C:/Program\ Files/JetBrains/CLion\ 2024.3.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/tr1/exp_integral.tcc \
+ C:/Program\ Files/JetBrains/CLion\ 2024.3.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/tr1/hypergeometric.tcc \
+ C:/Program\ Files/JetBrains/CLion\ 2024.3.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/tr1/legendre_function.tcc \
+ C:/Program\ Files/JetBrains/CLion\ 2024.3.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/tr1/modified_bessel_func.tcc \
+ C:/Program\ Files/JetBrains/CLion\ 2024.3.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/tr1/poly_hermite.tcc \
+ C:/Program\ Files/JetBrains/CLion\ 2024.3.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/tr1/poly_laguerre.tcc \
+ C:/Program\ Files/JetBrains/CLion\ 2024.3.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/tr1/riemann_zeta.tcc \
+ C:/Program\ Files/JetBrains/CLion\ 2024.3.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/cstdint \
+ C:/Program\ Files/JetBrains/CLion\ 2024.3.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/random.h \
+ C:/Program\ Files/JetBrains/CLion\ 2024.3.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/x86_64-w64-mingw32/bits/opt_random.h \
+ C:/Program\ Files/JetBrains/CLion\ 2024.3.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/pmmintrin.h \
+ C:/Program\ Files/JetBrains/CLion\ 2024.3.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/emmintrin.h \
+ C:/Program\ Files/JetBrains/CLion\ 2024.3.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/xmmintrin.h \
+ C:/Program\ Files/JetBrains/CLion\ 2024.3.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/mmintrin.h \
+ C:/Program\ Files/JetBrains/CLion\ 2024.3.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/mwaitintrin.h \
+ C:/Program\ Files/JetBrains/CLion\ 2024.3.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/random.tcc \
+ C:/Program\ Files/JetBrains/CLion\ 2024.3.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/numeric \
+ C:/Program\ Files/JetBrains/CLion\ 2024.3.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/stl_numeric.h \
+ C:/Program\ Files/JetBrains/CLion\ 2024.3.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/pstl/glue_numeric_defs.h \
+ C:/Program\ Files/JetBrains/CLion\ 2024.3.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/iostream \
+ C:/Program\ Files/JetBrains/CLion\ 2024.3.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/memory \
+ C:/Program\ Files/JetBrains/CLion\ 2024.3.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/stl_raw_storage_iter.h \
+ C:/Program\ Files/JetBrains/CLion\ 2024.3.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/align.h \
+ C:/Program\ Files/JetBrains/CLion\ 2024.3.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/unique_ptr.h \
+ C:/Program\ Files/JetBrains/CLion\ 2024.3.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/shared_ptr.h \
+ C:/Program\ Files/JetBrains/CLion\ 2024.3.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/shared_ptr_base.h \
+ C:/Program\ Files/JetBrains/CLion\ 2024.3.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/allocated_ptr.h \
+ C:/Program\ Files/JetBrains/CLion\ 2024.3.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/ext/concurrence.h \
+ C:/Program\ Files/JetBrains/CLion\ 2024.3.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/shared_ptr_atomic.h \
+ C:/Program\ Files/JetBrains/CLion\ 2024.3.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/atomic_base.h \
+ C:/Program\ Files/JetBrains/CLion\ 2024.3.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/atomic_lockfree_defines.h \
+ C:/Program\ Files/JetBrains/CLion\ 2024.3.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/atomic_wait.h \
+ C:/Program\ Files/JetBrains/CLion\ 2024.3.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/std_mutex.h \
+ C:/Program\ Files/JetBrains/CLion\ 2024.3.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/backward/auto_ptr.h \
+ C:/Program\ Files/JetBrains/CLion\ 2024.3.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/ranges_uninitialized.h \
+ C:/Program\ Files/JetBrains/CLion\ 2024.3.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/pstl/glue_memory_defs.h \
+ C:/Program\ Files/JetBrains/CLion\ 2024.3.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/iomanip \
+ C:/Program\ Files/JetBrains/CLion\ 2024.3.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/quoted_string.h \
+ C:/Users/ariel/OneDrive/Documentos/GitHub/towerdefence/MODELO/Enemigos/EnemyController.h \
+ C:/Users/ariel/OneDrive/Documentos/GitHub/towerdefence/VISTA/VisualEnemy.h \
+ C:/Users/ariel/OneDrive/Documentos/GitHub/towerdefence/MODELO/Enemigos/Enemy.h \
+ C:/Users/ariel/OneDrive/Documentos/GitHub/towerdefence/MODELO/Torre/Torre.h \
+ C:\Users\ariel\OneDrive\Documentos\GitHub\towerdefence\CONTROLADOR/Const.h \
+ C:/Users/ariel/OneDrive/Documentos/GitHub/towerdefence/MODELO/Torre/Torre_Arco.h \
+ C:/Users/ariel/OneDrive/Documentos/GitHub/towerdefence/MODELO/Torre/Torre.h

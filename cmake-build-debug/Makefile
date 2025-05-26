@@ -56,10 +56,10 @@ RM = "C:\Program Files\JetBrains\CLion 2024.3.4\bin\cmake\win\x64\bin\cmake.exe"
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = C:\Users\ariel\CLionProjects\towerdefence
+CMAKE_SOURCE_DIR = C:\Users\ariel\OneDrive\Documentos\GitHub\towerdefence
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = C:\Users\ariel\CLionProjects\towerdefence\cmake-build-debug
+CMAKE_BINARY_DIR = C:\Users\ariel\OneDrive\Documentos\GitHub\towerdefence\cmake-build-debug
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -86,9 +86,9 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\ariel\CLionProjects\towerdefence\cmake-build-debug\CMakeFiles C:\Users\ariel\CLionProjects\towerdefence\cmake-build-debug\\CMakeFiles\progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\ariel\OneDrive\Documentos\GitHub\towerdefence\cmake-build-debug\CMakeFiles C:\Users\ariel\OneDrive\Documentos\GitHub\towerdefence\cmake-build-debug\\CMakeFiles\progress.marks
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\ariel\CLionProjects\towerdefence\cmake-build-debug\CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\ariel\OneDrive\Documentos\GitHub\towerdefence\cmake-build-debug\CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -128,29 +128,221 @@ towerdefence/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\towerdefence.dir\build.make CMakeFiles/towerdefence.dir/build
 .PHONY : towerdefence/fast
 
-Map.obj: Map.cpp.obj
-.PHONY : Map.obj
+CONTROLADOR/Controler.obj: CONTROLADOR/Controler.cpp.obj
+.PHONY : CONTROLADOR/Controler.obj
 
 # target to build an object file
-Map.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\towerdefence.dir\build.make CMakeFiles/towerdefence.dir/Map.cpp.obj
-.PHONY : Map.cpp.obj
+CONTROLADOR/Controler.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\towerdefence.dir\build.make CMakeFiles/towerdefence.dir/CONTROLADOR/Controler.cpp.obj
+.PHONY : CONTROLADOR/Controler.cpp.obj
 
-Map.i: Map.cpp.i
-.PHONY : Map.i
+CONTROLADOR/Controler.i: CONTROLADOR/Controler.cpp.i
+.PHONY : CONTROLADOR/Controler.i
 
 # target to preprocess a source file
-Map.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\towerdefence.dir\build.make CMakeFiles/towerdefence.dir/Map.cpp.i
-.PHONY : Map.cpp.i
+CONTROLADOR/Controler.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\towerdefence.dir\build.make CMakeFiles/towerdefence.dir/CONTROLADOR/Controler.cpp.i
+.PHONY : CONTROLADOR/Controler.cpp.i
 
-Map.s: Map.cpp.s
-.PHONY : Map.s
+CONTROLADOR/Controler.s: CONTROLADOR/Controler.cpp.s
+.PHONY : CONTROLADOR/Controler.s
 
 # target to generate assembly for a file
-Map.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\towerdefence.dir\build.make CMakeFiles/towerdefence.dir/Map.cpp.s
-.PHONY : Map.cpp.s
+CONTROLADOR/Controler.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\towerdefence.dir\build.make CMakeFiles/towerdefence.dir/CONTROLADOR/Controler.cpp.s
+.PHONY : CONTROLADOR/Controler.cpp.s
+
+MODELO/Enemigos/Enemy.obj: MODELO/Enemigos/Enemy.cpp.obj
+.PHONY : MODELO/Enemigos/Enemy.obj
+
+# target to build an object file
+MODELO/Enemigos/Enemy.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\towerdefence.dir\build.make CMakeFiles/towerdefence.dir/MODELO/Enemigos/Enemy.cpp.obj
+.PHONY : MODELO/Enemigos/Enemy.cpp.obj
+
+MODELO/Enemigos/Enemy.i: MODELO/Enemigos/Enemy.cpp.i
+.PHONY : MODELO/Enemigos/Enemy.i
+
+# target to preprocess a source file
+MODELO/Enemigos/Enemy.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\towerdefence.dir\build.make CMakeFiles/towerdefence.dir/MODELO/Enemigos/Enemy.cpp.i
+.PHONY : MODELO/Enemigos/Enemy.cpp.i
+
+MODELO/Enemigos/Enemy.s: MODELO/Enemigos/Enemy.cpp.s
+.PHONY : MODELO/Enemigos/Enemy.s
+
+# target to generate assembly for a file
+MODELO/Enemigos/Enemy.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\towerdefence.dir\build.make CMakeFiles/towerdefence.dir/MODELO/Enemigos/Enemy.cpp.s
+.PHONY : MODELO/Enemigos/Enemy.cpp.s
+
+MODELO/Enemigos/EnemyController.obj: MODELO/Enemigos/EnemyController.cpp.obj
+.PHONY : MODELO/Enemigos/EnemyController.obj
+
+# target to build an object file
+MODELO/Enemigos/EnemyController.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\towerdefence.dir\build.make CMakeFiles/towerdefence.dir/MODELO/Enemigos/EnemyController.cpp.obj
+.PHONY : MODELO/Enemigos/EnemyController.cpp.obj
+
+MODELO/Enemigos/EnemyController.i: MODELO/Enemigos/EnemyController.cpp.i
+.PHONY : MODELO/Enemigos/EnemyController.i
+
+# target to preprocess a source file
+MODELO/Enemigos/EnemyController.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\towerdefence.dir\build.make CMakeFiles/towerdefence.dir/MODELO/Enemigos/EnemyController.cpp.i
+.PHONY : MODELO/Enemigos/EnemyController.cpp.i
+
+MODELO/Enemigos/EnemyController.s: MODELO/Enemigos/EnemyController.cpp.s
+.PHONY : MODELO/Enemigos/EnemyController.s
+
+# target to generate assembly for a file
+MODELO/Enemigos/EnemyController.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\towerdefence.dir\build.make CMakeFiles/towerdefence.dir/MODELO/Enemigos/EnemyController.cpp.s
+.PHONY : MODELO/Enemigos/EnemyController.cpp.s
+
+MODELO/Enemigos/Wave.obj: MODELO/Enemigos/Wave.cpp.obj
+.PHONY : MODELO/Enemigos/Wave.obj
+
+# target to build an object file
+MODELO/Enemigos/Wave.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\towerdefence.dir\build.make CMakeFiles/towerdefence.dir/MODELO/Enemigos/Wave.cpp.obj
+.PHONY : MODELO/Enemigos/Wave.cpp.obj
+
+MODELO/Enemigos/Wave.i: MODELO/Enemigos/Wave.cpp.i
+.PHONY : MODELO/Enemigos/Wave.i
+
+# target to preprocess a source file
+MODELO/Enemigos/Wave.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\towerdefence.dir\build.make CMakeFiles/towerdefence.dir/MODELO/Enemigos/Wave.cpp.i
+.PHONY : MODELO/Enemigos/Wave.cpp.i
+
+MODELO/Enemigos/Wave.s: MODELO/Enemigos/Wave.cpp.s
+.PHONY : MODELO/Enemigos/Wave.s
+
+# target to generate assembly for a file
+MODELO/Enemigos/Wave.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\towerdefence.dir\build.make CMakeFiles/towerdefence.dir/MODELO/Enemigos/Wave.cpp.s
+.PHONY : MODELO/Enemigos/Wave.cpp.s
+
+MODELO/Map.obj: MODELO/Map.cpp.obj
+.PHONY : MODELO/Map.obj
+
+# target to build an object file
+MODELO/Map.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\towerdefence.dir\build.make CMakeFiles/towerdefence.dir/MODELO/Map.cpp.obj
+.PHONY : MODELO/Map.cpp.obj
+
+MODELO/Map.i: MODELO/Map.cpp.i
+.PHONY : MODELO/Map.i
+
+# target to preprocess a source file
+MODELO/Map.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\towerdefence.dir\build.make CMakeFiles/towerdefence.dir/MODELO/Map.cpp.i
+.PHONY : MODELO/Map.cpp.i
+
+MODELO/Map.s: MODELO/Map.cpp.s
+.PHONY : MODELO/Map.s
+
+# target to generate assembly for a file
+MODELO/Map.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\towerdefence.dir\build.make CMakeFiles/towerdefence.dir/MODELO/Map.cpp.s
+.PHONY : MODELO/Map.cpp.s
+
+MODELO/Torre/Torre_Arco.obj: MODELO/Torre/Torre_Arco.cpp.obj
+.PHONY : MODELO/Torre/Torre_Arco.obj
+
+# target to build an object file
+MODELO/Torre/Torre_Arco.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\towerdefence.dir\build.make CMakeFiles/towerdefence.dir/MODELO/Torre/Torre_Arco.cpp.obj
+.PHONY : MODELO/Torre/Torre_Arco.cpp.obj
+
+MODELO/Torre/Torre_Arco.i: MODELO/Torre/Torre_Arco.cpp.i
+.PHONY : MODELO/Torre/Torre_Arco.i
+
+# target to preprocess a source file
+MODELO/Torre/Torre_Arco.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\towerdefence.dir\build.make CMakeFiles/towerdefence.dir/MODELO/Torre/Torre_Arco.cpp.i
+.PHONY : MODELO/Torre/Torre_Arco.cpp.i
+
+MODELO/Torre/Torre_Arco.s: MODELO/Torre/Torre_Arco.cpp.s
+.PHONY : MODELO/Torre/Torre_Arco.s
+
+# target to generate assembly for a file
+MODELO/Torre/Torre_Arco.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\towerdefence.dir\build.make CMakeFiles/towerdefence.dir/MODELO/Torre/Torre_Arco.cpp.s
+.PHONY : MODELO/Torre/Torre_Arco.cpp.s
+
+MODELO/Torre/Torre_Artillero.obj: MODELO/Torre/Torre_Artillero.cpp.obj
+.PHONY : MODELO/Torre/Torre_Artillero.obj
+
+# target to build an object file
+MODELO/Torre/Torre_Artillero.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\towerdefence.dir\build.make CMakeFiles/towerdefence.dir/MODELO/Torre/Torre_Artillero.cpp.obj
+.PHONY : MODELO/Torre/Torre_Artillero.cpp.obj
+
+MODELO/Torre/Torre_Artillero.i: MODELO/Torre/Torre_Artillero.cpp.i
+.PHONY : MODELO/Torre/Torre_Artillero.i
+
+# target to preprocess a source file
+MODELO/Torre/Torre_Artillero.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\towerdefence.dir\build.make CMakeFiles/towerdefence.dir/MODELO/Torre/Torre_Artillero.cpp.i
+.PHONY : MODELO/Torre/Torre_Artillero.cpp.i
+
+MODELO/Torre/Torre_Artillero.s: MODELO/Torre/Torre_Artillero.cpp.s
+.PHONY : MODELO/Torre/Torre_Artillero.s
+
+# target to generate assembly for a file
+MODELO/Torre/Torre_Artillero.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\towerdefence.dir\build.make CMakeFiles/towerdefence.dir/MODELO/Torre/Torre_Artillero.cpp.s
+.PHONY : MODELO/Torre/Torre_Artillero.cpp.s
+
+MODELO/Torre/Torre_Mago.obj: MODELO/Torre/Torre_Mago.cpp.obj
+.PHONY : MODELO/Torre/Torre_Mago.obj
+
+# target to build an object file
+MODELO/Torre/Torre_Mago.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\towerdefence.dir\build.make CMakeFiles/towerdefence.dir/MODELO/Torre/Torre_Mago.cpp.obj
+.PHONY : MODELO/Torre/Torre_Mago.cpp.obj
+
+MODELO/Torre/Torre_Mago.i: MODELO/Torre/Torre_Mago.cpp.i
+.PHONY : MODELO/Torre/Torre_Mago.i
+
+# target to preprocess a source file
+MODELO/Torre/Torre_Mago.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\towerdefence.dir\build.make CMakeFiles/towerdefence.dir/MODELO/Torre/Torre_Mago.cpp.i
+.PHONY : MODELO/Torre/Torre_Mago.cpp.i
+
+MODELO/Torre/Torre_Mago.s: MODELO/Torre/Torre_Mago.cpp.s
+.PHONY : MODELO/Torre/Torre_Mago.s
+
+# target to generate assembly for a file
+MODELO/Torre/Torre_Mago.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\towerdefence.dir\build.make CMakeFiles/towerdefence.dir/MODELO/Torre/Torre_Mago.cpp.s
+.PHONY : MODELO/Torre/Torre_Mago.cpp.s
+
+VISTA/View.obj: VISTA/View.cpp.obj
+.PHONY : VISTA/View.obj
+
+# target to build an object file
+VISTA/View.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\towerdefence.dir\build.make CMakeFiles/towerdefence.dir/VISTA/View.cpp.obj
+.PHONY : VISTA/View.cpp.obj
+
+VISTA/View.i: VISTA/View.cpp.i
+.PHONY : VISTA/View.i
+
+# target to preprocess a source file
+VISTA/View.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\towerdefence.dir\build.make CMakeFiles/towerdefence.dir/VISTA/View.cpp.i
+.PHONY : VISTA/View.cpp.i
+
+VISTA/View.s: VISTA/View.cpp.s
+.PHONY : VISTA/View.s
+
+# target to generate assembly for a file
+VISTA/View.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\towerdefence.dir\build.make CMakeFiles/towerdefence.dir/VISTA/View.cpp.s
+.PHONY : VISTA/View.cpp.s
 
 main.obj: main.cpp.obj
 .PHONY : main.obj
@@ -185,9 +377,33 @@ help:
 	@echo ... edit_cache
 	@echo ... rebuild_cache
 	@echo ... towerdefence
-	@echo ... Map.obj
-	@echo ... Map.i
-	@echo ... Map.s
+	@echo ... CONTROLADOR/Controler.obj
+	@echo ... CONTROLADOR/Controler.i
+	@echo ... CONTROLADOR/Controler.s
+	@echo ... MODELO/Enemigos/Enemy.obj
+	@echo ... MODELO/Enemigos/Enemy.i
+	@echo ... MODELO/Enemigos/Enemy.s
+	@echo ... MODELO/Enemigos/EnemyController.obj
+	@echo ... MODELO/Enemigos/EnemyController.i
+	@echo ... MODELO/Enemigos/EnemyController.s
+	@echo ... MODELO/Enemigos/Wave.obj
+	@echo ... MODELO/Enemigos/Wave.i
+	@echo ... MODELO/Enemigos/Wave.s
+	@echo ... MODELO/Map.obj
+	@echo ... MODELO/Map.i
+	@echo ... MODELO/Map.s
+	@echo ... MODELO/Torre/Torre_Arco.obj
+	@echo ... MODELO/Torre/Torre_Arco.i
+	@echo ... MODELO/Torre/Torre_Arco.s
+	@echo ... MODELO/Torre/Torre_Artillero.obj
+	@echo ... MODELO/Torre/Torre_Artillero.i
+	@echo ... MODELO/Torre/Torre_Artillero.s
+	@echo ... MODELO/Torre/Torre_Mago.obj
+	@echo ... MODELO/Torre/Torre_Mago.i
+	@echo ... MODELO/Torre/Torre_Mago.s
+	@echo ... VISTA/View.obj
+	@echo ... VISTA/View.i
+	@echo ... VISTA/View.s
 	@echo ... main.obj
 	@echo ... main.i
 	@echo ... main.s

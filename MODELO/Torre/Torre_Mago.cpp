@@ -13,10 +13,10 @@ int Torre_Mago::Atacar() {
     if (nivel == 1) {
         if (Enfriamiento == 0) {
             if (AtaqueEspecialAct) {
-                Enfriamiento = 10;
+                Enfriamiento = 250;
             }
             else {
-                Enfriamiento = 2000;
+                Enfriamiento = 500;
             }
             damage = 5;
         }
@@ -24,10 +24,10 @@ int Torre_Mago::Atacar() {
     else if (nivel == 2) {
         if (Enfriamiento == 0) {
             if (AtaqueEspecialAct) {
-                Enfriamiento = 500;
+                Enfriamiento = 125;
             }
             else {
-                Enfriamiento = 1000;
+                Enfriamiento = 250;
             }
             damage = 10;
         }
@@ -35,10 +35,10 @@ int Torre_Mago::Atacar() {
     else if (nivel == 3) {
         if (Enfriamiento == 0) {
             if (AtaqueEspecialAct) {
-                Enfriamiento = 250;
+                Enfriamiento = 60;
             }
             else {
-                Enfriamiento = 500;
+                Enfriamiento = 125;
             }
 
             damage = 20;

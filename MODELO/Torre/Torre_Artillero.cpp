@@ -16,19 +16,19 @@ int Torre_Artillero::Atacar() {
     int damage = 0;
     if (nivel == 1) {
         if (Enfriamiento == 0) {
-            Enfriamiento = 8000;
+            Enfriamiento = 4000;
             damage = 50;
         }
     }
     else if (nivel == 2) {
         if (Enfriamiento == 0) {
-            Enfriamiento = 6000;
+            Enfriamiento = 3000;
             damage = 100;
         }
     }
     else if (nivel == 3) {
         if (Enfriamiento == 0) {
-            Enfriamiento = 4000;
+            Enfriamiento = 2000;
             damage = 200;
         }
     }
@@ -96,7 +96,7 @@ void Torre_Artillero::AtacarEnemigo(std::vector<std::shared_ptr<EnemyController>
                     EnfriamientoEspecial--;
                 }
                 if (EnfriamientoEspecial <= 0) {
-                    dano = 1000;
+                    dano = 100000;
                     if (nivel == 1) {
                         EnfriamientoEspecial = 10;
                     }

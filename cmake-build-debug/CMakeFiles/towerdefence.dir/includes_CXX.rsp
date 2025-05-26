@@ -1,1 +1,1 @@
--isystem C:/mingw64/include
+-IC:/Users/ariel/OneDrive/Documentos/GitHub/towerdefence/MODELO -IC:/Users/ariel/OneDrive/Documentos/GitHub/towerdefence/CONTROLADOR -IC:/Users/ariel/OneDrive/Documentos/GitHub/towerdefence/VISTA -isystem "C:/Users/ariel/Downloads/SFML-2.6.2-windows-gcc-13.1.0-mingw-64-bit/SFML-2.6.2/include"

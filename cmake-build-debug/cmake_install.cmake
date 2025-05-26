@@ -1,4 +1,4 @@
-# Install script for directory: C:/Users/ariel/CLionProjects/towerdefence
+# Install script for directory: C:/Users/ariel/OneDrive/Documentos/GitHub/towerdefence
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -52,6 +52,6 @@ endif()
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-  file(WRITE "C:/Users/ariel/CLionProjects/towerdefence/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
+  file(WRITE "C:/Users/ariel/OneDrive/Documentos/GitHub/towerdefence/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")
 endif()

@@ -52,10 +52,10 @@ RM = "C:\Program Files\JetBrains\CLion 2024.3.4\bin\cmake\win\x64\bin\cmake.exe"
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = C:\Users\ariel\CLionProjects\towerdefence
+CMAKE_SOURCE_DIR = C:\Users\ariel\OneDrive\Documentos\GitHub\towerdefence
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = C:\Users\ariel\CLionProjects\towerdefence\cmake-build-debug
+CMAKE_BINARY_DIR = C:\Users\ariel\OneDrive\Documentos\GitHub\towerdefence\cmake-build-debug
 
 # Include any dependencies generated for this target.
 include CMakeFiles/towerdefence.dir/depend.make
@@ -70,52 +70,188 @@ include CMakeFiles/towerdefence.dir/flags.make
 
 CMakeFiles/towerdefence.dir/main.cpp.obj: CMakeFiles/towerdefence.dir/flags.make
 CMakeFiles/towerdefence.dir/main.cpp.obj: CMakeFiles/towerdefence.dir/includes_CXX.rsp
-CMakeFiles/towerdefence.dir/main.cpp.obj: C:/Users/ariel/CLionProjects/towerdefence/main.cpp
+CMakeFiles/towerdefence.dir/main.cpp.obj: C:/Users/ariel/OneDrive/Documentos/GitHub/towerdefence/main.cpp
 CMakeFiles/towerdefence.dir/main.cpp.obj: CMakeFiles/towerdefence.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\ariel\CLionProjects\towerdefence\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/towerdefence.dir/main.cpp.obj"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.4\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/towerdefence.dir/main.cpp.obj -MF CMakeFiles\towerdefence.dir\main.cpp.obj.d -o CMakeFiles\towerdefence.dir\main.cpp.obj -c C:\Users\ariel\CLionProjects\towerdefence\main.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\ariel\OneDrive\Documentos\GitHub\towerdefence\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/towerdefence.dir/main.cpp.obj"
+	C:\PROGRA~1\JETBRA~1\CLION2~1.4\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/towerdefence.dir/main.cpp.obj -MF CMakeFiles\towerdefence.dir\main.cpp.obj.d -o CMakeFiles\towerdefence.dir\main.cpp.obj -c C:\Users\ariel\OneDrive\Documentos\GitHub\towerdefence\main.cpp
 
 CMakeFiles/towerdefence.dir/main.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/towerdefence.dir/main.cpp.i"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.4\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\ariel\CLionProjects\towerdefence\main.cpp > CMakeFiles\towerdefence.dir\main.cpp.i
+	C:\PROGRA~1\JETBRA~1\CLION2~1.4\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\ariel\OneDrive\Documentos\GitHub\towerdefence\main.cpp > CMakeFiles\towerdefence.dir\main.cpp.i
 
 CMakeFiles/towerdefence.dir/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/towerdefence.dir/main.cpp.s"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.4\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\ariel\CLionProjects\towerdefence\main.cpp -o CMakeFiles\towerdefence.dir\main.cpp.s
+	C:\PROGRA~1\JETBRA~1\CLION2~1.4\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\ariel\OneDrive\Documentos\GitHub\towerdefence\main.cpp -o CMakeFiles\towerdefence.dir\main.cpp.s
 
-CMakeFiles/towerdefence.dir/Map.cpp.obj: CMakeFiles/towerdefence.dir/flags.make
-CMakeFiles/towerdefence.dir/Map.cpp.obj: CMakeFiles/towerdefence.dir/includes_CXX.rsp
-CMakeFiles/towerdefence.dir/Map.cpp.obj: C:/Users/ariel/CLionProjects/towerdefence/Map.cpp
-CMakeFiles/towerdefence.dir/Map.cpp.obj: CMakeFiles/towerdefence.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\ariel\CLionProjects\towerdefence\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/towerdefence.dir/Map.cpp.obj"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.4\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/towerdefence.dir/Map.cpp.obj -MF CMakeFiles\towerdefence.dir\Map.cpp.obj.d -o CMakeFiles\towerdefence.dir\Map.cpp.obj -c C:\Users\ariel\CLionProjects\towerdefence\Map.cpp
+CMakeFiles/towerdefence.dir/VISTA/View.cpp.obj: CMakeFiles/towerdefence.dir/flags.make
+CMakeFiles/towerdefence.dir/VISTA/View.cpp.obj: CMakeFiles/towerdefence.dir/includes_CXX.rsp
+CMakeFiles/towerdefence.dir/VISTA/View.cpp.obj: C:/Users/ariel/OneDrive/Documentos/GitHub/towerdefence/VISTA/View.cpp
+CMakeFiles/towerdefence.dir/VISTA/View.cpp.obj: CMakeFiles/towerdefence.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\ariel\OneDrive\Documentos\GitHub\towerdefence\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/towerdefence.dir/VISTA/View.cpp.obj"
+	C:\PROGRA~1\JETBRA~1\CLION2~1.4\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/towerdefence.dir/VISTA/View.cpp.obj -MF CMakeFiles\towerdefence.dir\VISTA\View.cpp.obj.d -o CMakeFiles\towerdefence.dir\VISTA\View.cpp.obj -c C:\Users\ariel\OneDrive\Documentos\GitHub\towerdefence\VISTA\View.cpp
 
-CMakeFiles/towerdefence.dir/Map.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/towerdefence.dir/Map.cpp.i"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.4\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\ariel\CLionProjects\towerdefence\Map.cpp > CMakeFiles\towerdefence.dir\Map.cpp.i
+CMakeFiles/towerdefence.dir/VISTA/View.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/towerdefence.dir/VISTA/View.cpp.i"
+	C:\PROGRA~1\JETBRA~1\CLION2~1.4\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\ariel\OneDrive\Documentos\GitHub\towerdefence\VISTA\View.cpp > CMakeFiles\towerdefence.dir\VISTA\View.cpp.i
 
-CMakeFiles/towerdefence.dir/Map.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/towerdefence.dir/Map.cpp.s"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.4\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\ariel\CLionProjects\towerdefence\Map.cpp -o CMakeFiles\towerdefence.dir\Map.cpp.s
+CMakeFiles/towerdefence.dir/VISTA/View.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/towerdefence.dir/VISTA/View.cpp.s"
+	C:\PROGRA~1\JETBRA~1\CLION2~1.4\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\ariel\OneDrive\Documentos\GitHub\towerdefence\VISTA\View.cpp -o CMakeFiles\towerdefence.dir\VISTA\View.cpp.s
+
+CMakeFiles/towerdefence.dir/CONTROLADOR/Controler.cpp.obj: CMakeFiles/towerdefence.dir/flags.make
+CMakeFiles/towerdefence.dir/CONTROLADOR/Controler.cpp.obj: CMakeFiles/towerdefence.dir/includes_CXX.rsp
+CMakeFiles/towerdefence.dir/CONTROLADOR/Controler.cpp.obj: C:/Users/ariel/OneDrive/Documentos/GitHub/towerdefence/CONTROLADOR/Controler.cpp
+CMakeFiles/towerdefence.dir/CONTROLADOR/Controler.cpp.obj: CMakeFiles/towerdefence.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\ariel\OneDrive\Documentos\GitHub\towerdefence\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/towerdefence.dir/CONTROLADOR/Controler.cpp.obj"
+	C:\PROGRA~1\JETBRA~1\CLION2~1.4\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/towerdefence.dir/CONTROLADOR/Controler.cpp.obj -MF CMakeFiles\towerdefence.dir\CONTROLADOR\Controler.cpp.obj.d -o CMakeFiles\towerdefence.dir\CONTROLADOR\Controler.cpp.obj -c C:\Users\ariel\OneDrive\Documentos\GitHub\towerdefence\CONTROLADOR\Controler.cpp
+
+CMakeFiles/towerdefence.dir/CONTROLADOR/Controler.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/towerdefence.dir/CONTROLADOR/Controler.cpp.i"
+	C:\PROGRA~1\JETBRA~1\CLION2~1.4\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\ariel\OneDrive\Documentos\GitHub\towerdefence\CONTROLADOR\Controler.cpp > CMakeFiles\towerdefence.dir\CONTROLADOR\Controler.cpp.i
+
+CMakeFiles/towerdefence.dir/CONTROLADOR/Controler.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/towerdefence.dir/CONTROLADOR/Controler.cpp.s"
+	C:\PROGRA~1\JETBRA~1\CLION2~1.4\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\ariel\OneDrive\Documentos\GitHub\towerdefence\CONTROLADOR\Controler.cpp -o CMakeFiles\towerdefence.dir\CONTROLADOR\Controler.cpp.s
+
+CMakeFiles/towerdefence.dir/MODELO/Map.cpp.obj: CMakeFiles/towerdefence.dir/flags.make
+CMakeFiles/towerdefence.dir/MODELO/Map.cpp.obj: CMakeFiles/towerdefence.dir/includes_CXX.rsp
+CMakeFiles/towerdefence.dir/MODELO/Map.cpp.obj: C:/Users/ariel/OneDrive/Documentos/GitHub/towerdefence/MODELO/Map.cpp
+CMakeFiles/towerdefence.dir/MODELO/Map.cpp.obj: CMakeFiles/towerdefence.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\ariel\OneDrive\Documentos\GitHub\towerdefence\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/towerdefence.dir/MODELO/Map.cpp.obj"
+	C:\PROGRA~1\JETBRA~1\CLION2~1.4\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/towerdefence.dir/MODELO/Map.cpp.obj -MF CMakeFiles\towerdefence.dir\MODELO\Map.cpp.obj.d -o CMakeFiles\towerdefence.dir\MODELO\Map.cpp.obj -c C:\Users\ariel\OneDrive\Documentos\GitHub\towerdefence\MODELO\Map.cpp
+
+CMakeFiles/towerdefence.dir/MODELO/Map.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/towerdefence.dir/MODELO/Map.cpp.i"
+	C:\PROGRA~1\JETBRA~1\CLION2~1.4\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\ariel\OneDrive\Documentos\GitHub\towerdefence\MODELO\Map.cpp > CMakeFiles\towerdefence.dir\MODELO\Map.cpp.i
+
+CMakeFiles/towerdefence.dir/MODELO/Map.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/towerdefence.dir/MODELO/Map.cpp.s"
+	C:\PROGRA~1\JETBRA~1\CLION2~1.4\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\ariel\OneDrive\Documentos\GitHub\towerdefence\MODELO\Map.cpp -o CMakeFiles\towerdefence.dir\MODELO\Map.cpp.s
+
+CMakeFiles/towerdefence.dir/MODELO/Enemigos/Wave.cpp.obj: CMakeFiles/towerdefence.dir/flags.make
+CMakeFiles/towerdefence.dir/MODELO/Enemigos/Wave.cpp.obj: CMakeFiles/towerdefence.dir/includes_CXX.rsp
+CMakeFiles/towerdefence.dir/MODELO/Enemigos/Wave.cpp.obj: C:/Users/ariel/OneDrive/Documentos/GitHub/towerdefence/MODELO/Enemigos/Wave.cpp
+CMakeFiles/towerdefence.dir/MODELO/Enemigos/Wave.cpp.obj: CMakeFiles/towerdefence.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\ariel\OneDrive\Documentos\GitHub\towerdefence\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/towerdefence.dir/MODELO/Enemigos/Wave.cpp.obj"
+	C:\PROGRA~1\JETBRA~1\CLION2~1.4\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/towerdefence.dir/MODELO/Enemigos/Wave.cpp.obj -MF CMakeFiles\towerdefence.dir\MODELO\Enemigos\Wave.cpp.obj.d -o CMakeFiles\towerdefence.dir\MODELO\Enemigos\Wave.cpp.obj -c C:\Users\ariel\OneDrive\Documentos\GitHub\towerdefence\MODELO\Enemigos\Wave.cpp
+
+CMakeFiles/towerdefence.dir/MODELO/Enemigos/Wave.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/towerdefence.dir/MODELO/Enemigos/Wave.cpp.i"
+	C:\PROGRA~1\JETBRA~1\CLION2~1.4\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\ariel\OneDrive\Documentos\GitHub\towerdefence\MODELO\Enemigos\Wave.cpp > CMakeFiles\towerdefence.dir\MODELO\Enemigos\Wave.cpp.i
+
+CMakeFiles/towerdefence.dir/MODELO/Enemigos/Wave.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/towerdefence.dir/MODELO/Enemigos/Wave.cpp.s"
+	C:\PROGRA~1\JETBRA~1\CLION2~1.4\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\ariel\OneDrive\Documentos\GitHub\towerdefence\MODELO\Enemigos\Wave.cpp -o CMakeFiles\towerdefence.dir\MODELO\Enemigos\Wave.cpp.s
+
+CMakeFiles/towerdefence.dir/MODELO/Enemigos/Enemy.cpp.obj: CMakeFiles/towerdefence.dir/flags.make
+CMakeFiles/towerdefence.dir/MODELO/Enemigos/Enemy.cpp.obj: CMakeFiles/towerdefence.dir/includes_CXX.rsp
+CMakeFiles/towerdefence.dir/MODELO/Enemigos/Enemy.cpp.obj: C:/Users/ariel/OneDrive/Documentos/GitHub/towerdefence/MODELO/Enemigos/Enemy.cpp
+CMakeFiles/towerdefence.dir/MODELO/Enemigos/Enemy.cpp.obj: CMakeFiles/towerdefence.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\ariel\OneDrive\Documentos\GitHub\towerdefence\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/towerdefence.dir/MODELO/Enemigos/Enemy.cpp.obj"
+	C:\PROGRA~1\JETBRA~1\CLION2~1.4\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/towerdefence.dir/MODELO/Enemigos/Enemy.cpp.obj -MF CMakeFiles\towerdefence.dir\MODELO\Enemigos\Enemy.cpp.obj.d -o CMakeFiles\towerdefence.dir\MODELO\Enemigos\Enemy.cpp.obj -c C:\Users\ariel\OneDrive\Documentos\GitHub\towerdefence\MODELO\Enemigos\Enemy.cpp
+
+CMakeFiles/towerdefence.dir/MODELO/Enemigos/Enemy.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/towerdefence.dir/MODELO/Enemigos/Enemy.cpp.i"
+	C:\PROGRA~1\JETBRA~1\CLION2~1.4\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\ariel\OneDrive\Documentos\GitHub\towerdefence\MODELO\Enemigos\Enemy.cpp > CMakeFiles\towerdefence.dir\MODELO\Enemigos\Enemy.cpp.i
+
+CMakeFiles/towerdefence.dir/MODELO/Enemigos/Enemy.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/towerdefence.dir/MODELO/Enemigos/Enemy.cpp.s"
+	C:\PROGRA~1\JETBRA~1\CLION2~1.4\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\ariel\OneDrive\Documentos\GitHub\towerdefence\MODELO\Enemigos\Enemy.cpp -o CMakeFiles\towerdefence.dir\MODELO\Enemigos\Enemy.cpp.s
+
+CMakeFiles/towerdefence.dir/MODELO/Torre/Torre_Arco.cpp.obj: CMakeFiles/towerdefence.dir/flags.make
+CMakeFiles/towerdefence.dir/MODELO/Torre/Torre_Arco.cpp.obj: CMakeFiles/towerdefence.dir/includes_CXX.rsp
+CMakeFiles/towerdefence.dir/MODELO/Torre/Torre_Arco.cpp.obj: C:/Users/ariel/OneDrive/Documentos/GitHub/towerdefence/MODELO/Torre/Torre_Arco.cpp
+CMakeFiles/towerdefence.dir/MODELO/Torre/Torre_Arco.cpp.obj: CMakeFiles/towerdefence.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\ariel\OneDrive\Documentos\GitHub\towerdefence\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/towerdefence.dir/MODELO/Torre/Torre_Arco.cpp.obj"
+	C:\PROGRA~1\JETBRA~1\CLION2~1.4\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/towerdefence.dir/MODELO/Torre/Torre_Arco.cpp.obj -MF CMakeFiles\towerdefence.dir\MODELO\Torre\Torre_Arco.cpp.obj.d -o CMakeFiles\towerdefence.dir\MODELO\Torre\Torre_Arco.cpp.obj -c C:\Users\ariel\OneDrive\Documentos\GitHub\towerdefence\MODELO\Torre\Torre_Arco.cpp
+
+CMakeFiles/towerdefence.dir/MODELO/Torre/Torre_Arco.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/towerdefence.dir/MODELO/Torre/Torre_Arco.cpp.i"
+	C:\PROGRA~1\JETBRA~1\CLION2~1.4\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\ariel\OneDrive\Documentos\GitHub\towerdefence\MODELO\Torre\Torre_Arco.cpp > CMakeFiles\towerdefence.dir\MODELO\Torre\Torre_Arco.cpp.i
+
+CMakeFiles/towerdefence.dir/MODELO/Torre/Torre_Arco.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/towerdefence.dir/MODELO/Torre/Torre_Arco.cpp.s"
+	C:\PROGRA~1\JETBRA~1\CLION2~1.4\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\ariel\OneDrive\Documentos\GitHub\towerdefence\MODELO\Torre\Torre_Arco.cpp -o CMakeFiles\towerdefence.dir\MODELO\Torre\Torre_Arco.cpp.s
+
+CMakeFiles/towerdefence.dir/MODELO/Torre/Torre_Artillero.cpp.obj: CMakeFiles/towerdefence.dir/flags.make
+CMakeFiles/towerdefence.dir/MODELO/Torre/Torre_Artillero.cpp.obj: CMakeFiles/towerdefence.dir/includes_CXX.rsp
+CMakeFiles/towerdefence.dir/MODELO/Torre/Torre_Artillero.cpp.obj: C:/Users/ariel/OneDrive/Documentos/GitHub/towerdefence/MODELO/Torre/Torre_Artillero.cpp
+CMakeFiles/towerdefence.dir/MODELO/Torre/Torre_Artillero.cpp.obj: CMakeFiles/towerdefence.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\ariel\OneDrive\Documentos\GitHub\towerdefence\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/towerdefence.dir/MODELO/Torre/Torre_Artillero.cpp.obj"
+	C:\PROGRA~1\JETBRA~1\CLION2~1.4\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/towerdefence.dir/MODELO/Torre/Torre_Artillero.cpp.obj -MF CMakeFiles\towerdefence.dir\MODELO\Torre\Torre_Artillero.cpp.obj.d -o CMakeFiles\towerdefence.dir\MODELO\Torre\Torre_Artillero.cpp.obj -c C:\Users\ariel\OneDrive\Documentos\GitHub\towerdefence\MODELO\Torre\Torre_Artillero.cpp
+
+CMakeFiles/towerdefence.dir/MODELO/Torre/Torre_Artillero.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/towerdefence.dir/MODELO/Torre/Torre_Artillero.cpp.i"
+	C:\PROGRA~1\JETBRA~1\CLION2~1.4\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\ariel\OneDrive\Documentos\GitHub\towerdefence\MODELO\Torre\Torre_Artillero.cpp > CMakeFiles\towerdefence.dir\MODELO\Torre\Torre_Artillero.cpp.i
+
+CMakeFiles/towerdefence.dir/MODELO/Torre/Torre_Artillero.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/towerdefence.dir/MODELO/Torre/Torre_Artillero.cpp.s"
+	C:\PROGRA~1\JETBRA~1\CLION2~1.4\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\ariel\OneDrive\Documentos\GitHub\towerdefence\MODELO\Torre\Torre_Artillero.cpp -o CMakeFiles\towerdefence.dir\MODELO\Torre\Torre_Artillero.cpp.s
+
+CMakeFiles/towerdefence.dir/MODELO/Enemigos/EnemyController.cpp.obj: CMakeFiles/towerdefence.dir/flags.make
+CMakeFiles/towerdefence.dir/MODELO/Enemigos/EnemyController.cpp.obj: CMakeFiles/towerdefence.dir/includes_CXX.rsp
+CMakeFiles/towerdefence.dir/MODELO/Enemigos/EnemyController.cpp.obj: C:/Users/ariel/OneDrive/Documentos/GitHub/towerdefence/MODELO/Enemigos/EnemyController.cpp
+CMakeFiles/towerdefence.dir/MODELO/Enemigos/EnemyController.cpp.obj: CMakeFiles/towerdefence.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\ariel\OneDrive\Documentos\GitHub\towerdefence\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/towerdefence.dir/MODELO/Enemigos/EnemyController.cpp.obj"
+	C:\PROGRA~1\JETBRA~1\CLION2~1.4\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/towerdefence.dir/MODELO/Enemigos/EnemyController.cpp.obj -MF CMakeFiles\towerdefence.dir\MODELO\Enemigos\EnemyController.cpp.obj.d -o CMakeFiles\towerdefence.dir\MODELO\Enemigos\EnemyController.cpp.obj -c C:\Users\ariel\OneDrive\Documentos\GitHub\towerdefence\MODELO\Enemigos\EnemyController.cpp
+
+CMakeFiles/towerdefence.dir/MODELO/Enemigos/EnemyController.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/towerdefence.dir/MODELO/Enemigos/EnemyController.cpp.i"
+	C:\PROGRA~1\JETBRA~1\CLION2~1.4\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\ariel\OneDrive\Documentos\GitHub\towerdefence\MODELO\Enemigos\EnemyController.cpp > CMakeFiles\towerdefence.dir\MODELO\Enemigos\EnemyController.cpp.i
+
+CMakeFiles/towerdefence.dir/MODELO/Enemigos/EnemyController.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/towerdefence.dir/MODELO/Enemigos/EnemyController.cpp.s"
+	C:\PROGRA~1\JETBRA~1\CLION2~1.4\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\ariel\OneDrive\Documentos\GitHub\towerdefence\MODELO\Enemigos\EnemyController.cpp -o CMakeFiles\towerdefence.dir\MODELO\Enemigos\EnemyController.cpp.s
+
+CMakeFiles/towerdefence.dir/MODELO/Torre/Torre_Mago.cpp.obj: CMakeFiles/towerdefence.dir/flags.make
+CMakeFiles/towerdefence.dir/MODELO/Torre/Torre_Mago.cpp.obj: CMakeFiles/towerdefence.dir/includes_CXX.rsp
+CMakeFiles/towerdefence.dir/MODELO/Torre/Torre_Mago.cpp.obj: C:/Users/ariel/OneDrive/Documentos/GitHub/towerdefence/MODELO/Torre/Torre_Mago.cpp
+CMakeFiles/towerdefence.dir/MODELO/Torre/Torre_Mago.cpp.obj: CMakeFiles/towerdefence.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\ariel\OneDrive\Documentos\GitHub\towerdefence\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/towerdefence.dir/MODELO/Torre/Torre_Mago.cpp.obj"
+	C:\PROGRA~1\JETBRA~1\CLION2~1.4\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/towerdefence.dir/MODELO/Torre/Torre_Mago.cpp.obj -MF CMakeFiles\towerdefence.dir\MODELO\Torre\Torre_Mago.cpp.obj.d -o CMakeFiles\towerdefence.dir\MODELO\Torre\Torre_Mago.cpp.obj -c C:\Users\ariel\OneDrive\Documentos\GitHub\towerdefence\MODELO\Torre\Torre_Mago.cpp
+
+CMakeFiles/towerdefence.dir/MODELO/Torre/Torre_Mago.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/towerdefence.dir/MODELO/Torre/Torre_Mago.cpp.i"
+	C:\PROGRA~1\JETBRA~1\CLION2~1.4\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\ariel\OneDrive\Documentos\GitHub\towerdefence\MODELO\Torre\Torre_Mago.cpp > CMakeFiles\towerdefence.dir\MODELO\Torre\Torre_Mago.cpp.i
+
+CMakeFiles/towerdefence.dir/MODELO/Torre/Torre_Mago.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/towerdefence.dir/MODELO/Torre/Torre_Mago.cpp.s"
+	C:\PROGRA~1\JETBRA~1\CLION2~1.4\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\ariel\OneDrive\Documentos\GitHub\towerdefence\MODELO\Torre\Torre_Mago.cpp -o CMakeFiles\towerdefence.dir\MODELO\Torre\Torre_Mago.cpp.s
 
 # Object files for target towerdefence
 towerdefence_OBJECTS = \
 "CMakeFiles/towerdefence.dir/main.cpp.obj" \
-"CMakeFiles/towerdefence.dir/Map.cpp.obj"
+"CMakeFiles/towerdefence.dir/VISTA/View.cpp.obj" \
+"CMakeFiles/towerdefence.dir/CONTROLADOR/Controler.cpp.obj" \
+"CMakeFiles/towerdefence.dir/MODELO/Map.cpp.obj" \
+"CMakeFiles/towerdefence.dir/MODELO/Enemigos/Wave.cpp.obj" \
+"CMakeFiles/towerdefence.dir/MODELO/Enemigos/Enemy.cpp.obj" \
+"CMakeFiles/towerdefence.dir/MODELO/Torre/Torre_Arco.cpp.obj" \
+"CMakeFiles/towerdefence.dir/MODELO/Torre/Torre_Artillero.cpp.obj" \
+"CMakeFiles/towerdefence.dir/MODELO/Enemigos/EnemyController.cpp.obj" \
+"CMakeFiles/towerdefence.dir/MODELO/Torre/Torre_Mago.cpp.obj"
 
 # External object files for target towerdefence
 towerdefence_EXTERNAL_OBJECTS =
 
 towerdefence.exe: CMakeFiles/towerdefence.dir/main.cpp.obj
-towerdefence.exe: CMakeFiles/towerdefence.dir/Map.cpp.obj
+towerdefence.exe: CMakeFiles/towerdefence.dir/VISTA/View.cpp.obj
+towerdefence.exe: CMakeFiles/towerdefence.dir/CONTROLADOR/Controler.cpp.obj
+towerdefence.exe: CMakeFiles/towerdefence.dir/MODELO/Map.cpp.obj
+towerdefence.exe: CMakeFiles/towerdefence.dir/MODELO/Enemigos/Wave.cpp.obj
+towerdefence.exe: CMakeFiles/towerdefence.dir/MODELO/Enemigos/Enemy.cpp.obj
+towerdefence.exe: CMakeFiles/towerdefence.dir/MODELO/Torre/Torre_Arco.cpp.obj
+towerdefence.exe: CMakeFiles/towerdefence.dir/MODELO/Torre/Torre_Artillero.cpp.obj
+towerdefence.exe: CMakeFiles/towerdefence.dir/MODELO/Enemigos/EnemyController.cpp.obj
+towerdefence.exe: CMakeFiles/towerdefence.dir/MODELO/Torre/Torre_Mago.cpp.obj
 towerdefence.exe: CMakeFiles/towerdefence.dir/build.make
-towerdefence.exe: C:/mingw64/lib/libsfml-graphics-d.a
-towerdefence.exe: C:/mingw64/lib/libsfml-window-d.a
-towerdefence.exe: C:/mingw64/lib/libsfml-system-d.a
+towerdefence.exe: C:/Users/ariel/Downloads/SFML-2.6.2-windows-gcc-13.1.0-mingw-64-bit/SFML-2.6.2/lib/libsfml-graphics-d.a
+towerdefence.exe: C:/Users/ariel/Downloads/SFML-2.6.2-windows-gcc-13.1.0-mingw-64-bit/SFML-2.6.2/lib/libsfml-window-d.a
+towerdefence.exe: C:/Users/ariel/Downloads/SFML-2.6.2-windows-gcc-13.1.0-mingw-64-bit/SFML-2.6.2/lib/libsfml-system-d.a
 towerdefence.exe: CMakeFiles/towerdefence.dir/linkLibs.rsp
 towerdefence.exe: CMakeFiles/towerdefence.dir/objects1.rsp
 towerdefence.exe: CMakeFiles/towerdefence.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=C:\Users\ariel\CLionProjects\towerdefence\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX executable towerdefence.exe"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=C:\Users\ariel\OneDrive\Documentos\GitHub\towerdefence\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Linking CXX executable towerdefence.exe"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles\towerdefence.dir\link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -127,6 +263,6 @@ CMakeFiles/towerdefence.dir/clean:
 .PHONY : CMakeFiles/towerdefence.dir/clean
 
 CMakeFiles/towerdefence.dir/depend:
-	$(CMAKE_COMMAND) -E cmake_depends "MinGW Makefiles" C:\Users\ariel\CLionProjects\towerdefence C:\Users\ariel\CLionProjects\towerdefence C:\Users\ariel\CLionProjects\towerdefence\cmake-build-debug C:\Users\ariel\CLionProjects\towerdefence\cmake-build-debug C:\Users\ariel\CLionProjects\towerdefence\cmake-build-debug\CMakeFiles\towerdefence.dir\DependInfo.cmake "--color=$(COLOR)"
+	$(CMAKE_COMMAND) -E cmake_depends "MinGW Makefiles" C:\Users\ariel\OneDrive\Documentos\GitHub\towerdefence C:\Users\ariel\OneDrive\Documentos\GitHub\towerdefence C:\Users\ariel\OneDrive\Documentos\GitHub\towerdefence\cmake-build-debug C:\Users\ariel\OneDrive\Documentos\GitHub\towerdefence\cmake-build-debug C:\Users\ariel\OneDrive\Documentos\GitHub\towerdefence\cmake-build-debug\CMakeFiles\towerdefence.dir\DependInfo.cmake "--color=$(COLOR)"
 .PHONY : CMakeFiles/towerdefence.dir/depend
 

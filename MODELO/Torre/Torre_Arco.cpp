@@ -12,19 +12,19 @@ int Torre_Arco::Atacar() {
     int damage = 0;
     if (nivel == 1) {
         if (Enfriamiento == 0) {
-            Enfriamiento = 5000;
+            Enfriamiento = 2500;
             damage = 10;
         }
     }
     else if (nivel == 2) {
         if (Enfriamiento == 0) {
-            Enfriamiento = 4000;
+            Enfriamiento = 2000;
             damage = 30;
         }
     }
     else if (nivel == 3) {
         if (Enfriamiento == 0) {
-            Enfriamiento = 2500;
+            Enfriamiento = 1250;
             damage = 60;
         }
     }
