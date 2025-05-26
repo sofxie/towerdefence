@@ -25,7 +25,7 @@ public:
     // Dibuja la cantidad de Vida
     void drawVida(int Vida);
     // Proyectar el GameOver
-    void GameOver();
+    void GameOver(int kills);
     //Metodos para el scroll
     void addLogMessage(const std::string& message, const sf::Color& color = sf::Color::White);
     void drawLog();
@@ -80,6 +80,7 @@ private:
     sf::Text txtMutacionesProba;
     sf::Text txtMutacionesOcurridas;
     sf:: Text txtNivelTorre;
+    sf:: Text txtKillsFinales;
 
     float fitnessScrollOffset = 0.f;
     sf::View fitnessView;

@@ -21,7 +21,7 @@ View::View(sf::RenderWindow &window)
     texturebg.loadFromFile("Imagenes/Panel.png");
 
     texCorazon.loadFromFile("Imagenes/Vida.png");
-    textureGO.loadFromFile("Imagenes/GameOver.png");
+    textureGO.loadFromFile("Imagenes/GameMover.jpg");
 
 
     // Imagen de los botones
@@ -72,6 +72,7 @@ View::View(sf::RenderWindow &window)
     initText(txtMutacionesProba, SIZE * 7.3f);
     initText(txtMutacionesOcurridas, SIZE * 7.6f);
     initText(txtNivelTorre, SIZE * 7.0f);
+    initText(txtKillsFinales, SIZE * 3.0f);
 
 
     // Área visible del texto (puedes ajustar tamaño y posición)
@@ -131,12 +132,15 @@ void View::drawVida(int vidas) {
 }
 
 // Funcion Proyecta el GameOver
-void View::GameOver() {
+void View::GameOver(int kills) {
     spriteGO.setTexture(textureGO);
     spriteGO.setScale(static_cast<float>(1000) / textureGO.getSize().x,
     static_cast<float>(600) / textureGO.getSize().y);
     spriteGO.setPosition(0,0);
+    txtKillsFinales.setString("Enemigos eliminados: " + std::to_string(kills));
+    txtKillsFinales.setCharacterSize(SIZE * 2);
     window.draw(spriteGO);
+    window.draw(txtKillsFinales);
 
 }
 

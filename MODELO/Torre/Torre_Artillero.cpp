@@ -9,7 +9,7 @@ using namespace std;
 
 // Constructor por defecto
 Torre_Artillero::Torre_Artillero()
-    : nivel(1), Enfriamiento(2), DistanciaDeAtaque(3), EnfriamientoEspecial(10), TipoAtaque(1), position({-1, -1}){}
+    : nivel(1), Enfriamiento(2), DistanciaDeAtaque(2), EnfriamientoEspecial(10), TipoAtaque(1), position({-1, -1}){}
 
 // Funcion para retornar cantidad de daño
 int Torre_Artillero::Atacar() {
@@ -76,11 +76,11 @@ void Torre_Artillero::AtacarEnemigo(std::vector<std::shared_ptr<EnemyController>
 
         }
         else if (nivel == 2) {
-                dano = 400;
+                dano = 500;
 
         }
         else if (nivel == 3) {
-                dano = 800;
+                dano = 1000;
 
         }
 

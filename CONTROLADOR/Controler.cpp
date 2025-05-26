@@ -388,7 +388,7 @@ void Controler::update() {
 
 
     // Lanzar enemigos uno a uno
-    if (spawnIndex < enemiesToSpawn.size() && spawnClock.getElapsedTime().asSeconds() >= 2.5f) {
+    if (spawnIndex < enemiesToSpawn.size() && spawnClock.getElapsedTime().asSeconds() >= 5.5f) {
         int startX = rutaOleada.front().first;
         int startY = rutaOleada.front().second;
 
@@ -482,7 +482,7 @@ void Controler::update() {
 void Controler::render() {
     window.clear(sf::Color::Black);
     if (Vida <= 0) {
-        vista.GameOver();
+        vista.GameOver(kills);
     } else {
         vista.mapa(grid,celdaColor);
         vista.torres(modoSeleccionado);

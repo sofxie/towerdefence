@@ -5,26 +5,26 @@ using namespace std;
 
 // Constructor por defecto
 Torre_Arco::Torre_Arco()
-    : nivel(1), Enfriamiento(2), DistanciaDeAtaque(2), EnfriamientoEspecial(5), TipoAtaque(1), position({-1, -1}){}
+    : nivel(1), Enfriamiento(2), DistanciaDeAtaque(4), EnfriamientoEspecial(5), TipoAtaque(1), position({-1, -1}){}
 
 // Funcion para retornar cantidad de daño
 int Torre_Arco::Atacar() {
     int damage = 0;
     if (nivel == 1) {
         if (Enfriamiento == 0) {
-            Enfriamiento = 2500;
+            Enfriamiento = 500;
             damage = 10;
         }
     }
     else if (nivel == 2) {
         if (Enfriamiento == 0) {
-            Enfriamiento = 2000;
+            Enfriamiento = 250;
             damage = 30;
         }
     }
     else if (nivel == 3) {
         if (Enfriamiento == 0) {
-            Enfriamiento = 1250;
+            Enfriamiento = 125;
             damage = 60;
         }
     }
