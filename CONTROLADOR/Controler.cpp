@@ -424,7 +424,7 @@ void Controler::update() {
 
 // Rederizar el mapa y los elementos graficos
 void Controler::render() {
-    window.clear();
+    window.clear(sf::Color::Black);
     if (Vida <= 0) {
         vista.GameOver();
     } else {

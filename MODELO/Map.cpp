@@ -214,7 +214,7 @@ bool Map::aEstrellita(int grid[][COL], Pair src, Pair dest) {
 
                 // Si no sale registrado como visitado
                 // agregarlo a la lista
-                if (cellDetails[i-1][j].f == FLT_MAX || cellDetails[i+1][j].f > fNew) {
+                if (cellDetails[i+1][j].f == FLT_MAX || cellDetails[i+1][j].f > fNew) {
                     openList.insert(make_pair(fNew, make_pair(i+1,j)));
 
                     // Actualizar detalles de la celda
@@ -242,7 +242,7 @@ bool Map::aEstrellita(int grid[][COL], Pair src, Pair dest) {
             // Si la celda esta bloqueada o recorrida, ignorar
             else if (closedList[i][j-1] == false && isUnBlocked(grid, i, j-1) == true) {
                 // Calcular heuristica
-                gNew = cellDetails[i][j-1].g + 1.0;
+                gNew = cellDetails[i][j].g + 1.0;
                 hNew = calculateHValue(i, j-1, dest);
                 fNew = gNew + hNew;
 
@@ -276,7 +276,7 @@ bool Map::aEstrellita(int grid[][COL], Pair src, Pair dest) {
             // Si la celda esta bloqueada o recorrida, ignorar
             else if (closedList[i][j+1] == false && isUnBlocked(grid, i, j+1) == true) {
                 // Calcular heuristica
-                gNew = cellDetails[i][j+1].g + 1.0;
+                gNew = cellDetails[i][j].g + 1.0;
                 hNew = calculateHValue(i, j+1, dest);
                 fNew = gNew + hNew;
 
