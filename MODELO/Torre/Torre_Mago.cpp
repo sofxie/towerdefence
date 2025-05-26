@@ -35,7 +35,7 @@ int Torre_Mago::Atacar() {
     else if (nivel == 3) {
         if (Enfriamiento == 0) {
             if (AtaqueEspecialAct) {
-                Enfriamiento = 60;
+                Enfriamiento = 50;
             }
             else {
                 Enfriamiento = 125;
