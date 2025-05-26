@@ -363,22 +363,30 @@ void Controler::update() {
         }
 
         // Actualizar enemigos con el grid y mapa actual
-        for (auto& enemigo : enemigos) {
-            enemigo.actualizar(deltaTime, grid, mapa);  // Pasar grid y mapa
+    for (size_t i = 0; i < enemigos.size(); ++i) {
+        enemigos[i].actualizar(deltaTime, grid, mapa);  // Pasar grid y mapa
 
-            // Revision si ya llego al destino
-            sf::Vector2f posPixel = enemigo.getPositionE();  // posición en píxeles
-            Pair posGrid = {
-                static_cast<int>(posPixel.x / SIZE),  // columna
-                static_cast<int>(posPixel.y / SIZE)   // fila
-            };
-            Pair destino = {8, 0};
-            // Quitar vida al jugador
-            if (posGrid == destino) {
+        // Revisión si ya llegó al destino
+        sf::Vector2f posPixel = enemigos[i].getPositionE();  // posición en píxeles
+        Pair posGrid = {
+            static_cast<int>(posPixel.x / SIZE),  // columna
+            static_cast<int>(posPixel.y / SIZE)   // fila
+        };
+        Pair destino = {8, 0};
+
+        // Quitar vida al jugador
+        if (posGrid == destino) {
+            if (enemigos[i].ya_quite_vida == false) {
                 Vida--;
+                enemigos[i].QuiteV();
+                enemigos[i].Speed(0);
+                listaDeEnemigos[i]->getEnemy()->Cobrar();
                 break;
             }
+            std::cout << Vida << " es la vida actual" << std::endl;
         }
+    }
+
 
         auto posiciones = getPosicionEnemigos();
         for (size_t i = 0; i < posiciones.size(); ++i) {

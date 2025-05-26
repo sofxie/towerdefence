@@ -72,15 +72,15 @@ void Torre_Artillero::AtacarEnemigo(std::vector<std::shared_ptr<EnemyController>
         int dis = DistanciaAtaque();
         int dano = Atacar();  // Si está listo para atacar
         if (nivel == 1) {
-                dano = 100;
-
-        }
-        else if (nivel == 2) {
                 dano = 200;
 
         }
-        else if (nivel == 3) {
+        else if (nivel == 2) {
                 dano = 400;
+
+        }
+        else if (nivel == 3) {
+                dano = 800;
 
         }
 
