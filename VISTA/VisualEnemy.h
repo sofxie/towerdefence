@@ -19,6 +19,7 @@ struct VisualEnemy {
     sf::Vector2f targetPosition;
     sf::RectangleShape shape;
     bool vivo = true;
+    bool ya_quite_vida = false;
 
     VisualEnemy(std::shared_ptr<Enemy> e, const std::vector<Pair>& p)
         : enemy(e), path(p) {
@@ -52,6 +53,9 @@ struct VisualEnemy {
     void Speed(float vel) {
         enemy->setSpeed(vel);
         vivo = false;
+    }
+    void QuiteV() {
+        ya_quite_vida = true;
     }
     void actualizar(float deltaTime, int grid[ROW][COL], Map& mapa) {
         if (currentStep >= path.size() - 1) return;
