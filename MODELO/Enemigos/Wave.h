@@ -30,7 +30,8 @@ private:
 
     std::map<EnemyType, std::vector<float>> currentStats;
     int totalEnemies = 0; // Total de enemigos creados
-    int waveSpawnCount = 0;
+    int waveSpawnCount = 1;
+    int mutationCount = 0;
 
 
 
@@ -51,7 +52,6 @@ public:
     int getGeneration() const; // Devuelve la generación de la oleada
 
     int getMutationCount() const; // Cuenta las mutaciones en la oleada
-    float getMutationProbability() const; // Probabilidad de mutación en la oleada
     int getTotalEnemiesCreated() const;// Devuelve el total de enemigos creados
     int getWaveSpawnCount() const;
 

@@ -128,7 +128,7 @@ void View::GameOver() {
 }
 void View::updateStats(int enemigosEliminados, int oleadaActual, int nivelTorre,
                        const std::vector<std::string>& enemyDescriptions,
-                       float probabilidadMutacion, int mutacionesOcurridas) {
+                       int probabilidadMutacion, int mutacionesOcurridas) {
     txtEnemigosEliminados.setString("Enemigos eliminados: " + std::to_string(enemigosEliminados));
     txtOleada.setString("Numero de Oleada: " + std::to_string(oleadaActual));
     txtMutacionesProba.setString("Probabilidad de mutacion: " + std::to_string(static_cast<int>(probabilidadMutacion)) + "%");

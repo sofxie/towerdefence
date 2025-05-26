@@ -2,11 +2,11 @@
 
 
 Wave::Wave(int gen) : generation(gen), timesGetEnemiesCalled(0) {
+    waveSpawnCount += generation; // Inicializar contador de oleadas
     spawnEnemies();
 }
 
 void Wave::spawnEnemies() { // Generar enemigos
-    waveSpawnCount++;
     enemies.clear();
     std::random_device rd;
     std::mt19937 gen(rd());
@@ -30,6 +30,8 @@ void Wave::spawnEnemies() { // Generar enemigos
 void Wave::evolve() {
     // Incrementar el contador de generación
     generation++;
+    waveSpawnCount++; // Actualizar el contador de oleadas
+    mutationCount++; // Incrementar el contador de mutaciones
 
     // ------------------------------------------------------------
     // 1. ANÁLISIS DE LA GENERACIÓN ACTUAL (para comparación posterior)
@@ -253,71 +255,8 @@ int Wave::getGeneration() const { // Obtener la generación actual
     return generation;
 }
 
-float Wave::getMutationProbability() const {
-    if (previousStats.empty()) return 0.0f;
-
-    int totalEnemiesCompared = 0;
-    int mutatedEnemies = 0;
-
-    for (const auto& [type, stats] : previousStats) {
-        auto it = currentStats.find(type);
-        if (it == currentStats.end()) continue;
-
-        const auto& prev = stats;
-        const auto& curr = it->second;
-
-        int count = prev.size() / 5;
-        totalEnemiesCompared += count;
-
-        for (int i = 0; i < count; ++i) {
-            float prevHealth = prev[i * 5 + 0];
-            float currHealth = curr[i * 5 + 0];
-
-            float prevSpeed = prev[i * 5 + 1];
-            float currSpeed = curr[i * 5 + 1];
-
-            bool mutated = std::abs(currHealth - prevHealth) > 5.0f || std::abs(currSpeed - prevSpeed) > 0.2f;
-
-            if (mutated) mutatedEnemies++;
-        }
-    }
-
-    return totalEnemiesCompared > 0
-        ? (static_cast<float>(mutatedEnemies) / totalEnemiesCompared) * 100.0f
-        : 0.0f;
-}
-
-
 int Wave::getMutationCount() const {
-    if (previousStats.empty()) return 0;
-
-    int mutatedEnemies = 0;
-
-    for (const auto& [type, stats] : previousStats) {
-        auto it = currentStats.find(type);
-        if (it == currentStats.end()) continue;
-
-        const auto& prev = stats;
-        const auto& curr = it->second;
-
-        int count = prev.size() / 5;
-
-        for (int i = 0; i < count; ++i) {
-            float prevHealth = prev[i * 5 + 0];
-            float currHealth = curr[i * 5 + 0];
-
-            float prevSpeed = prev[i * 5 + 1];
-            float currSpeed = curr[i * 5 + 1];
-
-            bool mutated = std::abs(currHealth - prevHealth) > 5.0f || std::abs(currSpeed - prevSpeed) > 0.2f;
-
-            if (mutated) {
-                mutatedEnemies++;
-            }
-        }
-    }
-
-    return mutatedEnemies;
+    return mutationCount;
 }
 
 
@@ -326,25 +265,40 @@ int Wave::getTotalEnemiesCreated() const {
 }
 
 int Wave::getWaveSpawnCount() const {
-    return waveSpawnCount;
+    static bool firstCall = true;
+    if (firstCall) {
+        firstCall = false;
+        return waveSpawnCount - 1;
+    }
+    else {
+        return waveSpawnCount;
+    }
 }
+
+
 
 std::vector<std::string> Wave::getEnemiesStats() const {
     std::vector<std::string> statsList;
-
-    for (const auto& enemy : enemies) {
-        std::ostringstream oss;
-        oss << Enemy::typeToString(enemy->getType()) << " ["
-            << "HP: " << enemy->getHealth() << ", "
-            << "SD: " << std::fixed << std::setprecision(1) << enemy->getSpeed() << ", "
-            << "AR: " << enemy->getArrowResistance() << "%, "
-            << "MR: " << enemy->getMagicResistance() << "%, "
-            << "ATR: " << enemy->getArtilleryResistance() << "%]";
-        statsList.push_back(oss.str());
+    static bool firstCall = true;
+    if (firstCall) {
+        firstCall = false;
+        return statsList; // Retorna vacío en la primera llamada
     }
+    else {
+        for (const auto& enemy : enemies) {
+            std::ostringstream oss;
+            oss << Enemy::typeToString(enemy->getType()) << " "
+                << "HP: " << enemy->getHealth() << ", "
+                << "SD: " << std::fixed << std::setprecision(1) << enemy->getSpeed() << ", "
+                << "AR: " << enemy->getArrowResistance() << "%, "
+                << "MR: " << enemy->getMagicResistance() << "%, "
+                << "ATR: " << enemy->getArtilleryResistance() << "%";
+            statsList.push_back(oss.str());
+        }
 
-    return statsList;
-}
+        return statsList;
+    }
+    }
 
 
 

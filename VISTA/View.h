@@ -32,7 +32,7 @@ public:
     void handleLogEvent(const sf::Event& event);
     void updateStats(int enemigosEliminados, int oleadaActual, int nivelTorre,
                            const std::vector<std::string>& enemyDescriptions,
-                           float probabilidadMutacion, int mutacionesOcurridas);
+                           int probabilidadMutacion, int mutacionesOcurridas);
 
 
 
