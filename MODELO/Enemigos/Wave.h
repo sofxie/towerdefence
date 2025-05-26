@@ -30,9 +30,8 @@ private:
 
     std::map<EnemyType, std::vector<float>> currentStats;
     int totalEnemies = 0; // Total de enemigos creados
-    int waveSpawnCount = 1;
+    int waveSpawnCount = 0;
     int mutationCount = 0;
-
 
 
 

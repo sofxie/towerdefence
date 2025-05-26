@@ -2,7 +2,6 @@
 
 
 Wave::Wave(int gen) : generation(gen), timesGetEnemiesCalled(0) {
-    waveSpawnCount += generation; // Inicializar contador de oleadas
     spawnEnemies();
 }
 
@@ -25,6 +24,7 @@ void Wave::spawnEnemies() { // Generar enemigos
     }
 
     printEnemiesInfo();
+    waveSpawnCount++; // Actualizar el contador de oleadas
 }
 
 void Wave::evolve() {
@@ -279,12 +279,6 @@ int Wave::getWaveSpawnCount() const {
 
 std::vector<std::string> Wave::getEnemiesStats() const {
     std::vector<std::string> statsList;
-    static bool firstCall = true;
-    if (firstCall) {
-        firstCall = false;
-        return statsList; // Retorna vacío en la primera llamada
-    }
-    else {
         for (const auto& enemy : enemies) {
             std::ostringstream oss;
             oss << Enemy::typeToString(enemy->getType()) << " "
@@ -295,10 +289,10 @@ std::vector<std::string> Wave::getEnemiesStats() const {
                 << "ATR: " << enemy->getArtilleryResistance() << "%";
             statsList.push_back(oss.str());
         }
-
         return statsList;
+
     }
-    }
+
 
 
 
