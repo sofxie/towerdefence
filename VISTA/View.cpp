@@ -4,9 +4,10 @@
 #include <sstream>
 #include <string>
 
+
 // Constructor
 View::View(sf::RenderWindow &window)
-    : window(window){ // Botones
+: window(window){ // Botones
 
     // Fuente para texto de Oro
     text.setFont(font);
@@ -57,6 +58,22 @@ View::View(sf::RenderWindow &window)
     spriteBot2.setPosition(SIZE * 12.75, SIZE*4.5);
     spriteBot3.setPosition(SIZE * 14.3, SIZE*4.5);
     spriteBotOleada.setPosition(SIZE * 11.2, SIZE * 3);
+
+    auto initText = [&](sf::Text& txt, float yOffset) {
+        txt.setFont(font);
+        txt.setCharacterSize(14);
+        txt.setFillColor(sf::Color::White);
+        txt.setPosition(SIZE * 11.2f, yOffset);
+    };
+
+    initText(txtEnemigosEliminados, SIZE * 6.4f);
+    initText(txtOleada, SIZE * 6.7f);
+    initText(txtFitness, SIZE * 7.9f);
+    initText(txtMutacionesProba, SIZE * 7.3f);
+    initText(txtMutacionesOcurridas, SIZE * 7.6f);
+    initText(txtNivelTorre, SIZE * 7.0f);
+
+
 }
 
 // Dibujar las celdas del mapa
@@ -109,6 +126,26 @@ void View::GameOver() {
     window.draw(spriteGO);
 
 }
+void View::updateStats(int enemigosEliminados, int oleadaActual, int nivelTorre,
+                       const std::vector<std::string>& enemyDescriptions,
+                       float probabilidadMutacion, int mutacionesOcurridas) {
+    txtEnemigosEliminados.setString("Enemigos eliminados: " + std::to_string(enemigosEliminados));
+    txtOleada.setString("Numero de Oleada: " + std::to_string(oleadaActual));
+    txtMutacionesProba.setString("Probabilidad de mutacion: " + std::to_string(static_cast<int>(probabilidadMutacion)) + "%");
+    txtMutacionesOcurridas.setString("Mutaciones ocurridas: " + std::to_string(mutacionesOcurridas));
+    txtNivelTorre.setString("Nivel de Torre: " + std::to_string(nivelTorre));
+
+    // Mostrar hasta 5 enemigos en pantalla
+    std::string resumenEnemigos = "Enemigos actuales:\n";
+    int count = 0;
+    for (const auto& desc : enemyDescriptions) {
+        resumenEnemigos += "- " + desc + "\n";
+        if (++count >= 5) break;  // Limitar a 5 líneas
+    }
+
+    txtFitness.setString(resumenEnemigos);
+}
+
 
 
 // Efecto resaltado con el cursor
@@ -164,11 +201,24 @@ void View::Color( sf::Sprite celdaColor[ROW][COL]) {
 
 // Dibuja los botones en la interfaz
 void View::Boton() {
+    // Dibujar elementos de la UI
     window.draw(spritebg);
     window.draw(spriteBot1);
     window.draw(spriteBot2);
     window.draw(spriteBot3);
     window.draw(spriteBotOleada);
     window.draw(text);
+    window.draw(txtEnemigosEliminados);
+    window.draw(txtOleada);
+    window.draw(txtFitness);
+    window.draw(txtMutacionesProba);
+    window.draw(txtMutacionesOcurridas);
+    window.draw(txtNivelTorre);
 }
+
+
+
+
+
+
 
