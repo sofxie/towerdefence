@@ -20,14 +20,18 @@ void Wave::spawnEnemies() { // Generar enemigos
             case 2: enemies.push_back(std::make_unique<Harpy>()); break; // Harpy
             case 3: enemies.push_back(std::make_unique<Mercenary>()); break; // Mercenary
         }
+        totalEnemies += baseEnemies;
     }
 
     printEnemiesInfo();
+    waveSpawnCount++; // Actualizar el contador de oleadas
 }
 
 void Wave::evolve() {
     // Incrementar el contador de generación
     generation++;
+    waveSpawnCount++; // Actualizar el contador de oleadas
+    mutationCount++; // Incrementar el contador de mutaciones
 
     // ------------------------------------------------------------
     // 1. ANÁLISIS DE LA GENERACIÓN ACTUAL (para comparación posterior)
@@ -145,7 +149,10 @@ void Wave::evolve() {
 
             // Añadir el nuevo enemigo a la generación
             newGeneration.push_back(std::move(offspring));
+            totalEnemies++;
         }
+
+
     }
 
     // ------------------------------------------------------------
@@ -163,8 +170,12 @@ void Wave::evolve() {
     std::cout << "- Velocidad: +" << (3 + generation * 1) << "% (base)\n";
     std::cout << "- Resistencias: +5% +" << generation << " puntos (máx 95%)\n";
 
+    currentStats = std::move(currentStats); // actualiza la variable miembro
+
     printEvolutionProgress(currentStats);
     printEnemiesInfo();
+
+
 }
 
 // Funcion que imprime el progreso de la evolucion
@@ -240,6 +251,48 @@ const std::vector<std::unique_ptr<Enemy>>& Wave::getEnemies() const {
     return enemies;
 }
 
-int Wave::getGeneration() const {
+int Wave::getGeneration() const { // Obtener la generación actual
     return generation;
 }
+
+int Wave::getMutationCount() const {
+    return mutationCount;
+}
+
+
+int Wave::getTotalEnemiesCreated() const {
+    return totalEnemies;
+}
+
+int Wave::getWaveSpawnCount() const {
+    static bool firstCall = true;
+    if (firstCall) {
+        firstCall = false;
+        return waveSpawnCount - 1;
+    }
+    else {
+        return waveSpawnCount;
+    }
+}
+
+
+
+std::vector<std::string> Wave::getEnemiesStats() const {
+    std::vector<std::string> statsList;
+        for (const auto& enemy : enemies) {
+            std::ostringstream oss;
+            oss << Enemy::typeToString(enemy->getType()) << " \n"
+                << "HP: " << enemy->getHealth() << ", "
+                << "SP:" << std::fixed << std::setprecision(1) << enemy->getSpeed() << ", \n"
+                << "AR: " << enemy->getArrowResistance() << "%, "
+                << "MR: " << enemy->getMagicResistance() << "%, \n"
+                << "AT: " << enemy->getArtilleryResistance() << "%";
+            statsList.push_back(oss.str());
+        }
+        return statsList;
+
+    }
+
+
+
+

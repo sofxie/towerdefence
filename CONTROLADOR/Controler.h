@@ -27,11 +27,14 @@ public:
     void render(); // Proyectar en la interfaz
     void crearOleada(std::vector<Pair> ruta); // Crear oleada de enemigos
     bool oleadasActivas = false; // Comprobar si hay oleadas activas
+    bool activados = false;
     void eliminarenemigos(); // Elimina Enemigos de la lista
     std::vector<std::pair<int, int>> getPosicionEnemigos() const;
     int Oro = 500;
     int Vida = 3;
     int kills = 0;
+    int probabilidad = 0;
+
 
 private:
     sf::RenderWindow window;
@@ -73,10 +76,6 @@ private:
     int spawnIndex = 0;                                  // Índice del siguiente enemigo
     sf::Clock spawnClock;                                // Controla el tiempo entre spawns}
     sf::Clock rutaUpdateClock; // Temporizador para recalcular rutas
-
-
-
-
 };
 
 

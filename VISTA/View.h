@@ -3,6 +3,8 @@
 #include "Const.h"
 #include <SFML/Graphics.hpp>
 #include <string>
+#include <vector>
+#include <deque>
 
 class View {
 public:
@@ -24,6 +26,18 @@ public:
     void drawVida(int Vida);
     // Proyectar el GameOver
     void GameOver();
+    //Metodos para el scroll
+    void addLogMessage(const std::string& message, const sf::Color& color = sf::Color::White);
+    void drawLog();
+    void handleLogEvent(const sf::Event& event);
+    void updateStats(int enemigosEliminados, int oleadaActual, int nivelTorre,
+                           const std::vector<std::string>& enemyDescriptions,
+                           int probabilidadMutacion, int mutacionesOcurridas);
+    float getFitnessScrollOffset() const { return fitnessScrollOffset; }
+    void setFitnessScrollOffset(float offset) { fitnessScrollOffset = offset; }
+
+
+
 
 private:
     sf::RenderWindow& window; // Referencia a la ventana renderizado
@@ -59,8 +73,20 @@ private:
     // Dibuja celdas y colores
     void Celda(const int gric[ROW][COL]);
     void Color( sf::Sprite celdaColor[ROW][COL]);
-};
+    //Estadisticas
+    sf::Text txtEnemigosEliminados;
+    sf::Text txtOleada;
+    sf::Text txtFitness;
+    sf::Text txtMutacionesProba;
+    sf::Text txtMutacionesOcurridas;
+    sf:: Text txtNivelTorre;
 
+    float fitnessScrollOffset = 0.f;
+    sf::View fitnessView;
+    sf::Text fitnessCopy;
+    sf::FloatRect fitnessViewportRect;
+
+};
 
 
 #endif //VIEW_H
