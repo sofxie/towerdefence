@@ -33,6 +33,9 @@ public:
     void updateStats(int enemigosEliminados, int oleadaActual, int nivelTorre,
                            const std::vector<std::string>& enemyDescriptions,
                            int probabilidadMutacion, int mutacionesOcurridas);
+    float getFitnessScrollOffset() const { return fitnessScrollOffset; }
+    void setFitnessScrollOffset(float offset) { fitnessScrollOffset = offset; }
+
 
 
 
@@ -77,6 +80,11 @@ private:
     sf::Text txtMutacionesProba;
     sf::Text txtMutacionesOcurridas;
     sf:: Text txtNivelTorre;
+
+    float fitnessScrollOffset = 0.f;
+    sf::View fitnessView;
+    sf::Text fitnessCopy;
+    sf::FloatRect fitnessViewportRect;
 
 };
 

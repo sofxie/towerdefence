@@ -74,6 +74,19 @@ View::View(sf::RenderWindow &window)
     initText(txtNivelTorre, SIZE * 7.0f);
 
 
+    // Área visible del texto (puedes ajustar tamaño y posición)
+    fitnessViewportRect = {SIZE * 11.2f, SIZE * 7.9f, 220.f, 80.f};
+
+    fitnessView.reset(sf::FloatRect(0.f, 0.f, fitnessViewportRect.width, fitnessViewportRect.height));
+    fitnessView.setViewport(sf::FloatRect(
+        fitnessViewportRect.left / window.getSize().x,
+        fitnessViewportRect.top / window.getSize().y,
+        fitnessViewportRect.width / window.getSize().x,
+        fitnessViewportRect.height / window.getSize().y
+    ));
+
+
+
 }
 
 // Dibujar las celdas del mapa
@@ -126,6 +139,7 @@ void View::GameOver() {
     window.draw(spriteGO);
 
 }
+
 void View::updateStats(int enemigosEliminados, int oleadaActual, int nivelTorre,
                        const std::vector<std::string>& enemyDescriptions,
                        int probabilidadMutacion, int mutacionesOcurridas) {
@@ -135,12 +149,12 @@ void View::updateStats(int enemigosEliminados, int oleadaActual, int nivelTorre,
     txtMutacionesOcurridas.setString("Mutaciones ocurridas: " + std::to_string(mutacionesOcurridas));
     txtNivelTorre.setString("Nivel de Torre: " + std::to_string(nivelTorre));
 
-    // Mostrar hasta 5 enemigos en pantalla
+    // Mostrar hasta 25 enemigos en pantalla
     std::string resumenEnemigos = "Enemigos actuales:\n";
     int count = 0;
     for (const auto& desc : enemyDescriptions) {
         resumenEnemigos += "- " + desc + "\n";
-        if (++count >= 5) break;  // Limitar a 5 líneas
+        if (++count >= 25) break;  // Limitar a 25 líneas
     }
 
     txtFitness.setString(resumenEnemigos);
@@ -199,7 +213,6 @@ void View::Color( sf::Sprite celdaColor[ROW][COL]) {
     }
 }
 
-// Dibuja los botones en la interfaz
 void View::Boton() {
     // Dibujar elementos de la UI
     window.draw(spritebg);
@@ -210,11 +223,33 @@ void View::Boton() {
     window.draw(text);
     window.draw(txtEnemigosEliminados);
     window.draw(txtOleada);
-    window.draw(txtFitness);
     window.draw(txtMutacionesProba);
     window.draw(txtMutacionesOcurridas);
     window.draw(txtNivelTorre);
+
+    // Copiar el texto original
+    fitnessCopy = txtFitness;
+
+    // Posicionar texto alineado con panel y aplicar scroll
+    fitnessCopy.setPosition(fitnessViewportRect.left, fitnessViewportRect.top - fitnessScrollOffset);
+
+    // Guardar vista original
+    sf::View oldView = window.getView();
+
+    // Configurar y usar la vista del scroll
+    fitnessView.setCenter(
+        fitnessViewportRect.left + fitnessViewportRect.width / 2.f,
+        fitnessViewportRect.top + fitnessViewportRect.height / 2.f
+    );
+    window.setView(fitnessView);
+
+    // Dibujar solo el fragmento visible
+    window.draw(fitnessCopy);
+
+    // Restaurar vista original
+    window.setView(oldView);
 }
+
 
 
 
