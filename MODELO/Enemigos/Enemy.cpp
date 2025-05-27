@@ -67,9 +67,9 @@ Ogre::Ogre()
         }(),
 
         // Valores fijos para el resto de parámetros
-        20,   // damage
-        10,   // armor
-        30,   // reward
+        80,
+        10,
+        20,
         EnemyType::Ogre
     ) {}
 
@@ -88,10 +88,10 @@ DarkElf::DarkElf()
         []() { // Speed aleatorio (13.0f-18.0f)
             std::random_device rd;
             std::mt19937 gen(rd());
-            std::uniform_real_distribution<float> dist(13.0f, 18.0f);
+            std::uniform_real_distribution<float> dist(35.0f, 50.0f);
             return dist(gen);
         }(),
-        40, 60, 20, EnemyType::DarkElf
+        10, 80, 20, EnemyType::DarkElf
     ) {}
 
 DarkElf::DarkElf(int hp, float spd, int arRes, int mgRes, int artRes)
@@ -108,10 +108,10 @@ Harpy::Harpy()
         []() { // Speed aleatorio (18.0f-22.0f)
             std::random_device rd;
             std::mt19937 gen(rd());
-            std::uniform_real_distribution<float> dist(18.0f, 22.0f);
+            std::uniform_real_distribution<float> dist(20.0f, 25.0f);
             return dist(gen);
         }(),
-        60, 30, 10, EnemyType::Harpy
+        60, 30, 100, EnemyType::Harpy
     ) {}
 
 // Nota: Corregí un typo (bp -> hp en el constructor parametrizado)
@@ -129,10 +129,10 @@ Mercenary::Mercenary()
         []() { // Speed aleatorio (13.0f-17.0f)
             std::random_device rd;
             std::mt19937 gen(rd());
-            std::uniform_real_distribution<float> dist(13.0f, 17.0f);
+            std::uniform_real_distribution<float> dist(15.0f, 20.0f);
             return dist(gen);
         }(),
-        30, 30, 30, EnemyType::Mercenary
+        80, 20, 80, EnemyType::Mercenary
     ) {}
 
 Mercenary::Mercenary(int hp, float spd, int arRes, int mgRes, int artRes)
