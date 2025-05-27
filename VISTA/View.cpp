@@ -72,7 +72,15 @@ View::View(sf::RenderWindow &window)
     initText(txtMutacionesProba, SIZE * 7.3f);
     initText(txtMutacionesOcurridas, SIZE * 7.6f);
     initText(txtNivelTorre, SIZE * 7.0f);
-    initText(txtKillsFinales, SIZE * 3.0f);
+    //initText(txtKillsFinales, SIZE * 3.0f);
+
+    initText(txtKillsFinales, SIZE * 3.0f);  // Posición actual (X: SIZE*11.2, Y: SIZE*3.0)
+
+    // Para cambiar la posición X, puedes modificar la función initText para este caso específico:
+    txtKillsFinales.setFont(font);
+    txtKillsFinales.setCharacterSize(14);
+    txtKillsFinales.setFillColor(sf::Color::White);
+    txtKillsFinales.setPosition(SIZE * 3.5f, SIZE * 3.0f);  // Cambia NUEVA_POSICION_X por el valor deseado
 
 
     // Área visible del texto (puedes ajustar tamaño y posición)
@@ -138,7 +146,7 @@ void View::GameOver(int kills) {
     static_cast<float>(600) / textureGO.getSize().y);
     spriteGO.setPosition(0,0);
     txtKillsFinales.setString("Enemigos eliminados: " + std::to_string(kills));
-    txtKillsFinales.setCharacterSize(SIZE * 2);
+    txtKillsFinales.setCharacterSize(SIZE * 0.5f);
     window.draw(spriteGO);
     window.draw(txtKillsFinales);
 

@@ -11,7 +11,7 @@ void Wave::spawnEnemies() { // Generar enemigos
     std::mt19937 gen(rd());
     std::uniform_int_distribution<> dist(0, 3); // 0 a 3 (4 tipos de enemigos)
 
-    int baseEnemies = 2 + ((generation / 2) * 2); // 4 + 2 por cada 2 generaciones
+    int baseEnemies = 3 + ((generation / 2) * 2); // 4 + 2 por cada 2 generaciones
 
     for (int i = 0; i < baseEnemies; ++i) {
         switch (dist(gen)) { // Generar enemigos aleatorios
@@ -24,14 +24,12 @@ void Wave::spawnEnemies() { // Generar enemigos
     }
 
     printEnemiesInfo();
-    waveSpawnCount++; // Actualizar el contador de oleadas
+     // Actualizar el contador de oleadas
 }
 
 void Wave::evolve() {
     // Incrementar el contador de generación
     generation++;
-    waveSpawnCount++; // Actualizar el contador de oleadas
-    mutationCount++; // Incrementar el contador de mutaciones
 
     // ------------------------------------------------------------
     // 1. ANÁLISIS DE LA GENERACIÓN ACTUAL (para comparación posterior)
@@ -255,30 +253,15 @@ int Wave::getGeneration() const { // Obtener la generación actual
     return generation;
 }
 
-int Wave::getMutationCount() const {
-    return mutationCount;
-}
 
 
 int Wave::getTotalEnemiesCreated() const {
     return totalEnemies;
 }
 
-int Wave::getWaveSpawnCount() const {
-    static bool firstCall = true;
-    if (firstCall) {
-        firstCall = false;
-        return waveSpawnCount - 1;
-    }
-    else {
-        return waveSpawnCount;
-    }
-}
 
 
-
-std::vector<std::string> Wave::getEnemiesStats() const {
-    std::vector<std::string> statsList;
+std::vector<std::string> Wave::getEnemiesStats() const {std::vector<std::string> statsList;
         for (const auto& enemy : enemies) {
             std::ostringstream oss;
             oss << Enemy::typeToString(enemy->getType()) << " \n"

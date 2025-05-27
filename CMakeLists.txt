@@ -2,8 +2,6 @@ cmake_minimum_required(VERSION 3.30)
 project(towerdefence)
 
 set(CMAKE_CXX_STANDARD 20)
-set(SFML_DIR "C:/Users/ariel/Downloads/SFML-2.6.2-windows-gcc-13.1.0-mingw-64-bit/SFML-2.6.2/lib/cmake/SFML")
-
 find_package(SFML 2.6.2 REQUIRED COMPONENTS system window graphics)
 
 include_directories(MODELO CONTROLADOR VISTA)

@@ -63,11 +63,11 @@ void Controler::crearOleada(std::vector<Pair> ruta) {
     rutaOleada = ruta;
 
     // Nueva wave si es necesario
-    if (wave.getGeneration() != genaracionOleada) {// Si la generación de la oleada no coincide con la actual
+
+    if (llamadasOleadas <2) {// Si la generación de la oleada no coincide con la actual
         llamadasOleadas++;
         wave = Wave(genaracionOleada);
     }
-
 
     if (llamadasOleadas > 2) {
         probabilidad = std::min(100, (llamadasOleadas - 2) * 10); // 90%, 80%, ..., 100%
@@ -77,6 +77,7 @@ void Controler::crearOleada(std::vector<Pair> ruta) {
         std::uniform_int_distribution<> dist(1, 100);
 
         if (dist(gen) <= probabilidad) {
+            mutacionesOcurridas++;
             wave.evolve(); // Evoluciona
         } else {
              Wave(generacionOleada); // No evoluciona, se reinicia la oleada
@@ -356,6 +357,10 @@ void Controler::events() {
                     std::vector<Pair> ruta = mapa.getPath(grid, src, dest);
                     crearOleada(ruta);
                     activados = true; // Activar oleadas
+                    if (PrimerO == 0) {
+                        Oledas++;
+                        PrimerO = 1; // Evitar que se incremente varias veces
+                    }
 
                 }
             }
@@ -377,12 +382,13 @@ void Controler::update() {
     for (auto torre : torres) {
         nivel_torres1 = nivel_torres1 + torre->GetNivel();    }
 
-     vista.updateStats(kills, wave.getWaveSpawnCount(), nivel_torres1,
-           wave.getEnemiesStats() , probabilidad, wave.getMutationCount());
+     vista.updateStats(kills, Oledas, nivel_torres1,
+           wave.getEnemiesStats() , probabilidad, mutacionesOcurridas);
 
 
-    if (activados && oleadasActivas && oleadaClock.getElapsedTime().asSeconds() > 15.5f ){
+    if (activados && oleadasActivas && oleadaClock.getElapsedTime().asSeconds() > 17.5f ){
         std::vector<Pair> ruta = mapa.getPath(grid, src, dest);
+        Oledas++;
         crearOleada(ruta); // Nueva oleada automática
     }
 

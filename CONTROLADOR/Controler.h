@@ -34,6 +34,9 @@ public:
     int Vida = 3;
     int kills = 0;
     int probabilidad = 0;
+    int Oledas = 0; // Contador de oleadas
+    int mutacionesOcurridas = 0; // Contador de mutaciones
+    int PrimerO = 0; // Primer oleada
 
 
 private:
