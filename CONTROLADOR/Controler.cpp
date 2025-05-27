@@ -170,6 +170,8 @@ void Controler::events() {
                             // Revertir torre
                             grid[row][col] = 1;
                             celdaColor[row][col].setColor(sf::Color::Transparent);
+                            torres.pop_back();
+
                         }
                         else {
                             if (Oro < 50) {
@@ -178,6 +180,8 @@ void Controler::events() {
                                 // Revertir torre
                                 grid[row][col] = 1;
                                 celdaColor[row][col].setColor(sf::Color::Transparent);
+                                torres.pop_back();
+
                             }
                             else {
                                 Oro = Oro - 50;
@@ -232,6 +236,8 @@ void Controler::events() {
                             // Revertir torre
                             grid[row][col] = 1;
                             celdaColor[row][col].setColor(sf::Color::Transparent);
+                            torres.pop_back();
+
                         }
                         else {
                             if (Oro < 100) {
@@ -240,6 +246,8 @@ void Controler::events() {
                                 // Revertir torre
                                 grid[row][col] = 1;
                                 celdaColor[row][col].setColor(sf::Color::Transparent);
+                                torres.pop_back();
+
                             }
                             else {
                                 Oro = Oro - 100;
@@ -295,6 +303,8 @@ void Controler::events() {
                             // Revertir torre
                             grid[row][col] = 1;
                             celdaColor[row][col].setColor(sf::Color::Transparent);
+                            torres.pop_back();
+
                         }
                         else {
                             if (Oro < 75) {
@@ -303,6 +313,8 @@ void Controler::events() {
                                 // Revertir torre
                                 grid[row][col] = 1;
                                 celdaColor[row][col].setColor(sf::Color::Transparent);
+                                torres.pop_back();
+
                             }
                             else {
                                 Oro = Oro - 75;
@@ -361,8 +373,11 @@ void Controler::update() {
     vista.Oro(Oro);
 
     float deltaTime = reloj.restart().asSeconds();
+    int nivel_torres1 = 0;
+    for (auto torre : torres) {
+        nivel_torres1 = nivel_torres1 + torre->GetNivel();    }
 
-     vista.updateStats(kills, wave.getWaveSpawnCount(), wave.getTotalEnemiesCreated(),
+     vista.updateStats(kills, wave.getWaveSpawnCount(), nivel_torres1,
            wave.getEnemiesStats() , probabilidad, wave.getMutationCount());
 
 
@@ -373,7 +388,7 @@ void Controler::update() {
 
 
     // Lanzar enemigos uno a uno
-    if (spawnIndex < enemiesToSpawn.size() && spawnClock.getElapsedTime().asSeconds() >= 2.5f) {
+    if (spawnIndex < enemiesToSpawn.size() && spawnClock.getElapsedTime().asSeconds() >= 5.5f) {
         int startX = rutaOleada.front().first;
         int startY = rutaOleada.front().second;
 
@@ -397,22 +412,29 @@ void Controler::update() {
         }
 
         // Actualizar enemigos con el grid y mapa actual
-        for (auto& enemigo : enemigos) {
-            enemigo.actualizar(deltaTime, grid, mapa);  // Pasar grid y mapa
+    for (size_t i = 0; i < enemigos.size(); ++i) {
+        enemigos[i].actualizar(deltaTime, grid, mapa);  // Pasar grid y mapa
 
-            // Revision si ya llego al destino
-            sf::Vector2f posPixel = enemigo.getPositionE();  // posición en píxeles
-            Pair posGrid = {
-                static_cast<int>(posPixel.x / SIZE),  // columna
-                static_cast<int>(posPixel.y / SIZE)   // fila
-            };
-            Pair destino = {8, 0};
-            // Quitar vida al jugador
-            if (posGrid == destino) {
+        // Revisión si ya llegó al destino
+        sf::Vector2f posPixel = enemigos[i].getPositionE();  // posición en píxeles
+        Pair posGrid = {
+            static_cast<int>(posPixel.x / SIZE),  // columna
+            static_cast<int>(posPixel.y / SIZE)   // fila
+        };
+        Pair destino = {8, 0};
+
+        // Quitar vida al jugador
+        if (posGrid == destino) {
+            if (enemigos[i].ya_quite_vida == false) {
                 Vida--;
+                enemigos[i].QuiteV();
+                enemigos[i].Speed(0);
+                listaDeEnemigos[i]->getEnemy()->Cobrar();
                 break;
             }
         }
+    }
+
 
         auto posiciones = getPosicionEnemigos();
         for (size_t i = 0; i < posiciones.size(); ++i) {
@@ -458,9 +480,9 @@ void Controler::update() {
 
 // Rederizar el mapa y los elementos graficos
 void Controler::render() {
-    window.clear();
+    window.clear(sf::Color::Black);
     if (Vida <= 0) {
-        vista.GameOver();
+        vista.GameOver(kills);
     } else {
         vista.mapa(grid,celdaColor);
         vista.torres(modoSeleccionado);

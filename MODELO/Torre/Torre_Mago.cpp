@@ -5,7 +5,7 @@ using namespace std;
 
 // Constructor por defecto
 Torre_Mago::Torre_Mago()
-    : nivel(1), Enfriamiento(2), DistanciaDeAtaque(1), EnfriamientoEspecial(10), TipoAtaque(1), position({-1, -1}), AtaqueEspecialAct(false){}
+    : nivel(1), Enfriamiento(2), DistanciaDeAtaque(3), EnfriamientoEspecial(10), TipoAtaque(1), position({-1, -1}), AtaqueEspecialAct(false){}
 
 // Funcion para retornar cantidad de daño
 int Torre_Mago::Atacar() {
@@ -13,10 +13,10 @@ int Torre_Mago::Atacar() {
     if (nivel == 1) {
         if (Enfriamiento == 0) {
             if (AtaqueEspecialAct) {
-                Enfriamiento = 10;
+                Enfriamiento = 250;
             }
             else {
-                Enfriamiento = 2000;
+                Enfriamiento = 1000;
             }
             damage = 5;
         }
@@ -24,10 +24,10 @@ int Torre_Mago::Atacar() {
     else if (nivel == 2) {
         if (Enfriamiento == 0) {
             if (AtaqueEspecialAct) {
-                Enfriamiento = 500;
+                Enfriamiento = 125;
             }
             else {
-                Enfriamiento = 1000;
+                Enfriamiento = 500;
             }
             damage = 10;
         }
@@ -35,10 +35,10 @@ int Torre_Mago::Atacar() {
     else if (nivel == 3) {
         if (Enfriamiento == 0) {
             if (AtaqueEspecialAct) {
-                Enfriamiento = 250;
+                Enfriamiento = 50;
             }
             else {
-                Enfriamiento = 500;
+                Enfriamiento = 250;
             }
 
             damage = 20;
@@ -84,15 +84,15 @@ void Torre_Mago::AtacarEnemigo(std::vector<std::shared_ptr<EnemyController>>& en
         int dis = DistanciaAtaque();
         int dano = Atacar();  // Si está listo para atacar
         if (nivel == 1) {
-                dano = 10;
+                dano = 100;
 
         }
         else if (nivel == 2) {
-                dano = 20;
+                dano = 200;
 
         }
         else if (nivel == 3) {
-                dano = 40;
+                dano = 400;
 
         }
 
