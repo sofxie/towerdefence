@@ -67,9 +67,9 @@ Ogre::Ogre()
         }(),
 
         // Valores fijos para el resto de parámetros
-        20,
-        5,
-        5,
+        35,
+        15,
+        15,
         EnemyType::Ogre
     ) {}
 
@@ -91,7 +91,7 @@ DarkElf::DarkElf()
             std::uniform_real_distribution<float> dist(40.0f, 45.0f);
             return dist(gen);
         }(),
-        5, 20, 5, EnemyType::DarkElf
+        15, 35, 15, EnemyType::DarkElf
     ) {}
 
 DarkElf::DarkElf(int hp, float spd, int arRes, int mgRes, int artRes)
@@ -111,7 +111,7 @@ Harpy::Harpy()
             std::uniform_real_distribution<float> dist(25.0f, 30.0f);
             return dist(gen);
         }(),
-        10, 5, 20, EnemyType::Harpy
+        25, 15, 35, EnemyType::Harpy
     ) {}
 
 // Nota: Corregí un typo (bp -> hp en el constructor parametrizado)
@@ -132,7 +132,7 @@ Mercenary::Mercenary()
             std::uniform_real_distribution<float> dist(20.0f, 25.0f);
             return dist(gen);
         }(),
-        20, 5, 20, EnemyType::Mercenary
+        35, 15, 35, EnemyType::Mercenary
     ) {}
 
 Mercenary::Mercenary(int hp, float spd, int arRes, int mgRes, int artRes)

@@ -64,25 +64,23 @@ void Controler::crearOleada(std::vector<Pair> ruta) {
 
     // Nueva wave si es necesario
 
-    if (llamadasOleadas <2) {// Si la generación de la oleada no coincide con la actual
-        llamadasOleadas++;
+    if (llamadasOleadas < 2) {
         wave = Wave(genaracionOleada);
-    }
-
-    if (llamadasOleadas > 2) {
-        probabilidad = std::min(100, (llamadasOleadas - 2) * 10); // 90%, 80%, ..., 100%
-
+    } else {
         std::random_device rd;
         std::mt19937 gen(rd());
         std::uniform_int_distribution<> dist(1, 100);
+        probabilidad = std::min(100, (llamadasOleadas - 2) * 20);
 
         if (dist(gen) <= probabilidad) {
             mutacionesOcurridas++;
-            wave.evolve(); // Evoluciona
+            wave.evolve();
         } else {
-             Wave(generacionOleada); // No evoluciona, se reinicia la oleada
+            wave = Wave(genaracionOleada);
         }
     }
+
+
 
 
     // Preparar enemigos a spawnear
@@ -98,6 +96,7 @@ void Controler::crearOleada(std::vector<Pair> ruta) {
     oleadaClock.restart();
 
     genaracionOleada++;
+    llamadasOleadas++;
 }
 
 /**
@@ -405,7 +404,7 @@ void Controler::update() {
 
 
     // Lanzar enemigos uno a uno
-    if (spawnIndex < enemiesToSpawn.size() && spawnClock.getElapsedTime().asSeconds() >= 5.5f) {
+    if (spawnIndex < enemiesToSpawn.size() && spawnClock.getElapsedTime().asSeconds() >= 3.5f) {
         int startX = rutaOleada.front().first;
         int startY = rutaOleada.front().second;
 

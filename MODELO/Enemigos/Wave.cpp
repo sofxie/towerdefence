@@ -6,12 +6,12 @@ Wave::Wave(int gen) : generation(gen), timesGetEnemiesCalled(0) {
 }
 
 void Wave::spawnEnemies() { // Generar enemigos
-    enemies.clear();
+    //enemies.clear();
     std::random_device rd;
     std::mt19937 gen(rd());
     std::uniform_int_distribution<> dist(0, 3); // 0 a 3 (4 tipos de enemigos)
 
-    int baseEnemies = 3 + ((generation / 2) * 2); // 4 + 2 por cada 2 generaciones
+    int baseEnemies = 4 + ((generation / 2) * 3);
 
     for (int i = 0; i < baseEnemies; ++i) {
         switch (dist(gen)) { // Generar enemigos aleatorios
