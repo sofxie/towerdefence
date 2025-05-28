@@ -266,10 +266,10 @@ std::vector<std::string> Wave::getEnemiesStats() const {std::vector<std::string>
             std::ostringstream oss;
             oss << Enemy::typeToString(enemy->getType()) << " \n"
                 << "HP: " << enemy->getHealth() << ", "
-                << "SP:" << std::fixed << std::setprecision(1) << enemy->getSpeed() << ", \n"
-                << "AR: " << enemy->getArrowResistance() << "%, "
-                << "MR: " << enemy->getMagicResistance() << "%, \n"
-                << "AT: " << enemy->getArtilleryResistance() << "%";
+                << "SP: " << std::fixed << std::setprecision(1) << enemy->getSpeed() << ", \n"
+                << "AR: " << enemy->getArrowResistance() << ", "
+                << "MR: " << enemy->getMagicResistance() << ", \n"
+                << "AT: " << enemy->getArtilleryResistance() << "";
             statsList.push_back(oss.str());
         }
         return statsList;
