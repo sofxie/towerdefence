@@ -5,6 +5,7 @@
 #include <string>
 #include <vector>
 #include <deque>
+#include "Torre/Torre.h"
 
 class View {
 public:
@@ -15,7 +16,7 @@ public:
     // Dibujar botones para seleccionar tipo de torre
     void torres(int modoSeleccionado);
     // Efecto de resaltado con el cursor
-    void drawHover(int posX, int posY);
+    void drawHover(int posX, int posY, int grid[10][10], std::vector<std::shared_ptr<Torre>> listTorres);
     // Detecta click con el mouse
     int botonClick(int mouseX, int mouseY);
     // Dibuja los botones en la ventana

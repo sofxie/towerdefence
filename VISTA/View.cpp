@@ -3,7 +3,7 @@
 #include "VisualEnemy.h"
 #include <sstream>
 #include <string>
-
+#include "Torre/Torre.h"
 
 // Constructor
 View::View(sf::RenderWindow &window)
@@ -167,7 +167,7 @@ void View::updateStats(int enemigosEliminados, int oleadaActual, int nivelTorre,
 
 
 // Efecto resaltado con el cursor
-void View::drawHover(int mouseX, int mouseY) {
+void View::drawHover(int mouseX, int mouseY, int grid[10][10], std::vector<std::shared_ptr<Torre>> listTorres) {
     int col = mouseX / SIZE;
     int row = mouseY / SIZE;
 
@@ -177,6 +177,63 @@ void View::drawHover(int mouseX, int mouseY) {
         highlight.setFillColor(sf::Color(0, 255, 255, 100)); // Amarillo transparente
         window.draw(highlight);
     }
+    if (grid[row][col] == 0) {
+        std::string nivel = "1000";
+
+        for (std::shared_ptr<Torre> torre : listTorres) {
+            if (torre->getPosicion().first == row && torre->getPosicion().second == col) {
+                nivel = std::to_string(torre->GetNivel());
+            }
+        }
+
+        sf::Text text;
+        text.setFont(font);
+        text.setString("ARC " + nivel);
+        text.setCharacterSize(14); // Tamaño del texto
+        text.setFillColor(sf::Color::Red); // Color del texto
+        text.setPosition(col * SIZE + 3, row * SIZE); // Posición un poco desplazada
+
+        window.draw(text);
+    }
+    else if (grid[row][col] == 2) {
+        std::string nivel2 = "1000";
+
+        for (std::shared_ptr<Torre> torre : listTorres) {
+            if (torre->getPosicion().first == row && torre->getPosicion().second == col) {
+                nivel2 = std::to_string(torre->GetNivel());
+            }
+        }
+
+        sf::Text text;
+        text.setFont(font);
+        text.setString("ART " + nivel2);
+        text.setCharacterSize(14); // Tamaño del texto
+        text.setFillColor(sf::Color::Red); // Color del texto
+        text.setPosition(col * SIZE + 3, row * SIZE); // Posición un poco desplazada
+
+        window.draw(text);
+
+    }
+    else if (grid[row][col] == 3) {
+        std::string nivel3 = "1000";
+
+        for (std::shared_ptr<Torre> torre : listTorres) {
+            if (torre->getPosicion().first == row && torre->getPosicion().second == col) {
+                nivel3 = std::to_string(torre->GetNivel());
+            }
+        }
+
+        sf::Text text;
+        text.setFont(font);
+        text.setString("MAG " + nivel3);
+        text.setCharacterSize(14); // Tamaño del texto
+        text.setFillColor(sf::Color::Red); // Color del texto
+        text.setPosition(col * SIZE + 3, row * SIZE); // Posición un poco desplazada
+
+        window.draw(text);
+
+    }
+
 }
 
 // Identificar Clicks en un boton
