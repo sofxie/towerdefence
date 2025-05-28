@@ -195,6 +195,9 @@ void Controler::events() {
                             if (torreTem->getPosicion().first == row && torreTem->getPosicion().second == col) {
                                 if (grid[row][col] == 0) {
                                     if (Oro >= 50) {
+                                        if (torreTem->GetNivel() == 3) {
+                                            break;
+                                        }
                                         Oro = Oro - 50;
                                         std::cout << "Mejorar torre en " << row << " " << col << "\n";
                                         torreTem->SubirNivel();
@@ -261,6 +264,9 @@ void Controler::events() {
                             if (torreTem->getPosicion().first == row && torreTem->getPosicion().second == col) {
                                 if (grid[row][col] == 2) {
                                     if (Oro >= 100) {
+                                        if (torreTem->GetNivel() == 3) {
+                                            break;
+                                        }
                                         Oro = Oro - 100;
                                         std::cout << "Mejorar torre en " << row << " " << col << "\n";
                                         torreTem->SubirNivel();
@@ -325,30 +331,35 @@ void Controler::events() {
                     else {
 
                         for (std::shared_ptr<Torre> torreTem : torres) {
-                            if (grid[row][col] == 3) {
-                                if (Oro >= 75) {
-                                    Oro = Oro - 75;
-                                    std::cout << "Mejorar torre en " << row << " " << col << "\n";
-                                    torreTem->SubirNivel();
-                                    std::cout << torreTem->GetNivel() << "\n";
+                            if (torreTem->getPosicion().first == row && torreTem->getPosicion().second == col) {
+                                if (grid[row][col] == 3) {
+                                    if (Oro >= 75) {
+                                        if (torreTem->GetNivel() == 3) {
+                                            break;
+                                        }
+                                        Oro = Oro - 75;
+                                        std::cout << "Mejorar torre en " << row << " " << col << "\n";
+                                        torreTem->SubirNivel();
+                                        std::cout << torreTem->GetNivel() << "\n";
 
-                                    if (torreTem->GetNivel() == 2) {
-                                        TMago2.loadFromFile("Imagenes/Mago2.jpeg");
-                                        celdaColor[row][col].setTexture(TMago2);
+                                        if (torreTem->GetNivel() == 2) {
+                                            TMago2.loadFromFile("Imagenes/Mago2.jpeg");
+                                            celdaColor[row][col].setTexture(TMago2);
+                                        }
+                                        else {
+                                            TMago3.loadFromFile("Imagenes/Mago3.jpeg");
+                                            celdaColor[row][col].setTexture(TMago3);
+                                        }
+
+                                        break;
                                     }
                                     else {
-                                        TMago3.loadFromFile("Imagenes/Mago3.jpeg");
-                                        celdaColor[row][col].setTexture(TMago3);
+                                        std::cout << " \n Mejorar torre en " << row << " " << col << " imposible por oro insuficiente\n";
                                     }
-
-                                    break;
                                 }
                                 else {
-                                    std::cout << " \n Mejorar torre en " << row << " " << col << " imposible por oro insuficiente\n";
+                                    std::cout << "No es el tipo correcto " << "\n";
                                 }
-                            }
-                            else {
-                                std::cout << "No es el tipo correcto " << "\n";
                             }
                         }
                     }
@@ -492,7 +503,7 @@ void Controler::render() {
     } else {
         vista.mapa(grid,celdaColor);
         vista.torres(modoSeleccionado);
-        vista.drawHover(sf::Mouse::getPosition(window).x, sf::Mouse::getPosition(window).y);
+        vista.drawHover(sf::Mouse::getPosition(window).x, sf::Mouse::getPosition(window).y, grid, torres);
         vista.drawVida(Vida);
         for (auto& enemigo : enemigos) {
             enemigo.dibujar(window);} // Dibujar enemigos

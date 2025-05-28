@@ -38,26 +38,26 @@ void Wave::evolve() {
     for (const auto& enemy : enemies) {
         EnemyType type = enemy->getType();
         // Almacenamos todas las estadísticas importantes de cada enemigo
-        currentStats[type].push_back(enemy->getHealth());
-        currentStats[type].push_back(enemy->getSpeed());
-        currentStats[type].push_back(enemy->getArrowResistance());
-        currentStats[type].push_back(enemy->getMagicResistance());
-        currentStats[type].push_back(enemy->getArtilleryResistance());
+        currentStats[type].push_back(enemy->getHealth()); // salud
+        currentStats[type].push_back(enemy->getSpeed()); // velocidad
+        currentStats[type].push_back(enemy->getArrowResistance()); // resistencia a flechas
+        currentStats[type].push_back(enemy->getMagicResistance()); // resistencia a magia
+        currentStats[type].push_back(enemy->getArtilleryResistance()); // resistencia a artillería
     }
 
     // ------------------------------------------------------------
     // 2. PROCESO DE EVOLUCIÓN PRINCIPAL
     // ------------------------------------------------------------
-    std::map<EnemyType, std::vector<Enemy*>> enemiesByType;
+    std::map<EnemyType, std::vector<Enemy*>> enemiesByType; // Agrupar enemigos por tipo
 
     // Agrupar enemigos por tipo para evolución específica
     for (auto& e : enemies) {
         enemiesByType[e->getType()].push_back(e.get());
     }
 
-    std::vector<std::unique_ptr<Enemy>> newGeneration;
-    std::random_device rd;
-    std::mt19937 gen(rd());
+    std::vector<std::unique_ptr<Enemy>> newGeneration; // Nueva generación de enemigos
+    std::random_device rd; // Generador de números aleatorios
+    std::mt19937 gen(rd()); // Motor de generación aleatoria
 
     // Rango de variación para características (10% a 20% de variación)
     std::uniform_real_distribution<float> variation(1.1f, 1.2f);
@@ -81,7 +81,7 @@ void Wave::evolve() {
         // 2.2 REPRODUCCIÓN (crear nueva generación)
         // --------------------------------------------------------
         // Número de descendientes aumenta con las generaciones
-        int offspringCount = 1 + (generation % 2);
+        int offspringCount = 1 + (generation % 2); // 1 o 2 descendientes por generación
 
         for (int i = 0; i < offspringCount; ++i) {
             // ----------------------------------------------------

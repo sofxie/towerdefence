@@ -71,11 +71,11 @@ void Torre_Arco::AtacarEnemigo(std::vector<std::shared_ptr<EnemyController>>& en
 
         }
         else if (nivel == 2) {
-                dano = 100;
+                dano = 80;
 
         }
         else if (nivel == 3) {
-                dano = 200;
+                dano = 120;
         }
 
         std::cout << distancia << std::endl;
