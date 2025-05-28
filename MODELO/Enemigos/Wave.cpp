@@ -106,7 +106,7 @@ void Wave::evolve() {
             // ----------------------------------------------------
             auto improveResistance = [](int res, int gen) {
                 // Mejora compuesta: 5% + 1 punto por generación (máx 95%)
-                return std::min(95, res + static_cast<int>(res * 0.05f) + gen);
+                return std::min(75, res + static_cast<int>(res * 0.05f) + gen);
             };
 
             // Calculamos resistencias mejoradas

@@ -54,7 +54,7 @@ Ogre::Ogre()
         []() {
             std::random_device rd;
             std::mt19937 gen(rd());
-            std::uniform_int_distribution<int> hp_dist(250, 280);
+            std::uniform_int_distribution<int> hp_dist(230, 255);
             return hp_dist(gen);
         }(),
 
@@ -67,9 +67,9 @@ Ogre::Ogre()
         }(),
 
         // Valores fijos para el resto de parámetros
-        80,
-        10,
         20,
+        5,
+        5,
         EnemyType::Ogre
     ) {}
 
@@ -82,16 +82,16 @@ DarkElf::DarkElf()
         []() { // HP aleatorio (80-120)
             std::random_device rd;
             std::mt19937 gen(rd());
-            std::uniform_int_distribution<int> dist(100, 150);
+            std::uniform_int_distribution<int> dist(100, 125);
             return dist(gen);
         }(),
         []() { // Speed aleatorio (13.0f-18.0f)
             std::random_device rd;
             std::mt19937 gen(rd());
-            std::uniform_real_distribution<float> dist(35.0f, 50.0f);
+            std::uniform_real_distribution<float> dist(35.0f, 40.0f);
             return dist(gen);
         }(),
-        10, 80, 20, EnemyType::DarkElf
+        5, 20, 5, EnemyType::DarkElf
     ) {}
 
 DarkElf::DarkElf(int hp, float spd, int arRes, int mgRes, int artRes)
@@ -102,7 +102,7 @@ Harpy::Harpy()
         []() { // HP aleatorio (60-120)
             std::random_device rd;
             std::mt19937 gen(rd());
-            std::uniform_int_distribution<int> dist(80, 160);
+            std::uniform_int_distribution<int> dist(80, 135);
             return dist(gen);
         }(),
         []() { // Speed aleatorio (18.0f-22.0f)
@@ -111,7 +111,7 @@ Harpy::Harpy()
             std::uniform_real_distribution<float> dist(20.0f, 25.0f);
             return dist(gen);
         }(),
-        60, 30, 100, EnemyType::Harpy
+        10, 5, 20, EnemyType::Harpy
     ) {}
 
 // Nota: Corregí un typo (bp -> hp en el constructor parametrizado)
@@ -123,7 +123,7 @@ Mercenary::Mercenary()
         []() { // HP aleatorio (60-100)
             std::random_device rd;
             std::mt19937 gen(rd());
-            std::uniform_int_distribution<int> dist(100, 140);
+            std::uniform_int_distribution<int> dist(100, 115);
             return dist(gen);
         }(),
         []() { // Speed aleatorio (13.0f-17.0f)
@@ -132,7 +132,7 @@ Mercenary::Mercenary()
             std::uniform_real_distribution<float> dist(15.0f, 20.0f);
             return dist(gen);
         }(),
-        80, 20, 80, EnemyType::Mercenary
+        20, 5, 20, EnemyType::Mercenary
     ) {}
 
 Mercenary::Mercenary(int hp, float spd, int arRes, int mgRes, int artRes)
