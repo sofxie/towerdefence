@@ -54,11 +54,11 @@ Ogre::Ogre()
         []() {
             std::random_device rd;
             std::mt19937 gen(rd());
-            std::uniform_int_distribution<int> hp_dist(250, 300);
+            std::uniform_int_distribution<int> hp_dist(250, 350);
             return hp_dist(gen);
         }(),
 
-        // Speed aleatorio entre 8.0f y 13.0f
+        // Speed aleatorio
         []() {
             std::random_device rd;
             std::mt19937 gen(rd());
@@ -79,13 +79,13 @@ Ogre::Ogre(int hp, float spd, int arRes, int mgRes, int artRes)
 
 DarkElf::DarkElf()
     : Enemy(
-        []() { // HP aleatorio (80-120)
+        []() { // HP aleatorio
             std::random_device rd;
             std::mt19937 gen(rd());
-            std::uniform_int_distribution<int> dist(120, 170);
+            std::uniform_int_distribution<int> dist(120, 220);
             return dist(gen);
         }(),
-        []() { // Speed aleatorio (13.0f-18.0f)
+        []() { // Speed aleatorio
             std::random_device rd;
             std::mt19937 gen(rd());
             std::uniform_real_distribution<float> dist(40.0f, 45.0f);
@@ -99,13 +99,13 @@ DarkElf::DarkElf(int hp, float spd, int arRes, int mgRes, int artRes)
 
 Harpy::Harpy()
     : Enemy(
-        []() { // HP aleatorio (60-120)
+        []() { // HP aleatorio
             std::random_device rd;
             std::mt19937 gen(rd());
-            std::uniform_int_distribution<int> dist(140, 200);
+            std::uniform_int_distribution<int> dist(140, 240);
             return dist(gen);
         }(),
-        []() { // Speed aleatorio (18.0f-22.0f)
+        []() { // Speed aleatorio
             std::random_device rd;
             std::mt19937 gen(rd());
             std::uniform_real_distribution<float> dist(25.0f, 30.0f);
@@ -120,13 +120,13 @@ Harpy::Harpy(int hp, float spd, int arRes, int mgRes, int artRes)
 
 Mercenary::Mercenary()
     : Enemy(
-        []() { // HP aleatorio (60-100)
+        []() { // HP aleatorio
             std::random_device rd;
             std::mt19937 gen(rd());
-            std::uniform_int_distribution<int> dist(100, 150);
+            std::uniform_int_distribution<int> dist(100, 200);
             return dist(gen);
         }(),
-        []() { // Speed aleatorio (13.0f-17.0f)
+        []() { // Speed aleatorio
             std::random_device rd;
             std::mt19937 gen(rd());
             std::uniform_real_distribution<float> dist(20.0f, 25.0f);
