@@ -19,7 +19,7 @@ using namespace std;
 Controler::Controler(std::vector<std::shared_ptr<EnemyController>>& enemigos)
         :
         // Crear una ventana de 800x600
-        window(sf::VideoMode(1000, 600), "Tower Defense"), // Inicializar
+        window(sf::VideoMode(1000, 600), "Tower Defense",  sf::Style::Titlebar | sf::Style::Close), // Inicializar
         modoSeleccionado(0), // Inicializar modo de torres (0 por default)
         listaDeEnemigos(enemigos),
         src({9,0}), // Coordenadas de Inicio
