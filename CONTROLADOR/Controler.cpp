@@ -498,7 +498,7 @@ void Controler::update() {
 void Controler::render() {
     window.clear(sf::Color::Black);
     if (Vida <= 0) {
-        enemiesToSpawn.clear();
+        enemiesToSpawn.clear(); // Limpiar enemigos por spawnear
         vista.GameOver(kills);
     } else {
         vista.mapa(grid,celdaColor);
