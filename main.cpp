@@ -1,20 +1,11 @@
-#include <SFML/Graphics.hpp>
+#include "CONTROLADOR/Controler.h"
+#include "Enemigos/EnemyController.h"
+#include <memory>
+#include <vector>
 
 int main() {
-    // Crear una ventana de 800x600
-    sf::RenderWindow window(sf::VideoMode(800, 600), "Tower Defense");
-
-    // Bucle principal del juego
-    while (window.isOpen()) { // es como mainloop en tkinter
-        sf::Event event;
-        while (window.pollEvent(event)) {
-            if (event.type == sf::Event::Closed)
-                window.close();
-        }
-
-        window.clear(sf::Color::Black); // Limpiar la ventana con color negro
-        window.display();               // Mostrar la ventana
-    }
-
+    std::vector<std::shared_ptr<EnemyController>> enemigos;
+    Controler game(enemigos);
+    game.run();
     return 0;
 }
