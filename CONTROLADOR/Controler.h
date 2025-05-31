@@ -33,10 +33,7 @@ public:
     int Oro = 500;
     int Vida = 3;
     int kills = 0;
-    int probabilidad = 0;
-    int Oledas = 0; // Contador de oleadas
-    int mutacionesOcurridas = 0; // Contador de mutaciones
-    int PrimerO = 0; // Primer oleada
+
 
 
 private:
@@ -79,6 +76,11 @@ private:
     int spawnIndex = 0;                                  // Índice del siguiente enemigo
     sf::Clock spawnClock;                                // Controla el tiempo entre spawns}
     sf::Clock rutaUpdateClock; // Temporizador para recalcular rutas
+
+    int probabilidad = 0;
+    int Oledas = 0; // Contador de oleadas
+    int mutacionesOcurridas = 0; // Contador de mutaciones
+    int PrimerO = 0; // Primer oleada
 };
 
 

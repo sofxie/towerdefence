@@ -62,7 +62,7 @@ Ogre::Ogre()
         []() {
             std::random_device rd;
             std::mt19937 gen(rd());
-            std::uniform_real_distribution<float> spd_dist(13.0f, 18.0f);
+            std::uniform_real_distribution<float> spd_dist(13.0f, 23.0f);
             return spd_dist(gen);
         }(),
 
@@ -88,7 +88,7 @@ DarkElf::DarkElf()
         []() { // Speed aleatorio
             std::random_device rd;
             std::mt19937 gen(rd());
-            std::uniform_real_distribution<float> dist(40.0f, 45.0f);
+            std::uniform_real_distribution<float> dist(40.0f, 50.0f);
             return dist(gen);
         }(),
         15, 35, 15, EnemyType::DarkElf
@@ -108,7 +108,7 @@ Harpy::Harpy()
         []() { // Speed aleatorio
             std::random_device rd;
             std::mt19937 gen(rd());
-            std::uniform_real_distribution<float> dist(25.0f, 30.0f);
+            std::uniform_real_distribution<float> dist(25.0f, 35.0f);
             return dist(gen);
         }(),
         25, 15, 35, EnemyType::Harpy
@@ -129,7 +129,7 @@ Mercenary::Mercenary()
         []() { // Speed aleatorio
             std::random_device rd;
             std::mt19937 gen(rd());
-            std::uniform_real_distribution<float> dist(20.0f, 25.0f);
+            std::uniform_real_distribution<float> dist(20.0f, 30.0f);
             return dist(gen);
         }(),
         35, 15, 35, EnemyType::Mercenary
