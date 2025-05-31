@@ -57,6 +57,8 @@ private:
     sf::Texture texCorazon;
     sf::Texture textureGO;
     sf::Sprite spriteGO;
+    sf::Texture textureCas;
+    sf::Sprite spriteCas;
 
     // Botones para las torres
     sf::Texture textureBot1;

@@ -19,6 +19,7 @@ View::View(sf::RenderWindow &window)
     texture.loadFromFile("Imagenes/pasto.png");
     texture1.loadFromFile("Imagenes/pasto2.png");
     texturebg.loadFromFile("Imagenes/Panel.png");
+    textureCas.loadFromFile("Imagenes/Castillo.png");
 
     texCorazon.loadFromFile("Imagenes/Vida.png");
     textureGO.loadFromFile("Imagenes/GameMover.jpg");
@@ -38,6 +39,7 @@ View::View(sf::RenderWindow &window)
     spriteBot2.setTexture(textureBot2);
     spriteBot3.setTexture(textureBot3);
     spriteBotOleada.setTexture(textureBotOleada);
+    spriteCas.setTexture(textureCas);
 
     // Modificar tamano de imagen
     sprite.setScale(static_cast<float>(SIZE) / texture.getSize().x,
@@ -51,6 +53,8 @@ View::View(sf::RenderWindow &window)
     spriteBot3.setScale(0.05f, 0.05f);
     spriteBotOleada.setScale(static_cast<float>(382) / texture1.getSize().x,
     static_cast<float>(300) / texture1.getSize().y);
+    spriteCas.setScale(static_cast<float>(100) / textureCas.getSize().x,
+    static_cast<float>(100) / textureCas.getSize().y);
 
     // Posicionar y diseñar botones
     spritebg.setPosition(SIZE*10, 0);
@@ -58,6 +62,7 @@ View::View(sf::RenderWindow &window)
     spriteBot2.setPosition(SIZE * 12.75, SIZE*4.5);
     spriteBot3.setPosition(SIZE * 14.3, SIZE*4.5);
     spriteBotOleada.setPosition(SIZE * 11.2, SIZE * 3);
+    spriteCas.setPosition(SIZE * 8.65, -24);
 
     auto initText = [&](sf::Text& txt, float yOffset) {
         txt.setFont(font);
@@ -295,6 +300,7 @@ void View::Boton() {
     window.draw(txtMutacionesProba);
     window.draw(txtMutacionesOcurridas);
     window.draw(txtNivelTorre);
+    window.draw(spriteCas);
 
     // Copiar el texto original
     fitnessCopy = txtFitness;

@@ -54,7 +54,7 @@ Ogre::Ogre()
         []() {
             std::random_device rd;
             std::mt19937 gen(rd());
-            std::uniform_int_distribution<int> hp_dist(250, 375);
+            std::uniform_int_distribution<int> hp_dist(260, 385);
             return hp_dist(gen);
         }(),
 
@@ -82,7 +82,7 @@ DarkElf::DarkElf()
         []() { // HP aleatorio
             std::random_device rd;
             std::mt19937 gen(rd());
-            std::uniform_int_distribution<int> dist(120, 245);
+            std::uniform_int_distribution<int> dist(130, 255);
             return dist(gen);
         }(),
         []() { // Speed aleatorio
@@ -102,7 +102,7 @@ Harpy::Harpy()
         []() { // HP aleatorio
             std::random_device rd;
             std::mt19937 gen(rd());
-            std::uniform_int_distribution<int> dist(140, 265);
+            std::uniform_int_distribution<int> dist(150, 275);
             return dist(gen);
         }(),
         []() { // Speed aleatorio
@@ -123,7 +123,7 @@ Mercenary::Mercenary()
         []() { // HP aleatorio
             std::random_device rd;
             std::mt19937 gen(rd());
-            std::uniform_int_distribution<int> dist(100, 225);
+            std::uniform_int_distribution<int> dist(110, 235);
             return dist(gen);
         }(),
         []() { // Speed aleatorio

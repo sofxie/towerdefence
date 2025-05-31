@@ -12,7 +12,7 @@ using std::pair;
 using std::ostream;
 
 using namespace std;
-
+bool gameOver = false;
 
 
     // Constructor
@@ -41,8 +41,10 @@ Controler::Controler(std::vector<std::shared_ptr<EnemyController>>& enemigos)
 void Controler::run() {
     while (window.isOpen()) {
         events(); // Llamar eventos para manejar interacciones
-        update(); // Llamar actualizar para el estado de juego
-        render(); // Llamar renderizado para dibujar el estado en la ventana
+        if (!gameOver) {
+            update(); // Llamar actualizar para el estado de juego
+            render(); // Llamar renderizado para dibujar el estado en la ventana
+        }
     }
 }
 
@@ -79,9 +81,6 @@ void Controler::crearOleada(std::vector<Pair> ruta) {
             wave = Wave(genaracionOleada);
         }
     }
-
-
-
 
     // Preparar enemigos a spawnear
     const auto& currentEnemies = wave.getEnemies();
@@ -129,9 +128,6 @@ void Controler::events() {
                     vista.setFitnessScrollOffset(std::max(0.0f, offset - 5.0f)); // Evitar que suba demasiado
                 }
             }
-
-
-
 
         // Click izquierdo
             if (event.type == sf::Event::MouseButtonPressed && event.mouseButton.button == sf::Mouse::Left) {
@@ -378,11 +374,6 @@ void Controler::events() {
     }
 }
 
-void Controler::eliminarenemigos() {
-
-}
-
-
 void Controler::update() {
     // Enviar el valor de oro para proyectar la cantidad
     vista.Oro(Oro);
@@ -404,7 +395,7 @@ void Controler::update() {
 
 
     // Lanzar enemigos uno a uno
-    if (spawnIndex < enemiesToSpawn.size() && spawnClock.getElapsedTime().asSeconds() >= 3.5f) {
+    if (spawnIndex < enemiesToSpawn.size() && spawnClock.getElapsedTime().asSeconds() >= 3.5) {
         int startX = rutaOleada.front().first;
         int startY = rutaOleada.front().second;
 
@@ -497,9 +488,11 @@ void Controler::update() {
 // Rederizar el mapa y los elementos graficos
 void Controler::render() {
     window.clear(sf::Color::Black);
-    if (Vida <= 0) {
+    if (Vida <= 0 && !gameOver) {
+        printf("gameOver");
         enemiesToSpawn.clear(); // Limpiar enemigos por spawnear
         vista.GameOver(kills);
+        gameOver = true;
     } else {
         vista.mapa(grid,celdaColor);
         vista.torres(modoSeleccionado);
